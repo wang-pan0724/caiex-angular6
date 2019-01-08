@@ -1,0 +1,20 @@
+
+.footer{
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    bottom: 0px;
+    left:0px;
+    background: #222222;
+    color: #fff;
+}
+
+.footer ul{
+    display: flex;
+    width: 100%;
+}
+
+.footer li{
+    list-style: none;
+    width: 25%;
+}
