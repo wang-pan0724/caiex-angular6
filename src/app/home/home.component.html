@@ -1,13 +1,26 @@
 <div class="page">
-    <app-common-title [showReturn]=true [title]="hello"></app-common-title>
-    <div class="banner">banner</div>
+    <app-common-title [showReturn]=false [title]='title'></app-common-title>
+    <div class="banner"><img src="../../assets/banner.jpg" alt=""></div>
     <div class="container">
         <div class="list">
             <div class="listTitle">热门彩种</div>
             <div class="listItem">
-                <div routerLink='football'>竞彩足球</div>
-                <div routerLink='basketball'>精彩篮球</div>
+                <div routerLink='football' class="ball">
+                    <img src="../../assets/football.jpg" alt="">
+                    <div>
+                        <p>竞彩足球</p>
+                        <p>返奖率高达73%</p>
+                    </div>
+                </div>
+                <div routerLink='basketball' class="ball">
+                    <img src="../../assets/basketball.jpg" alt="">
+                    <div>
+                        <p>精彩篮球</p>
+                        <p>篮彩2选1易</p>
+                    </div>
+                </div>
             </div>
+            
         </div>
     </div>
     <app-footer></app-footer>

@@ -1,24 +1,35 @@
 
 <div class="nav backgroundRed">
-    <i class="icon ion-chevron-left"></i>
+    <i (click)="goBack()" class="icon ion-chevron-left"></i>
     <div class="navTab">
         <ul>
-            <li class="navActive">全部</li>
-            <li>单关</li>
+            <li [class.navActive]="switchNavIndex === '0'" (click)="switchNav('0')">全部</li>
+            <li [class.navActive]="switchNavIndex === '1'" (click)="switchNav('1')">单关</li>
         </ul>
     </div>
     <i class="icon ion-ios-color-filter"></i>
     <i class="icon ion-navicon-round"></i>
 </div>
 <div class="status-bar">
-    <span class="statusBarActive">胜平负</span>
-    <span>混合过关</span>
-    <span>比分</span>
-    <span>总进球</span>
-    <span>半全场</span>
+    <span [class.statusBarActive]="switchIndex === '0'" (click)="switchTab('0')">胜平负</span>
+    <span [class.statusBarActive]="switchIndex === '1'" (click)="switchTab('1')">混合过关</span>
+    <span [class.statusBarActive]="switchIndex === '2'" (click)="switchTab('2')">比分</span>
+    <span [class.statusBarActive]="switchIndex === '3'" (click)="switchTab('3')">总进球</span>
+    <span [class.statusBarActive]="switchIndex === '4'" (click)="switchTab('4')">半全场</span>
 </div>
 
-<div class="page">
 
+<div class="match">
+    <div class="totalMatch">2019-01-09 周三 [12:00-次日12：00] 共16场比赛 <i class="icon ion-ios-arrow-up"></i></div>
+</div>
+
+<div class="bottomNext">
+    <div class="bottomLeft">
+        <p>已选2场</p>
+        <p>页面赔率仅供参考，京津赔率以实体票为准</p>
+    </div>
+    <div class="bottonRight">
+        下一步
+    </div>
 </div>
 

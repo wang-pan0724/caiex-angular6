@@ -8,11 +8,16 @@ import { Component, OnInit,Input } from '@angular/core';
 export class CommonTitleComponent implements OnInit {
 
   @Input() showReturn: boolean = false;
-  @Input() title: string = '菜菜';
+  @Input() title: string;
 
   constructor() { }
 
   ngOnInit() {
+    
+  }
+
+  goBack() {
+    history.go(-1);
   }
 
 }

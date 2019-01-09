@@ -6,6 +6,11 @@
     background: #fff;
 }
 
+.banner img{
+    width: 100%;
+    height: 100%;
+}
+
 .list{
     margin-top: 10px;
     background: #fff;
@@ -22,13 +27,26 @@
     display: flex;
 }
 
-.listItem div{
+.ball{
     width: 50%;
     height: 60px;
     padding: 15px;
     box-sizing: border-box;
+    display: flex;
+    font-size: 10px;
 }
 
-.listItem div:first-child{
+.ball:first-child{
     border-right: 1px solid #F5F5F9;
+}
+
+.ball img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.ball div{
+    padding: 8px 0px;
+    box-sizing: border-box;
 }

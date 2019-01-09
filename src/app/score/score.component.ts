@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreComponent implements OnInit {
 
+  title = "比分直播-竞彩足球"
   constructor() { }
 
   ngOnInit() {
