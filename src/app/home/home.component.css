@@ -1,0 +1,34 @@
+
+
+.banner{
+    width: 100%;
+    height:200px;
+    background: #fff;
+}
+
+.list{
+    margin-top: 10px;
+    background: #fff;
+}
+
+.listTitle{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    border-bottom: 1px solid #F5F5F9;
+}
+
+.listItem{
+    display: flex;
+}
+
+.listItem div{
+    width: 50%;
+    height: 60px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.listItem div:first-child{
+    border-right: 1px solid #F5F5F9;
+}

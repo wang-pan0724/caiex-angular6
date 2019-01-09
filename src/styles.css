@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.page {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    padding-top: 48px;
+  }
+  
+  .container {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: scroll;
+    flex-direction: column;
+    background-color: #F5F5F9;
+  }
+  
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    margin: 0;
+    list-style: none;
+    outline: none;
+}
+
+li::before{
+    outline: none;
+}
+
+.green{
+    color: #32c07c;
+  }
+  
+.red{
+    color: #d0021b;
+}
+
+.backgroundRed{
+    background: #d0021b;
+}

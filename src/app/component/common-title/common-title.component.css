@@ -1,0 +1,17 @@
+.title{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left:0;
+    height: 48px;
+    line-height: 48px;
+    color: #fff;
+    display: flex;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.title span{
+    flex: 1;
+    text-align: center
+}

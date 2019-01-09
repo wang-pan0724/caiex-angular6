@@ -7,6 +7,12 @@ import { HomeComponent } from './home/home.component';
 import { ScoreComponent } from './score/score.component';
 import { TradeComponent } from './trade/trade.component';
 import { MineComponent } from './mine/mine.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { CommonTitleComponent } from './component/common-title/common-title.component';
+import { ProductComponent } from './component/product/product.component';
+import { FootballComponent } from './football/football.component';
+import { BasketballComponent } from './basketball/basketball.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +20,13 @@ import { MineComponent } from './mine/mine.component';
     HomeComponent,
     ScoreComponent,
     TradeComponent,
-    MineComponent
+    MineComponent,
+    NavbarComponent,
+    CommonTitleComponent,
+    ProductComponent,
+    FootballComponent,
+    BasketballComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
