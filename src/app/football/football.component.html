@@ -1,4 +1,4 @@
-<app-navbar (onNavChanged)='navChanged($event)' (onTabChanged)='tabChanged($event)'></app-navbar>
+<app-navbar (onNavChanged)='navChanged($event)' (onTabChanged)='tabChanged($event)' [navData]='navData'></app-navbar>
 
 <div class="match">
     <div class="container" *ngIf="tabId==0">
@@ -77,7 +77,7 @@
                                 alt=""></div>
                     </div>
                     <div class="scoreItem">
-                        <div class="selectScoreItem">
+                        <div class="selectScoreItem" (click)="selectContent()">
                             选择投注内容
                         </div>
                     </div>
@@ -115,8 +115,8 @@
                     </div>
                     <div class="scoreItem">
                         <div class="allscore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"> <span
-                                    class="state">0</span> <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"> <span class="state">0</span>
+                                <span class="num">1.85</span></div>
                             <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1</span>
                                 <span class="num">3.15</span></div>
                             <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2</span>
@@ -148,6 +148,190 @@
                 </div>
                 <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="pop" *ngIf="showPop">
+    <div class="popContainer container">
+        <div class="popCountry">
+            <div>巴勒斯坦</div>
+            <div>VS</div>
+            <div>澳大利亚</div>
+        </div>
+
+        <!-- 胜平负 -->
+        <div class="scoreItem">
+            <div class="score">
+                <div (click)="selectThisItem($event)"><input type="checkbox"><i class="only">单</i> <span class="state">胜</span>
+                    <span class="num">1.85</span></div>
+                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平</span>
+                    <span class="num">3.15</span></div>
+                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负</span>
+                    <span class="num">3.70</span></div>
+            </div>
+            <div class="score">
+                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                    <span class="num">1.85</span></div>
+                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                    <span class="num">3.15</span></div>
+                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                    <span class="num">3.70</span></div>
+            </div>
+        </div>
+
+        <!-- 总进球 -->
+        <div class="popScoreItem">
+            <div class="popHeader">单</div>
+            <div class="popList">
+                <div class="popTitle">胜</div>
+                <div class="popContent">
+                    <div class="popScore">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:0</span><span
+                                class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                    <div class="popScore">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                            <span class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="popList">
+                <div class="popTitle">平</div>
+                <div class="popContent">
+                    <div class="popScore">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:0</span><span
+                                class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="popList">
+                <div class="popTitle">负</div>
+                <div class="popContent">
+                    <div class="popScore">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:0</span><span
+                                class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                    <div class="popScore">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                            <span class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总进球 -->
+        <div class="popScoreItem">
+            <div class="popHeader">单</div>
+            <div class="popList">
+                <div class="popTitle">总进球</div>
+                <div class="popContent">
+                    <div class="popScoreAll">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:0</span><span
+                                class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <span class="num">3.15</span></div>
+                    </div>
+                    <div class="popScoreAll">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                            <span class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 半全场 -->
+        <div class="popScoreItem">
+            <div class="popHeader">单</div>
+            <div class="popList">
+                <div class="popTitle">半全场</div>
+                <div class="popContent">
+                    <div class="popScoreHalf">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:0</span><span
+                                class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                    <div class="popScoreHalf">
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                            <span class="num">1.85</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                            <span class="num">3.15</span></div>
+                        <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                            <span class="num">3.70</span></div>
+                    </div>
+                    <div class="popScoreHalf">
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                                <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                                <span class="num">3.15</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                                <span class="num">3.70</span></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popButtonGroup">
+            <button class="cancel" (click)="cancel()">取消</button>
+            <button class="sure" (click)="sure()">确定</button>
         </div>
     </div>
 </div>

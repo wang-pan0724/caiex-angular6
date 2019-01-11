@@ -9,9 +9,10 @@ export class NavbarComponent implements OnInit {
 
   @Output() onNavChanged = new EventEmitter();
   @Output() onTabChanged = new EventEmitter();
+  @Input() navData:any;
 
-  public switchIndex: string = '0';
-  public switchNavIndex: string = '0';
+  public switchIndex: number = 0;
+  public switchNavIndex: number = 0;
   constructor() { }
 
   ngOnInit() {

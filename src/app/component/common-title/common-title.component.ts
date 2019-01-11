@@ -8,7 +8,10 @@ import { Component, OnInit,Input } from '@angular/core';
 export class CommonTitleComponent implements OnInit {
 
   @Input() showReturn: boolean = false;
+  @Input() selectDown: boolean = false;
   @Input() title: string;
+
+  public showSelectItem: boolean = false;
 
   constructor() { }
 
@@ -18,6 +21,17 @@ export class CommonTitleComponent implements OnInit {
 
   goBack() {
     history.go(-1);
+  }
+
+  selectItem(){
+    console.log('dddd')
+    if(this.selectDown==true){
+      this.showSelectItem = true;
+    }
+  }
+
+  selectThis(){
+    this.showSelectItem = false;
   }
 
 }

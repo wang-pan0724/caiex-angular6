@@ -10,6 +10,29 @@ export class FootballComponent implements OnInit {
   public tabId: number = 0;
   public id: number = 0;
   public listItem:number = 0;
+  public showPop:boolean = false;
+  public navData = [
+    {
+      id:0,
+      name:'胜平负'
+    },
+    {
+      id:1,
+      name:'混合过关'
+    },
+    {
+      id:2,
+      name:'比分'
+    },
+    {
+      id:3,
+      name:'总进球'
+    },
+    {
+      id:4,
+      name:'半全场'
+    },
+  ];
   public dataList = {
     details:[
       {
@@ -137,5 +160,19 @@ export class FootballComponent implements OnInit {
   // tab切换
   tabChanged(tabid){
     this.tabId = tabid;
+  }
+
+  selectContent(){
+    this.showPop = true;
+  }
+
+  // 取消按钮
+  cancel(){
+    this.showPop = false;
+  }
+
+  // 确定按钮
+  sure(){
+    this.showPop = false;
   }
 }

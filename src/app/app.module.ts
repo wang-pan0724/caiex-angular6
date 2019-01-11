@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -16,6 +17,7 @@ import { FooterNextComponent } from './component/footer-next/footer-next.compone
 import { MatchTitleComponent } from './component/match-title/match-title.component';
 import { MatchDetailComponent } from './component/match-detail/match-detail.component';
 import { MatchEndtimeComponent } from './component/match-endtime/match-endtime.component';
+import { ItemListComponent } from './component/item-list/item-list.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,13 @@ import { MatchEndtimeComponent } from './component/match-endtime/match-endtime.c
     FooterNextComponent,
     MatchTitleComponent,
     MatchDetailComponent,
-    MatchEndtimeComponent
+    MatchEndtimeComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

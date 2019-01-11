@@ -1,5 +1,17 @@
 <div class="backgroundRed title">
-  <i (onclick)="goBack()" class="icon ion-chevron-left" *ngIf="showReturn"></i>
-  <span>{{title}}</span>
+  <i (click)="goBack()" class="icon ion-chevron-left" *ngIf="showReturn"></i>
+  <span (click)="selectItem()">
+    {{title}}
+    <i *ngIf="selectDown" class="icon ion-ios-arrow-down iconDown"></i>
+  </span>
+ 
   <i class="anticon anticon-right"></i>
+</div>
+
+<div class="showSelectItem" *ngIf="showSelectItem" (click)="selectThis()">
+    <div class="selectItemList">
+      <button class="buttonActive" (click)="selectThis()">竞彩足球</button>
+      <button>北京单场</button>
+      <button>竞彩篮球</button>
+    </div>
 </div>

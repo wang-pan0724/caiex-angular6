@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenusService } from '../services/menus.service'
 
 @Component({
   selector: 'app-mine',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MineComponent implements OnInit {
 
-  constructor() { }
-
+  menus = [];
+  constructor(
+    private _menusService: MenusService
+  ) { }
   ngOnInit() {
+    this._menusService.getMenu().then(data => {
+      this.menus = data;
+    });
   }
 
 }
