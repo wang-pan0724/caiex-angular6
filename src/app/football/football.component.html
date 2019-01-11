@@ -1,35 +1,155 @@
-
-<div class="nav backgroundRed">
-    <i (click)="goBack()" class="icon ion-chevron-left"></i>
-    <div class="navTab">
-        <ul>
-            <li [class.navActive]="switchNavIndex === '0'" (click)="switchNav('0')">全部</li>
-            <li [class.navActive]="switchNavIndex === '1'" (click)="switchNav('1')">单关</li>
-        </ul>
-    </div>
-    <i class="icon ion-ios-color-filter"></i>
-    <i class="icon ion-navicon-round"></i>
-</div>
-<div class="status-bar">
-    <span [class.statusBarActive]="switchIndex === '0'" (click)="switchTab('0')">胜平负</span>
-    <span [class.statusBarActive]="switchIndex === '1'" (click)="switchTab('1')">混合过关</span>
-    <span [class.statusBarActive]="switchIndex === '2'" (click)="switchTab('2')">比分</span>
-    <span [class.statusBarActive]="switchIndex === '3'" (click)="switchTab('3')">总进球</span>
-    <span [class.statusBarActive]="switchIndex === '4'" (click)="switchTab('4')">半全场</span>
-</div>
-
+<app-navbar (onNavChanged)='navChanged($event)' (onTabChanged)='tabChanged($event)'></app-navbar>
 
 <div class="match">
-    <div class="totalMatch">2019-01-09 周三 [12:00-次日12：00] 共16场比赛 <i class="icon ion-ios-arrow-up"></i></div>
+    <div class="container" *ngIf="tabId==0">
+        <app-match-title (click)="doList('0')"></app-match-title>
+        <div class="matchItem" *ngIf="listItem == 0">
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>亚洲杯</span>
+                    <span>周四013</span>
+                    <span>18:50截至</span>
+                    <span (click)="goDetail($event)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div><img src="../../assets/country.jpg" alt=""> <span class="name">巴林</span> <span class="number">[113]</span></div>
+                        <div class="vs">VS</div>
+                        <div><span class="number">[113]</span><span class="name">泰国</span> <img src="../../assets/country.jpg"
+                                alt=""></div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="score">
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><i class="only">单</i> <span
+                                    class="state">胜</span> <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平</span>
+                                <span class="num">3.15</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负</span>
+                                <span class="num">3.70</span></div>
+                        </div>
+                        <div class="score">
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1胜</span>
+                                <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1平</span>
+                                <span class="num">3.15</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">-1负</span>
+                                <span class="num">3.70</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="id==1">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">近4次交锋，巴林1胜2负1平</div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">巴林3胜4平3负，泰国5胜1平4负</div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>-</span>
+                        <span>-</span>
+                        <span>-</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="tabId==1 || tabId==2 || tabId ==4">
+        <app-match-title (click)="doList('0')"></app-match-title>
+        <div class="matchItem" *ngIf="listItem == 0">
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>亚洲杯</span>
+                    <span>周四013</span>
+                    <span>18:50截至</span>
+                    <span (click)="goDetail($event)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div><img src="../../assets/country.jpg" alt=""> <span class="name">巴林</span> <span class="number">[113]</span></div>
+                        <div class="vs">VS</div>
+                        <div><span class="number">[113]</span><span class="name">泰国</span> <img src="../../assets/country.jpg"
+                                alt=""></div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="selectScoreItem">
+                            选择投注内容
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="id==1">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">近4次交锋，巴林1胜2负1平</div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">巴林3胜4平3负，泰国5胜1平4负</div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="tabId==3">
+        <app-match-title (click)="doList('0')"></app-match-title>
+        <div class="matchItem" *ngIf="listItem == 0">
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>亚洲杯</span>
+                    <span>周四013</span>
+                    <span>18:50截至</span>
+                    <span (click)="goDetail($event)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div><img src="../../assets/country.jpg" alt=""> <span class="name">巴林</span> <span class="number">[113]</span></div>
+                        <div class="vs">VS</div>
+                        <div><span class="number">[113]</span><span class="name">泰国</span> <img src="../../assets/country.jpg"
+                                alt=""></div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="allscore">
+                            <div (click)="selectThisItem($event)"><input type="checkbox"> <span
+                                    class="state">0</span> <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1</span>
+                                <span class="num">3.15</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2</span>
+                                <span class="num">3.70</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3</span>
+                                <span class="num">3.70</span></div>
+                        </div>
+                        <div class="allscore">
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4</span>
+                                <span class="num">1.85</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5</span>
+                                <span class="num">3.15</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">6</span>
+                                <span class="num">3.70</span></div>
+                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">7+</span>
+                                <span class="num">3.70</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="id==1">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">近4次交锋，巴林1胜2负1平</div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">巴林3胜4平3负，泰国5胜1平4负</div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="bottomNext">
-    <div class="bottomLeft">
-        <p>已选2场</p>
-        <p>页面赔率仅供参考，京津赔率以实体票为准</p>
-    </div>
-    <div class="bottonRight">
-        下一步
-    </div>
-</div>
-
+<app-footer-next></app-footer-next>

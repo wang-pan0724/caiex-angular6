@@ -1,4 +1,21 @@
 <div>
-  <i class="anticon anticon-left"></i>
-  
+  <div class="nav backgroundRed">
+    <i (click)="goBack()" class="icon ion-chevron-left"></i>
+    <div class="navTab">
+      <ul>
+        <li [class.navActive]="switchNavIndex === '0'" (click)="switchNav('0')">全部</li>
+        <li [class.navActive]="switchNavIndex === '1'" (click)="switchNav('1')">单关</li>
+      </ul>
+    </div>
+    <i class="icon ion-ios-color-filter"></i>
+    <i class="icon ion-navicon-round"></i>
+  </div>
+  <div class="status-bar">
+    <span [class.statusBarActive]="switchIndex === '0'" (click)="switchTab('0')">胜平负</span>
+    <span [class.statusBarActive]="switchIndex === '1'" (click)="switchTab('1')">混合过关</span>
+    <span [class.statusBarActive]="switchIndex === '2'" (click)="switchTab('2')">比分</span>
+    <span [class.statusBarActive]="switchIndex === '3'" (click)="switchTab('3')">总进球</span>
+    <span [class.statusBarActive]="switchIndex === '4'" (click)="switchTab('4')">半全场</span>
+  </div>
+
 </div>
