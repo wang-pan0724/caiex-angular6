@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ElModule } from 'element-angular'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -18,6 +19,11 @@ import { MatchTitleComponent } from './component/match-title/match-title.compone
 import { MatchDetailComponent } from './component/match-detail/match-detail.component';
 import { MatchEndtimeComponent } from './component/match-endtime/match-endtime.component';
 import { ItemListComponent } from './component/item-list/item-list.component';
+import { HowToTradeComponent } from './how-to-trade/how-to-trade.component';
+import { HowToIssueOrdersComponent } from './how-to-issue-orders/how-to-issue-orders.component';
+import { HowToAwardPrizesComponent } from './how-to-award-prizes/how-to-award-prizes.component';
+import { ScrollComponent } from './component/scroll/scroll.component';
+import { AskedQuestionsComponent } from './asked-questions/asked-questions.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +41,18 @@ import { ItemListComponent } from './component/item-list/item-list.component';
     MatchTitleComponent,
     MatchDetailComponent,
     MatchEndtimeComponent,
-    ItemListComponent
+    ItemListComponent,
+    HowToTradeComponent,
+    HowToIssueOrdersComponent,
+    HowToAwardPrizesComponent,
+    ScrollComponent,
+    AskedQuestionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ElModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

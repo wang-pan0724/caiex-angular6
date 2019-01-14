@@ -1,0 +1,59 @@
+.menuList{
+    display: flex;
+    background: #fff;
+}
+
+.menuItem{
+    width: 33.3%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.tradeList{
+    padding: 0px 10px;
+    margin-top: 5px;
+}
+
+.list{
+    border: 1px solid #bbb;
+    display: flex;
+    padding: 10px 10px 10px 0px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.ballKinds{
+    font-size: 12px;
+    padding: 0px 10px;
+}
+
+.ballKinds img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    display: block;
+    margin: 0 auto 5px;
+}
+
+.listTimeAndMoney{
+    flex: 1;
+}
+
+.money{
+    padding: 8px 0px;
+}
+
+.time{
+    padding: 6px 0px;
+    font-size: 12px;
+}
+
+.totalMoney{
+    padding: 6px 0px;
+}
+
+.state{
+    padding: 5px 0px;
+    text-align: right;
+}

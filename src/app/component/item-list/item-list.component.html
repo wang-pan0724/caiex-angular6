@@ -14,9 +14,14 @@
             </svg>
           </div>
         </div>
-        <ng-template [ngIf]="menu.expand">
+        <!-- <ng-template [ngIf]="menu.expand">
           <div class="heading-children" [@inOut]="out">
             <app-item-list [menu]="menu" *ngFor="let menu of menu.subMenu"></app-item-list>
+          </div>
+        </ng-template> -->
+        <ng-template [ngIf]="menu.expand">
+          <div>
+              {{menu.details}}
           </div>
         </ng-template>
       </div>

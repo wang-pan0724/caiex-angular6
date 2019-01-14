@@ -1,3 +1,65 @@
 <app-common-title [showReturn]=false [title]='title'></app-common-title>
+<div class="page">
+    <!-- <el-menu [model]="0" (modelChange)="handle($event)" class="el-menu-demo" mode="horizontal" menu-trigger="click">
+        <el-submenu index="1" title="{{selectTitle}}">
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+            <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-submenu>
+        <el-submenu index="2" title="我的工作">
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+        </el-submenu>
+        <el-submenu index="3" title="我的工作">
+            <el-menu-item index="3-1">选项1</el-menu-item>
+            <el-menu-item index="3-2">选项2</el-menu-item>
+            <el-menu-item index="3-3">选项3</el-menu-item>
+        </el-submenu>
+    </el-menu> -->
+    <div class="menuList">
+        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
+            下拉菜单
+        </el-dropdown>
+        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
+            下拉菜单2
+        </el-dropdown>
+        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
+            下拉菜单3
+        </el-dropdown>
+    </div>
 
+    <div class="tradeList">
+        <ul>
+            <li class="list">
+                <div class="ballKinds">
+                    <img src="../../assets/football.jpg" alt="">
+                    <div>竞彩足球</div>
+                </div>
+                <div class="listTimeAndMoney">
+                    <p class="money">8元</p>
+                    <p class="time">01-03 11：12</p>
+                </div>
+                <div class="listState">
+                    <p class="totalMoney">￥646.68</p>
+                    <p class="state">已录入</p>
+                </div>
+            </li>
+            <li class="list">
+                <div class="ballKinds">
+                    <img src="../../assets/football.jpg" alt="">
+                    <div>竞彩足球</div>
+                </div>
+                <div class="listTimeAndMoney">
+                    <p class="money">8元</p>
+                    <p class="time">01-03 11：12</p>
+                </div>
+                <div class="listState">
+                    <p class="totalMoney">￥646.68</p>
+                    <p class="state">已录入</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
 <app-footer></app-footer>

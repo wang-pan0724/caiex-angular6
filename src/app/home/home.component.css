@@ -29,11 +29,10 @@
 
 .ball{
     width: 50%;
-    height: 60px;
     padding: 15px;
     box-sizing: border-box;
     display: flex;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .ball:first-child{
@@ -49,4 +48,26 @@
 .ball div{
     padding: 8px 0px;
     box-sizing: border-box;
+}
+
+.ballContent{
+    width: 50%;
+}
+
+.wholeHeight{
+    height: 120px;
+    padding: 45px 15px;
+}
+
+.ball1{
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 12px;
+}
+
+.ball1 img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }

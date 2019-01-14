@@ -10,8 +10,6 @@
 
 <div class="showSelectItem" *ngIf="showSelectItem" (click)="selectThis()">
     <div class="selectItemList">
-      <button class="buttonActive" (click)="selectThis()">竞彩足球</button>
-      <button>北京单场</button>
-      <button>竞彩篮球</button>
+      <button class="buttonActive" *ngFor="let item of itemData" (click)="selectThis(item)" >{{item}}</button>
     </div>
 </div>

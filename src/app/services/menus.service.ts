@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MENUS } from './menus-mock';
+import { MENUS } from './help-mock';
+
 
 @Injectable({
   providedIn: 'root'

@@ -10,6 +10,7 @@ export class CommonTitleComponent implements OnInit {
   @Input() showReturn: boolean = false;
   @Input() selectDown: boolean = false;
   @Input() title: string;
+  @Input() itemData:any
 
   public showSelectItem: boolean = false;
 
@@ -24,14 +25,14 @@ export class CommonTitleComponent implements OnInit {
   }
 
   selectItem(){
-    console.log('dddd')
     if(this.selectDown==true){
       this.showSelectItem = true;
     }
   }
 
-  selectThis(){
+  selectThis(el){
     this.showSelectItem = false;
+    console.log(el)
   }
 
 }

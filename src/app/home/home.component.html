@@ -1,5 +1,5 @@
-<div class="page">
-    <app-common-title [showReturn]=false [title]='title'></app-common-title>
+<div>
+    <!-- <app-common-title [showReturn]=false [title]='title'></app-common-title> -->
     <div class="banner"><img src="../../assets/banner.jpg" alt=""></div>
     <div class="container">
         <div class="list">
@@ -41,15 +41,22 @@
             </div>
         </div>
         <div class="list">
-                <div class="listTitle">新手帮助</div>
-                <div class="listItem">
-                    <div routerLink='#' class="ball">
+            <div class="listTitle">新手帮助</div>
+            <div class="listItem">
+                <div routerLink='howtoTread' class="ball wholeHeight">
+                    <img src="../../assets/football.jpg" alt="">
+                    <div>
+                        <p>如何交易</p>
+                    </div>
+                </div>
+                <div class="ballContent">
+                    <div routerLink='howtoissueorders' class="ball1">
                         <img src="../../assets/football.jpg" alt="">
                         <div>
                             <p>如何发单</p>
                         </div>
                     </div>
-                    <div routerLink='#' class="ball">
+                    <div routerLink='howtoawardprizes' class="ball1">
                         <img src="../../assets/basketball.jpg" alt="">
                         <div>
                             <p>如何颁奖</p>
@@ -57,6 +64,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <app-footer></app-footer>
 </div>

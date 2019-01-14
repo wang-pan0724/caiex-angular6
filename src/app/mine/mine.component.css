@@ -1,0 +1,68 @@
+
+.userInfo{
+    width: 100%;
+    background: #ea6657;
+    padding: 25px;
+}
+
+.userInfo img{
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
+.userInfo p{
+    text-align: center;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.allMoney{
+    display: flex;
+    text-align: center;
+}
+
+.allMoney div{
+    width: 50%;
+    padding: 10px;
+}
+
+.tradeList{
+    position: relative;
+    width: 98%;
+    background: #fff;
+    height: 130px;
+    top: -20px;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.tradeListUl li{
+    display: flex;
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px solid #F5F5F9;
+}
+
+.tradeListUl li div:first-child{
+   flex: 1;
+}
+
+.tradeListUl li div:first-child i{
+    margin-right: 8px;
+    font-size: 18px;
+ }
+
+ .tradeListUl li div:last-child i{
+    margin-left: 8px;
+    font-size: 18px;
+ }
+
+ .itemList{
+     padding: 0px 10px;
+     background: #fff;
+ }

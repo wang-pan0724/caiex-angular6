@@ -18,4 +18,16 @@ export class MineComponent implements OnInit {
     });
   }
 
+  onScrollRefresh() {
+    console.log("下拉刷新");
+  }
+
+  onSlideLeft() {
+    console.log('向左边滑动啦...');
+  }
+
+  onSlideRight() {
+    console.log('向右边滑动..');
+  }
+
 }

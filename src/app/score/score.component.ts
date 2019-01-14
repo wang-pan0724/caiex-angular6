@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreComponent implements OnInit {
 
-  title = "比分直播-竞彩足球"
+  title = "比分直播-竞彩足球";
+  itemData = ['精彩足球','北京单场','竞彩篮球'];
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handle(index){
+      console.log(index)
   }
 
 }
