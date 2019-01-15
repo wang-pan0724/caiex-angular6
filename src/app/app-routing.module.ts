@@ -11,6 +11,10 @@ import { HowToTradeComponent } from './how-to-trade/how-to-trade.component';
 import { HowToIssueOrdersComponent } from './how-to-issue-orders/how-to-issue-orders.component';
 import { HowToAwardPrizesComponent } from './how-to-award-prizes/how-to-award-prizes.component';
 import { AskedQuestionsComponent } from './asked-questions/asked-questions.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -23,7 +27,11 @@ const routes: Routes = [
   {path:'home/howtoTread',component:HowToTradeComponent},
   {path:'home/howtoissueorders',component:HowToIssueOrdersComponent},
   {path:'home/howtoawardprizes',component:HowToAwardPrizesComponent},
-  {path:'mine/askedquestions',component:AskedQuestionsComponent}
+  {path:'mine/askedquestions',component:AskedQuestionsComponent},
+  {path:'mine/userinfo',component:UserinfoComponent},
+  {path:'mine/signin',component:SignInComponent},
+  {path:'mine/signout',component:SignUpComponent},
+  {path:'mine/forgotpassword',component:ForgotPasswordComponent},
 ];
 
 @NgModule({

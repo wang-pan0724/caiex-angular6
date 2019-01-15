@@ -1,6 +1,6 @@
 <app-common-title [showReturn]=false [title]='title' [selectDown]=true [(itemData)]='itemData'></app-common-title>
 <div class="page">
-    <el-menu model='0' (modelChange)="handle($event)" class="el-menu-demo elMenu" mode="horizontal">
+    <el-menu model='{{tabIndex}}' (modelChange)="handle($event)" class="el-menu-demo elMenu" mode="horizontal">
         <el-menu-item index="0"> 未结束 </el-menu-item>
         <el-menu-item index="1"> 已结束 </el-menu-item>
         <el-menu-item index="2">我的关注</el-menu-item>
@@ -8,9 +8,97 @@
     </el-menu>
 
     <app-scroll (onRefresh)="onScrollRefresh()" (onSlideLeft)="onSlideLeft()">
-        <div class="lists">
-
+        <div class="lists haveTab" *ngIf="tabIndex==0">
+            <div class="listTitle">2019-01-04 2场比赛</div>
+            <div class="listContant">
+                <ul>
+                    <li>
+                        <div class="listTime">周二101 <span>澳洲甲</span> 16：50(未开赛)</div>
+                        <div class="listDetail">
+                            <div>
+                                <img src="../../assets/football.jpg" alt="">
+                                <p>印度</p>
+                                <p>9</p>
+                            </div>
+                            <div>
+                                <p>+1</p>
+                                <p class="vs">VS</p>
+                            </div>
+                            <div>
+                                <img src="../../assets/football.jpg" alt="">
+                                <p>印度</p>
+                                <p>2</p>
+                            </div>
+                        </div>
+                        <div class="star">
+                            <i class="el-icon-star-off"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
+        <div class="lists haveTab" *ngIf="tabIndex==1">
+            <div class="listTitle">2019-01-04 2场比赛</div>
+            <div class="listContant">
+                <ul>
+                    <li>
+                        <div class="listTime">周二101 <span>澳洲甲</span> 16：50(未开赛)</div>
+                        <div class="listDetail">
+                            <div>
+                                <img src="../../assets/football.jpg" alt="">
+                                <p>印度</p>
+                                <p>9</p>
+                            </div>
+                            <div class="score">
+                                3
+                            </div>
+                            <div class="halfScore">
+                                <p>+1</p>
+                                <p>(2:0)</p>
+                                <p>半场</p>
+                            </div>
+                            <div class="score">
+                                0
+                            </div>
+                            <div>
+                                <img src="../../assets/football.jpg" alt="">
+                                <p>印度</p>
+                                <p>2</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="lists haveTab" *ngIf="tabIndex==2">
+                <div class="listTitle">2019-01-04 2场比赛</div>
+                <div class="listContant">
+                    <ul>
+                        <li>
+                            <div class="listTime">周二101 <span>澳洲甲</span> 16：50(未开赛)</div>
+                            <div class="listDetail">
+                                <div>
+                                    <img src="../../assets/football.jpg" alt="">
+                                    <p>印度</p>
+                                    <p>9</p>
+                                </div>
+                                <div>
+                                    <p>+1</p>
+                                    <p class="vs">VS</p>
+                                </div>
+                                <div>
+                                    <img src="../../assets/football.jpg" alt="">
+                                    <p>印度</p>
+                                    <p>2</p>
+                                </div>
+                            </div>
+                            <div class="star">
+                                <i class="el-icon-star-off"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
     </app-scroll>
 </div>
 

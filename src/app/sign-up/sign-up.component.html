@@ -1,0 +1,29 @@
+<app-common-title [showReturn]=true [title]='title'></app-common-title>
+<div class="page">
+    <div class="input">
+        <span>用户名</span>
+        <input type="tel" placeholder="请输入用户名">
+    </div>
+    <div class="input">
+        <span>登录密码</span>
+        <input type="password" placeholder="请输入用户名">
+        <i class="el-icon-view"></i>
+    </div>
+    <div class="input auth">
+        <span>验证码</span>
+        <input type="number" id="code" placeholder="请输入验证码">
+        <span class="send" *ngIf="sendCode == false" (click)="send()">发送验证码</span>
+        <span class="num" *ngIf="sendCode == true">60秒后可重新发送</span>
+    </div>
+    <div class="input">
+        <span>彩店邀请码</span>
+        <input type="tel" placeholder="请输入邀请码">
+    </div>
+  <div class="input select">
+      <el-checkbox [model]="val" (modelChange)="handle($event)">我同意</el-checkbox><span>《彩e通平台服务协议》</span>
+  </div>
+
+  <div class="buttonGroup">
+      <button class="signIn">下一步</button>
+  </div>
+</div>

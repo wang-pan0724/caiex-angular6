@@ -9,6 +9,7 @@ export class ScoreComponent implements OnInit {
 
   title = "比分直播-竞彩足球";
   itemData = ['精彩足球','北京单场','竞彩篮球'];
+  tabIndex = 1;
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +17,7 @@ export class ScoreComponent implements OnInit {
 
   handle(index){
       console.log(index)
+      this.tabIndex = index;
   }
 
 }

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ElModule } from 'element-angular'
+import { ElModule } from 'element-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -24,6 +25,15 @@ import { HowToIssueOrdersComponent } from './how-to-issue-orders/how-to-issue-or
 import { HowToAwardPrizesComponent } from './how-to-award-prizes/how-to-award-prizes.component';
 import { ScrollComponent } from './component/scroll/scroll.component';
 import { AskedQuestionsComponent } from './asked-questions/asked-questions.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ChangeNickComponent } from './user/change-nick/change-nick.component';
+import { ChangePhonenumComponent } from './user/change-phonenum/change-phonenum.component';
+import { ChangeWeixinComponent } from './user/change-weixin/change-weixin.component';
+import { ChangezhifubaoComponent } from './user/changezhifubao/changezhifubao.component';
+import { ChangeQQComponent } from './user/change-qq/change-qq.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +56,22 @@ import { AskedQuestionsComponent } from './asked-questions/asked-questions.compo
     HowToIssueOrdersComponent,
     HowToAwardPrizesComponent,
     ScrollComponent,
-    AskedQuestionsComponent
+    AskedQuestionsComponent,
+    UserinfoComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    ChangeNickComponent,
+    ChangePhonenumComponent,
+    ChangeWeixinComponent,
+    ChangezhifubaoComponent,
+    ChangeQQComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ElModule.forRoot(),
   ],
   providers: [],
