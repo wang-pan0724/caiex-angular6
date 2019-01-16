@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userinfo',
@@ -10,7 +11,7 @@ export class UserinfoComponent implements OnInit {
   title="个人信息";
   imageUrl ="../../assets/country.jpg"
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,13 @@ export class UserinfoComponent implements OnInit {
   
   errorHandle(err: any): void {
     // this.message.error('文件上传失败:' + err)
+  }
+
+  signOut(){
+    window.sessionStorage.clear();
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 2000);
   }
 
 }

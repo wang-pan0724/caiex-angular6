@@ -1,3 +1,15 @@
-<p>
-  change-nick works!
-</p>
+<app-common-title [showReturn]=true [title]='title'></app-common-title>
+
+<div class="page">
+    <div class="content">
+        <input class="input" type="text">
+        <i class="el-icon-circle-close closeIcon" *ngIf="haveText==true"></i>
+    </div>
+    <div class="tips">
+        昵称长度限制为4-15个字符
+    </div>
+
+    <div class="button">
+        <button>确认修改</button>
+    </div>
+</div>

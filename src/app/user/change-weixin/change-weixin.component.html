@@ -1,3 +1,15 @@
-<p>
-  change-weixin works!
-</p>
+<app-common-title [showReturn]=true [title]='title'></app-common-title>
+
+<div class="page">
+    <div class="content">
+        <input class="input" type="text">
+        <i class="el-icon-circle-close closeIcon" *ngIf="haveText==true"></i>
+    </div>
+    <div class="tips">
+        站点可通过微信与您联系，也可通过微信钱包与您结算除票款，中奖奖金；如有变化，请即使修改并告知站主。
+    </div>
+
+    <div class="button">
+        <button>确认修改</button>
+    </div>
+</div>

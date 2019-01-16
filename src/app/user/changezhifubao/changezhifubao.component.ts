@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./changezhifubao.component.css']
 })
 export class ChangezhifubaoComponent implements OnInit {
-
+  title = "添加支付宝账号";
   constructor() { }
 
   ngOnInit() {

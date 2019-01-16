@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-qq.component.css']
 })
 export class ChangeQQComponent implements OnInit {
-
+  title = "添加QQ账号";
   constructor() { }
 
   ngOnInit() {

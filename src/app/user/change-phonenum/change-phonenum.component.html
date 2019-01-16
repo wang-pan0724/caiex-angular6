@@ -1,3 +1,11 @@
-<p>
-  change-phonenum works!
-</p>
+<app-common-title [showReturn]=true [title]='title'></app-common-title>
+
+<div class="page">
+    <div class="tips">请输入您要绑定的手机号</div>
+    <div class="input">
+        <div class="phone">
+            <span *ngFor="let num of numberList">{{num}}</span>
+        </div>
+        <input type="number" #number (input)="change(number)">
+    </div>
+</div>

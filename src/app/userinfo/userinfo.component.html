@@ -15,35 +15,35 @@
         <i class="icon ion-chevron-right"></i>
       </div>
     </li>
-    <li>
+    <li routerLink="changenick">
       <div>昵称</div>
       <div>多大点事儿<i class="icon ion-chevron-right"></i></div>
     </li>
-    <li class="marginTop10">
+    <li class="marginTop10" routerLink="changephonenum">
       <div>绑定手机号</div>
       <div>188******46
         <i class="icon ion-chevron-right"></i>
       </div>
     </li>
-    <li class="marginTop10">
+    <li class="marginTop10" routerLink="changeweixin">
       <div>微信帐号</div>
       <div>188******46
         <i class="icon ion-chevron-right"></i>
       </div>
     </li>
-    <li>
+    <li routerLink="changezhifubao">
       <div>支付宝账号</div>
       <div>188******46
         <i class="icon ion-chevron-right"></i>
       </div>
     </li>
-    <li>
+    <li routerLink="changeqq">
       <div>QQ账号</div>
       <div>188******46
         <i class="icon ion-chevron-right"></i>
       </div>
     </li>
-    <li class="marginTop10">
+    <li class="marginTop10" routerLink="changeloginpassword">
       <div>管理登录密码</div>
       <div>
         <i class="icon ion-chevron-right"></i>
@@ -57,5 +57,5 @@
     </li>
   </ul>
 
-  <div class="signOut">退出登录</div>
+  <div class="signOut" (click)="signOut()">退出登录</div>
 </div>

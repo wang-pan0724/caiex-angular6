@@ -15,7 +15,13 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-
+import { ChangeNickComponent } from './user/change-nick/change-nick.component';
+import { ChangePhonenumComponent } from './user/change-phonenum/change-phonenum.component';
+import { ChangeWeixinComponent } from './user/change-weixin/change-weixin.component';
+import { ChangezhifubaoComponent } from './user/changezhifubao/changezhifubao.component';
+import { ChangeQQComponent } from './user/change-qq/change-qq.component';
+import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change-loginpassword.component';
+ 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
@@ -29,9 +35,16 @@ const routes: Routes = [
   {path:'home/howtoawardprizes',component:HowToAwardPrizesComponent},
   {path:'mine/askedquestions',component:AskedQuestionsComponent},
   {path:'mine/userinfo',component:UserinfoComponent},
+  {path:'mine/userinfo/changenick',component:ChangeNickComponent},
+  {path:'mine/userinfo/changephonenum',component:ChangePhonenumComponent},
+  {path:'mine/userinfo/changeweixin',component:ChangeWeixinComponent},
+  {path:'mine/userinfo/changeqq',component:ChangeQQComponent},
+  {path:'mine/userinfo/changezhifubao',component:ChangezhifubaoComponent},
+  {path:'mine/userinfo/changeloginpassword',component:ChangeLoginpasswordComponent},
   {path:'mine/signin',component:SignInComponent},
   {path:'mine/signout',component:SignUpComponent},
   {path:'mine/forgotpassword',component:ForgotPasswordComponent},
+  
 ];
 
 @NgModule({
