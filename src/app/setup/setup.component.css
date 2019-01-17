@@ -1,0 +1,25 @@
+.tradeListUl li{
+    display: flex;
+    height: 46px;
+    line-height: 46px;
+    border-bottom: 1px solid #F5F5F9;
+}
+
+.tradeListUl li div:first-child{
+   flex: 1;
+}
+
+.tradeListUl li div:first-child i{
+    margin-right: 8px;
+    font-size: 18px;
+ }
+
+ .tradeListUl li div:last-child i{
+    margin-left: 8px;
+    font-size: 14px;
+ }
+
+ .itemList{
+     padding: 0px 10px;
+     background: #fff;
+ }

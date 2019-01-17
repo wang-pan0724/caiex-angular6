@@ -19,6 +19,7 @@ html{
     line-height: 1;
     padding-top: 48px;
     padding-bottom: 55px;
+    min-height: 100vh;
   }
   
   .container {
@@ -69,4 +70,18 @@ li::before{
     box-sizing: border-box;
     border-bottom: 2px solid transparent;
     color: #878d99;
+}
+
+.button{
+    padding: 0px 10px;
+}
+
+.button button{
+    width: 100%;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    background: #d0021b;
+    border-radius: 3px;
+    color: #fff;
 }

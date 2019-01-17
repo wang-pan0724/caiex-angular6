@@ -21,7 +21,10 @@ import { ChangeWeixinComponent } from './user/change-weixin/change-weixin.compon
 import { ChangezhifubaoComponent } from './user/changezhifubao/changezhifubao.component';
 import { ChangeQQComponent } from './user/change-qq/change-qq.component';
 import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change-loginpassword.component';
- 
+import { MystoreComponent }  from './mystore/mystore.component';
+import { SetupComponent } from './setup/setup.component';
+import { AboutUsComponent } from './setup/about-us/about-us.component';
+
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
@@ -44,7 +47,9 @@ const routes: Routes = [
   {path:'mine/signin',component:SignInComponent},
   {path:'mine/signout',component:SignUpComponent},
   {path:'mine/forgotpassword',component:ForgotPasswordComponent},
-  
+  {path:'mine/mystore',component:MystoreComponent},
+  {path:'mine/setup',component:SetupComponent},
+  {path:'mine/setup/aboutus',component:AboutUsComponent},
 ];
 
 @NgModule({

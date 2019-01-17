@@ -36,6 +36,9 @@ import { ChangezhifubaoComponent } from './user/changezhifubao/changezhifubao.co
 import { ChangeQQComponent } from './user/change-qq/change-qq.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
 import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change-loginpassword.component';
+import { MystoreComponent } from './mystore/mystore.component';
+import { SetupComponent } from './setup/setup.component';
+import { AboutUsComponent } from './setup/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,10 @@ import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change
     ChangezhifubaoComponent,
     ChangeQQComponent,
     ChangePasswordComponent,
-    ChangeLoginpasswordComponent
+    ChangeLoginpasswordComponent,
+    MystoreComponent,
+    SetupComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,

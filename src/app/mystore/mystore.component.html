@@ -1,0 +1,75 @@
+<app-common-title [showReturn]=true [title]='title'></app-common-title>
+<div class="page">
+  <ul class="item">
+    <li class="itemList">
+      <div>站点名称：</div>
+      <div>竞彩女神店</div>
+    </li>
+    <li class="itemList">
+      <div>站点地址：</div>
+      <div>陕西省西安市雁塔区涨吧北路与科技二路十字路口</div>
+    </li>
+    <li class="itemList">
+      <div>联系电话：</div>
+      <div>1888888888</div>
+    </li>
+    <li class="itemList">
+      <div>微信账号：</div>
+      <div>1888888888</div>
+    </li>
+    <li class="itemList">
+      <div>支付宝账号：</div>
+      <div>1888888888</div>
+    </li>
+    <li class="itemList">
+      <div>QQ账号：</div>
+      <div>1888888888</div>
+    </li>
+    <li class="itemList">
+      <div>联系店主：</div>
+      <div>点击图标，快捷打开应用</div>
+    </li>
+  </ul>
+
+  <div class="imgGroup">
+    <div class="imgList">
+      <a href="tel:10086">
+        <img src="../../assets/football.jpg" alt="">
+        <p>电话</p>
+      </a>
+    </div>
+    <div *ngIf="isWeiXin==false" class="imgList">
+      <a href="weixin://">
+        <img src="../../assets/football.jpg" alt="">
+        <p>微信</p>
+      </a>
+    </div>
+    <div class="imgList">
+      <a href="qq://">
+        <img src="../../assets/football.jpg" alt="">
+        <p>QQ</p>
+      </a>  
+    </div>
+    <div class="imgList">
+      <a href="alipay://"></a>
+      <img src="../../assets/football.jpg" alt="">
+      <p>支付宝</p>
+    </div>
+  </div>
+
+  <div class="changeStore" *ngIf="changeNewStore==true">
+      <div class="newStore">
+        <div class="tips">请填写新的彩店邀请码</div>
+        <input class="code" type="text" placeholder="请输入彩店邀请码" #newStoreCode>
+
+        <div class="buttonGroup">
+            <button (click)="cancle()">取消</button>
+            <button class="backgroundRed" (click)="submit(newStoreCode)">提交</button>
+        </div>
+      </div>
+  </div>
+
+  <div class="button btn">
+    <button (click)="change()">更换彩店</button>
+  </div>
+</div>
