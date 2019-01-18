@@ -19,7 +19,6 @@ import { FooterNextComponent } from './component/footer-next/footer-next.compone
 import { MatchTitleComponent } from './component/match-title/match-title.component';
 import { MatchDetailComponent } from './component/match-detail/match-detail.component';
 import { MatchEndtimeComponent } from './component/match-endtime/match-endtime.component';
-import { ItemListComponent } from './component/item-list/item-list.component';
 import { HowToTradeComponent } from './how-to-trade/how-to-trade.component';
 import { HowToIssueOrdersComponent } from './how-to-issue-orders/how-to-issue-orders.component';
 import { HowToAwardPrizesComponent } from './how-to-award-prizes/how-to-award-prizes.component';
@@ -56,7 +55,6 @@ import { AboutUsComponent } from './setup/about-us/about-us.component';
     MatchTitleComponent,
     MatchDetailComponent,
     MatchEndtimeComponent,
-    ItemListComponent,
     HowToTradeComponent,
     HowToIssueOrdersComponent,
     HowToAwardPrizesComponent,
