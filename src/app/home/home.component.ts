@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service'
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,10 @@ export class HomeComponent implements OnInit {
 
   title = "首页"
 
-  constructor() { }
+  constructor(public storage: LoginService) { }
 
   ngOnInit() {
+    this.storage.getData();
   }
 
 }

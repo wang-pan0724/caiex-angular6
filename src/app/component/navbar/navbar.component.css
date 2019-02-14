@@ -10,6 +10,7 @@
     line-height: 50px;
     color: #fff;
     box-sizing: border-box;
+    z-index: 9999;
 }
 
 .nav i{
@@ -60,6 +61,7 @@
     background: #fff;
     color: #222;
     font-size: 14px;
+    z-index: 999;
 }
 
 .status-bar span{

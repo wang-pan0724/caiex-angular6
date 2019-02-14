@@ -4,6 +4,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ElModule } from 'element-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule,HttpClientJsonpModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -38,6 +40,10 @@ import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change
 import { MystoreComponent } from './mystore/mystore.component';
 import { SetupComponent } from './setup/setup.component';
 import { AboutUsComponent } from './setup/about-us/about-us.component';
+import { WeekPipe } from './pipe/week.pipe';
+import { TimePipe } from './pipe/time.pipe';
+import { LeagueResultDescPipe } from './pipe/league-result-desc.pipe';
+import { AgainstRecordPipe } from './pipe/against-record.pipe';
 
 @NgModule({
   declarations: [
@@ -74,6 +80,10 @@ import { AboutUsComponent } from './setup/about-us/about-us.component';
     MystoreComponent,
     SetupComponent,
     AboutUsComponent,
+    WeekPipe,
+    TimePipe,
+    LeagueResultDescPipe,
+    AgainstRecordPipe,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +91,8 @@ import { AboutUsComponent } from './setup/about-us/about-us.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ElModule.forRoot(),
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

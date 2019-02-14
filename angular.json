@@ -50,7 +50,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "caiex-angular6:build"
+            "browserTarget": "caiex-angular6:build",
+            "proxyConfig":"proxyconfig.json"
           },
           "configurations": {
             "production": {
