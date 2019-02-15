@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../services/menus.service';
+import { SelectMatchListService } from '../services/select-match-list.service'
 
 @Component({
   selector: 'app-football',
@@ -48,13 +49,12 @@ export class FootballComponent implements OnInit {
   public footballList5: any = [];
   // 比赛详情
   public footballDetail: any = [];
-  // // 
-  // public qwarLeagueResult: string = '';
-  // // 
-  // public hostLeagueResult: string = '';
-
+  // 弹出层数据
   public popData: any = [];
-  constructor(private _menusService: MenusService) { }
+  // 选择的竞彩比赛
+  public selectMatchDataList: any = [];
+
+  constructor(private _menusService: MenusService,private _selectMatchService: SelectMatchListService) { }
 
   ngOnInit() {
     this._menusService.getFootballData().then(data => {
@@ -66,13 +66,15 @@ export class FootballComponent implements OnInit {
     });
   }
 
-  selectThisItem(e) {
-    if (e.currentTarget.firstElementChild.checked == false) {
-      e.currentTarget.firstElementChild.checked = true;
-      e.currentTarget.className = 'scoreSelect';
-    } else {
-      e.currentTarget.firstElementChild.checked = false;
-      e.currentTarget.className = '';
+  selectThisItem(e,item,str) {
+    this.selectMatchDataList =  this._selectMatchService.setData(e,item,str);
+    console.log(this.selectMatchDataList)
+    if(this.tabId == 1){
+      var list = this.selectMatchDataList.list;
+      for(var i=0; i<list.length; i++){
+        var oBox = document.getElementById(list[i].matchNo);
+        oBox.style.background = "#d0021b !important"
+      }
     }
   }
 
@@ -84,9 +86,7 @@ export class FootballComponent implements OnInit {
 
       this._menusService.getFootballDetail().then(data => {
         this.footballDetail = data.resp;
-        // this.qwarLeagueResult = data.resp.qwarLeagueResultDesc;
-        // this.hostLeagueResult = data.resp.hostLeagueResultDesc;
-        console.log(data.resp);
+        // console.log(data.resp);
       });
 
       item.expend = true;

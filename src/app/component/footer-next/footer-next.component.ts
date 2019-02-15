@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer-next',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterNextComponent implements OnInit {
 
-  constructor() { }
+  @Input() selectData:any;
+
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
+  nextStep(){
+    console.log("nextStep.....")
+    console.log(this.selectData)
+    this.router.navigate(['/detail']);
+  }
 }

@@ -30,24 +30,24 @@
                         </div>
                         <div class="scoreItem">
                             <div class="score">
-                                <div (click)="selectThisItem($event,item.matchNo,item.spMap.spf_3,item.endTime)"><input
+                                <div (click)="selectThisItem($event,item,'胜')"><input
                                         type="checkbox"><i class="only">单</i> <span class="state">胜</span> <span
                                         class="num">{{item.spMap.spf_3}}</span></div>
-                                <div (click)="selectThisItem($event,item.matchNo,item.spMap.spf_1,item.endTime)"><input
+                                <div (click)="selectThisItem($event,item,'平')"><input
                                         type="checkbox"><span class="state">平</span>
                                     <span class="num">{{item.spMap.spf_1}}</span></div>
-                                <div (click)="selectThisItem($event,item.matchNo,item.spMap.spf_0,item.endTime)"><input
+                                <div (click)="selectThisItem($event,item,'负')"><input
                                         type="checkbox"><span class="state">负</span>
                                     <span class="num">{{item.spMap.spf_0}}</span></div>
                             </div>
                             <div class="score">
-                                <div (click)="selectThisItem($event)"><input type="checkbox">
+                                <div (click)="selectThisItem($event,item,'让球胜')"><input type="checkbox">
                                     <span class="state"><b *ngIf="item.concede == 1">+</b>{{item.concede}}胜</span>
                                     <span class="num">{{item.spMap.rqspf_3}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state"><b
+                                <div (click)="selectThisItem($event,item,'让球平')"><input type="checkbox"><span class="state"><b
                                             *ngIf="item.concede == 1">+</b>{{item.concede}}平</span>
                                     <span class="num">{{item.spMap.rqspf_1}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state"><b
+                                <div (click)="selectThisItem($event,item,'让球负')"><input type="checkbox"><span class="state"><b
                                             *ngIf="item.concede == 1">+</b>{{item.concede}}负</span>
                                     <span class="num">{{item.spMap.rqspf_0}}</span></div>
                             </div>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="scoreItem">
-                            <div class="selectScoreItem" (click)="selectContent(item,tabId)">
+                            <div class="selectScoreItem" id="{{item.matchNo}}" (click)="selectContent(item,tabId)">
                                 选择投注内容
                             </div>
                         </div>
@@ -204,30 +204,30 @@
                         </div>
                         <div class="scoreItem">
                             <div class="allscore">
-                                <div (click)="selectThisItem($event)"><input type="checkbox"> <span
+                                <div (click)="selectThisItem($event,item,'0')"><input type="checkbox"> <span
                                         class="state">0</span>
                                     <span class="num">{{item.spMap['0']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'1')"><input type="checkbox"><span
                                         class="state">1</span>
                                     <span class="num">{{item.spMap['1']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'2')"><input type="checkbox"><span
                                         class="state">2</span>
                                     <span class="num">{{item.spMap['2']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'3')"><input type="checkbox"><span
                                         class="state">3</span>
                                     <span class="num">{{item.spMap['3']}}</span></div>
                             </div>
                             <div class="allscore">
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'4')"><input type="checkbox"><span
                                         class="state">4</span>
                                     <span class="num">{{item.spMap['4']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'5')"><input type="checkbox"><span
                                         class="state">5</span>
                                     <span class="num">{{item.spMap['5']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'6')"><input type="checkbox"><span
                                         class="state">6</span>
                                     <span class="num">{{item.spMap['6']}}</span></div>
-                                <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                                <div (click)="selectThisItem($event,item,'7+')"><input type="checkbox"><span
                                         class="state">7+</span>
                                     <span class="num">{{item.spMap['7']}}</span></div>
                             </div>
@@ -313,22 +313,22 @@
             <!-- 胜平负 -->
             <div class="scoreItem">
                 <div class="score">
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><i class="only">单</i> <span
+                    <div (click)="selectThisItem($event,popData,'胜')"><input type="checkbox"><i class="only">单</i> <span
                             class="state">胜</span>
                         <span class="num">{{popData.spMap.spf_3}}</span></div>
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平</span>
+                    <div (click)="selectThisItem($event,popData,'平')"><input type="checkbox"><span class="state">平</span>
                         <span class="num">{{popData.spMap.spf_1}}</span></div>
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负</span>
+                    <div (click)="selectThisItem($event,popData,'负')"><input type="checkbox"><span class="state">负</span>
                         <span class="num">{{popData.spMap.spf_0}}</span></div>
                 </div>
                 <div class="score">
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state"><b
+                    <div (click)="selectThisItem($event,popData,'rq_胜')"><input type="checkbox"><span class="state"><b
                                 *ngIf="popData.concede == 1">+</b>{{popData.concede}}胜</span>
                         <span class="num">{{popData.spMap.rqspf_3}}</span></div>
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state"><b
+                    <div (click)="selectThisItem($event,popData,'rq_平')"><input type="checkbox"><span class="state"><b
                                 *ngIf="popData.concede == 1">+</b>{{popData.concede}}平</span>
                         <span class="num">{{popData.spMap.rqspf_1}}</span></div>
-                    <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state"><b
+                    <div (click)="selectThisItem($event,popData,'rq_负')"><input type="checkbox"><span class="state"><b
                                 *ngIf="popData.concede == 1">+</b>{{popData.concede}}负</span>
                         <span class="num">{{popData.spMap.rqspf_0}}</span></div>
                 </div>
@@ -341,33 +341,33 @@
                     <div class="popTitle">胜</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'1:0')"><input type="checkbox"><span
                                     class="state">1:0</span><span class="num">{{popData.spMap.dcbf_10}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <div (click)="selectThisItem($event,popData,'2:0')"><input type="checkbox"><span class="state">2:0</span>
                                 <span class="num">{{popData.spMap.dcbf_20}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <div (click)="selectThisItem($event,popData,'2:1')"><input type="checkbox"><span class="state">2:1</span>
                                 <span class="num">{{popData.spMap.dcbf_21}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <div (click)="selectThisItem($event,popData,'3:0')"><input type="checkbox"><span class="state">3:0</span>
                                 <span class="num">{{popData.spMap.dcbf_30}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <div (click)="selectThisItem($event,popData,'3:1')"><input type="checkbox"><span class="state">3:1</span>
                                 <span class="num">{{popData.spMap.dcbf_31}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:2</span>
+                            <div (click)="selectThisItem($event,popData,'3:2')"><input type="checkbox"><span class="state">3:2</span>
                                 <span class="num">{{popData.spMap.dcbf_32}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:0</span>
+                            <div (click)="selectThisItem($event,popData,'4:0')"><input type="checkbox"><span class="state">4:0</span>
                                 <span class="num">{{popData.spMap.dcbf_40}}</span></div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:1</span>
+                            <div (click)="selectThisItem($event,popData,'4:1')"><input type="checkbox"><span class="state">4:1</span>
                                 <span class="num">{{popData.spMap.dcbf_41}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:2</span>
+                            <div (click)="selectThisItem($event,popData,'4:2')"><input type="checkbox"><span class="state">4:2</span>
                                 <span class="num">{{popData.spMap.dcbf_42}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:0</span>
+                            <div (click)="selectThisItem($event,popData,'5:0')"><input type="checkbox"><span class="state">5:0</span>
                                 <span class="num">{{popData.spMap.dcbf_50}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:1</span>
+                            <div (click)="selectThisItem($event,popData,'5:1')"><input type="checkbox"><span class="state">5:1</span>
                                 <span class="num">{{popData.spMap.dcbf_51}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:2</span>
+                            <div (click)="selectThisItem($event,popData,'5:2')"><input type="checkbox"><span class="state">5:2</span>
                                 <span class="num">{{popData.spMap.dcbf_52}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'胜其他')" id="popOther"><input type="checkbox"><span
                                     class="state">胜其他</span>
                                 <span class="num">{{popData.spMap.dcbf_90}}</span></div>
                         </div>
@@ -377,15 +377,15 @@
                     <div class="popTitle">平</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'0:0')"><input type="checkbox"><span
                                     class="state">0:0</span><span class="num">{{popData.spMap.dcbf_00}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:1</span>
+                            <div (click)="selectThisItem($event,popData,'1:1')"><input type="checkbox"><span class="state">1:1</span>
                                 <span class="num">{{popData.spMap.dcbf_11}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:2</span>
+                            <div (click)="selectThisItem($event,popData,'2:2')"><input type="checkbox"><span class="state">2:2</span>
                                 <span class="num">{{popData.spMap.dcbf_22}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:3</span>
+                            <div (click)="selectThisItem($event,popData,'3:3')"><input type="checkbox"><span class="state">3:3</span>
                                 <span class="num">{{popData.spMap.dcbf_33}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'平其他')" id="popOther"><input type="checkbox"><span
                                     class="state">平其他</span>
                                 <span class="num">{{popData.spMap.dcbf_99}}</span></div>
                         </div>
@@ -395,33 +395,33 @@
                     <div class="popTitle">负</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'0:1')"><input type="checkbox"><span
                                     class="state">0:1</span><span class="num">{{popData.spMap.dcbf_01}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:2</span>
+                            <div (click)="selectThisItem($event,popData,'0:2')"><input type="checkbox"><span class="state">0:2</span>
                                 <span class="num">{{popData.spMap.dcbf_02}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:2</span>
+                            <div (click)="selectThisItem($event,popData,'1:2')"><input type="checkbox"><span class="state">1:2</span>
                                 <span class="num">{{popData.spMap.dcbf_12}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:3</span>
+                            <div (click)="selectThisItem($event,popData,'0:3')"><input type="checkbox"><span class="state">0:3</span>
                                 <span class="num">{{popData.spMap.dcbf_03}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:3</span>
+                            <div (click)="selectThisItem($event,popData,'1:3')"><input type="checkbox"><span class="state">1:3</span>
                                 <span class="num">{{popData.spMap.dcbf_13}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:3</span>
+                            <div (click)="selectThisItem($event,popData,'2:3')"><input type="checkbox"><span class="state">2:3</span>
                                 <span class="num">{{popData.spMap.dcbf_23}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:4</span>
+                            <div (click)="selectThisItem($event,popData,'0:4')"><input type="checkbox"><span class="state">0:4</span>
                                 <span class="num">{{popData.spMap.dcbf_04}}</span></div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:4</span>
+                            <div (click)="selectThisItem($event,popData,'1:4')"><input type="checkbox"><span class="state">1:4</span>
                                 <span class="num">{{popData.spMap.dcbf_14}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:4</span>
+                            <div (click)="selectThisItem($event,popData,'2:4')"><input type="checkbox"><span class="state">2:4</span>
                                 <span class="num">{{popData.spMap.dcbf_24}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:5</span>
+                            <div (click)="selectThisItem($event,popData,'0:5')"><input type="checkbox"><span class="state">0:5</span>
                                 <span class="num">{{popData.spMap.dcbf_05}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:5</span>
+                            <div (click)="selectThisItem($event,popData,'1:5')"><input type="checkbox"><span class="state">1:5</span>
                                 <span class="num">{{popData.spMap.dcbf_15}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:5</span>
+                            <div (click)="selectThisItem($event,popData,'2:5')"><input type="checkbox"><span class="state">2:5</span>
                                 <span class="num">{{popData.spMap.dcbf_25}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'负其他')" id="popOther"><input type="checkbox"><span
                                     class="state">负其他</span>
                                 <span class="num">{{popData.spMap.dcbf_09}}</span></div>
                         </div>
@@ -436,23 +436,23 @@
                     <div class="popTitle">总进球</div>
                     <div class="popContent">
                         <div class="popScoreAll">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'0')"><input type="checkbox"><span
                                     class="state">0</span><span class="num">{{popData.spMap.zjq_0}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1</span>
+                            <div (click)="selectThisItem($event,popData,'1')"><input type="checkbox"><span class="state">1</span>
                                 <span class="num">{{popData.spMap.zjq_1}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2</span>
+                            <div (click)="selectThisItem($event,popData,'2')"><input type="checkbox"><span class="state">2</span>
                                 <span class="num">{{popData.spMap.zjq_2}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3</span>
+                            <div (click)="selectThisItem($event,popData,'3')"><input type="checkbox"><span class="state">3</span>
                                 <span class="num">{{popData.spMap.zjq_3}}</span></div>
                         </div>
                         <div class="popScoreAll">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4</span>
+                            <div (click)="selectThisItem($event,popData,'4')"><input type="checkbox"><span class="state">4</span>
                                 <span class="num">{{popData.spMap.zjq_4}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5</span>
+                            <div (click)="selectThisItem($event,popData,'5')"><input type="checkbox"><span class="state">5</span>
                                 <span class="num">{{popData.spMap.zjq_5}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">6</span>
+                            <div (click)="selectThisItem($event,popData,'6')"><input type="checkbox"><span class="state">6</span>
                                 <span class="num">{{popData.spMap.zjq_6}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">7+</span>
+                            <div (click)="selectThisItem($event,popData,'7')"><input type="checkbox"><span class="state">7+</span>
                                 <span class="num">{{popData.spMap.zjq_7}}</span></div>
                         </div>
                     </div>
@@ -466,27 +466,27 @@
                     <div class="popTitle">半全场</div>
                     <div class="popContent">
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'胜-胜')"><input type="checkbox"><span
                                     class="state">胜-胜</span><span class="num">{{popData.spMap.bqc_33}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">胜-平</span>
+                            <div (click)="selectThisItem($event,popData,'胜-平')"><input type="checkbox"><span class="state">胜-平</span>
                                 <span class="num">{{popData.spMap.bqc_31}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">胜-负</span>
+                            <div (click)="selectThisItem($event,popData,'胜-负')"><input type="checkbox"><span class="state">胜-负</span>
                                 <span class="num">{{popData.spMap.bqc_30}}</span></div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-胜</span>
+                            <div (click)="selectThisItem($event,popData,'平-胜')"><input type="checkbox"><span class="state">平-胜</span>
                                 <span class="num">{{popData.spMap.bqc_13}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-平</span>
+                            <div (click)="selectThisItem($event,popData,'平-平')"><input type="checkbox"><span class="state">平-平</span>
                                 <span class="num">{{popData.spMap.bqc_11}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-负</span>
+                            <div (click)="selectThisItem($event,popData,'平-负')"><input type="checkbox"><span class="state">平-负</span>
                                 <span class="num">{{popData.spMap.bqc_10}}</span></div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-胜</span>
+                            <div (click)="selectThisItem($event,popData,'负-胜')"><input type="checkbox"><span class="state">负-胜</span>
                                 <span class="num">{{popData.spMap.bqc_03}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-平</span>
+                            <div (click)="selectThisItem($event,popData,'负-平')"><input type="checkbox"><span class="state">负-平</span>
                                 <span class="num">{{popData.spMap.bqc_01}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-负</span>
+                            <div (click)="selectThisItem($event,popData,'负-负')"><input type="checkbox"><span class="state">负-负</span>
                                 <span class="num">{{popData.spMap.bqc_00}}</span></div>
                         </div>
                     </div>
@@ -502,33 +502,33 @@
                     <div class="popTitle">胜</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'1:0')"><input type="checkbox"><span
                                     class="state">1:0</span><span class="num">{{popData.spMap['10']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:0</span>
+                            <div (click)="selectThisItem($event,popData,'2:0')"><input type="checkbox"><span class="state">2:0</span>
                                 <span class="num">{{popData.spMap['20']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:1</span>
+                            <div (click)="selectThisItem($event,popData,'2:1')"><input type="checkbox"><span class="state">2:1</span>
                                 <span class="num">{{popData.spMap['21']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:0</span>
+                            <div (click)="selectThisItem($event,popData,'3:0')"><input type="checkbox"><span class="state">3:0</span>
                                 <span class="num">{{popData.spMap['30']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:1</span>
+                            <div (click)="selectThisItem($event,popData,'3:1')"><input type="checkbox"><span class="state">3:1</span>
                                 <span class="num">{{popData.spMap['31']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:2</span>
+                            <div (click)="selectThisItem($event,popData,'3:2')"><input type="checkbox"><span class="state">3:2</span>
                                 <span class="num">{{popData.spMap['32']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:0</span>
+                            <div (click)="selectThisItem($event,popData,'4:0')"><input type="checkbox"><span class="state">4:0</span>
                                 <span class="num">{{popData.spMap['40']}}</span></div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:1</span>
+                            <div (click)="selectThisItem($event,popData,'4:1')"><input type="checkbox"><span class="state">4:1</span>
                                 <span class="num">{{popData.spMap['41']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">4:2</span>
+                            <div (click)="selectThisItem($event,popData,'4:2')"><input type="checkbox"><span class="state">4:2</span>
                                 <span class="num">{{popData.spMap['42']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:0</span>
+                            <div (click)="selectThisItem($event,popData,'5:0')"><input type="checkbox"><span class="state">5:0</span>
                                 <span class="num">{{popData.spMap['50']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:1</span>
+                            <div (click)="selectThisItem($event,popData,'5:1')"><input type="checkbox"><span class="state">5:1</span>
                                 <span class="num">{{popData.spMap['51']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">5:2</span>
+                            <div (click)="selectThisItem($event,popData,'5:2')"><input type="checkbox"><span class="state">5:2</span>
                                 <span class="num">{{popData.spMap['52']}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'胜其他')" id="popOther"><input type="checkbox"><span
                                     class="state">胜其他</span>
                                 <span class="num">{{popData.spMap['90']}}</span></div>
                         </div>
@@ -538,15 +538,15 @@
                     <div class="popTitle">平</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'0:0')"><input type="checkbox"><span
                                     class="state">0:0</span><span class="num">{{popData.spMap['00']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:1</span>
+                            <div (click)="selectThisItem($event,popData,'1:1')"><input type="checkbox"><span class="state">1:1</span>
                                 <span class="num">{{popData.spMap['11']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:2</span>
+                            <div (click)="selectThisItem($event,popData,'2:2')"><input type="checkbox"><span class="state">2:2</span>
                                 <span class="num">{{popData.spMap['22']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">3:3</span>
+                            <div (click)="selectThisItem($event,popData,'3:3')"><input type="checkbox"><span class="state">3:3</span>
                                 <span class="num">{{popData.spMap['33']}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'平其他')" id="popOther"><input type="checkbox"><span
                                     class="state">平其他</span>
                                 <span class="num">{{popData.spMap['99']}}</span></div>
                         </div>
@@ -556,33 +556,33 @@
                     <div class="popTitle">负</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'0:1')"><input type="checkbox"><span
                                     class="state">0:1</span><span class="num">{{popData.spMap['01']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:2</span>
+                            <div (click)="selectThisItem($event,popData,'0:2')"><input type="checkbox"><span class="state">0:2</span>
                                 <span class="num">{{popData.spMap['02']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:2</span>
+                            <div (click)="selectThisItem($event,popData,'1:2')"><input type="checkbox"><span class="state">1:2</span>
                                 <span class="num">{{popData.spMap['12']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:3</span>
+                            <div (click)="selectThisItem($event,popData,'0:3')"><input type="checkbox"><span class="state">0:3</span>
                                 <span class="num">{{popData.spMap['03']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:3</span>
+                            <div (click)="selectThisItem($event,popData,'1:3')"><input type="checkbox"><span class="state">1:3</span>
                                 <span class="num">{{popData.spMap['13']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:3</span>
+                            <div (click)="selectThisItem($event,popData,'2:3')"><input type="checkbox"><span class="state">2:3</span>
                                 <span class="num">{{popData.spMap['23']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:4</span>
+                            <div (click)="selectThisItem($event,popData,'0:4')"><input type="checkbox"><span class="state">0:4</span>
                                 <span class="num">{{popData.spMap['04']}}</span></div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:4</span>
+                            <div (click)="selectThisItem($event,popData,'1:4')"><input type="checkbox"><span class="state">1:4</span>
                                 <span class="num">{{popData.spMap['14']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:4</span>
+                            <div (click)="selectThisItem($event,popData,'2:4')"><input type="checkbox"><span class="state">2:4</span>
                                 <span class="num">{{popData.spMap['24']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">0:5</span>
+                            <div (click)="selectThisItem($event,popData,'0:5')"><input type="checkbox"><span class="state">0:5</span>
                                 <span class="num">{{popData.spMap['05']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">1:5</span>
+                            <div (click)="selectThisItem($event,popData,'1:5')"><input type="checkbox"><span class="state">1:5</span>
                                 <span class="num">{{popData.spMap['15']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">2:5</span>
+                            <div (click)="selectThisItem($event,popData,'2:5')"><input type="checkbox"><span class="state">2:5</span>
                                 <span class="num">{{popData.spMap['25']}}</span></div>
-                            <div (click)="selectThisItem($event)" id="popOther"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'负其他')" id="popOther"><input type="checkbox"><span
                                     class="state">负其他</span>
                                 <span class="num">{{popData.spMap['09']}}</span></div>
                         </div>
@@ -599,27 +599,27 @@
                     <div class="popTitle">半全场</div>
                     <div class="popContent">
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span
+                            <div (click)="selectThisItem($event,popData,'胜-胜')"><input type="checkbox"><span
                                     class="state">胜-胜</span><span class="num">{{popData.spMap['33']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">胜-平</span>
+                            <div (click)="selectThisItem($event,popData,'胜-平')"><input type="checkbox"><span class="state">胜-平</span>
                                 <span class="num">{{popData.spMap['31']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">胜-负</span>
+                            <div (click)="selectThisItem($event,popData,'胜-负')"><input type="checkbox"><span class="state">胜-负</span>
                                 <span class="num">{{popData.spMap['30']}}</span></div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-胜</span>
+                            <div (click)="selectThisItem($event,popData,'平-胜')"><input type="checkbox"><span class="state">平-胜</span>
                                 <span class="num">{{popData.spMap['13']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-平</span>
+                            <div (click)="selectThisItem($event,popData,'平-平')"><input type="checkbox"><span class="state">平-平</span>
                                 <span class="num">{{popData.spMap['11']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">平-负</span>
+                            <div (click)="selectThisItem($event,popData,'平-负')"><input type="checkbox"><span class="state">平-负</span>
                                 <span class="num">{{popData.spMap['10']}}</span></div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-胜</span>
+                            <div (click)="selectThisItem($event,popData,'负-胜')"><input type="checkbox"><span class="state">负-胜</span>
                                 <span class="num">{{popData.spMap['03']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-平</span>
+                            <div (click)="selectThisItem($event,popData,'负-平')"><input type="checkbox"><span class="state">负-平</span>
                                 <span class="num">{{popData.spMap['01']}}</span></div>
-                            <div (click)="selectThisItem($event)"><input type="checkbox"><span class="state">负-负</span>
+                            <div (click)="selectThisItem($event,popData,'负-负')"><input type="checkbox"><span class="state">负-负</span>
                                 <span class="num">{{popData.spMap['00']}}</span></div>
                         </div>
                     </div>
@@ -634,4 +634,4 @@
     </div>
 </div>
 
-<app-footer-next></app-footer-next>
+<app-footer-next [selectData]='selectMatchDataList'></app-footer-next>

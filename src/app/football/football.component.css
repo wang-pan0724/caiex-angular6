@@ -6,7 +6,9 @@
 }
 
 .matchItem{
+    position: relative;
     margin-bottom: 8px;
+    padding-top: 24px;
 }
 
 .matchList{
