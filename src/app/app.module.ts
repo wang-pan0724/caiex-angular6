@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ElModule } from 'element-angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -44,7 +45,6 @@ import { WeekPipe } from './pipe/week.pipe';
 import { TimePipe } from './pipe/time.pipe';
 import { LeagueResultDescPipe } from './pipe/league-result-desc.pipe';
 import { AgainstRecordPipe } from './pipe/against-record.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +87,7 @@ import { AgainstRecordPipe } from './pipe/against-record.pipe';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

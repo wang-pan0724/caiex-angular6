@@ -1,129 +1,86 @@
 import { Injectable } from '@angular/core';
+import { strictEqual } from 'assert';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectMatchListService {
-  
+
   public listData: any = [];
   public selectMatchNum: number = 0;
   public canGoNext: boolean = false;
 
   constructor() { }
 
-  setData(e, item, str) {
-    
-    this.setMatchData(e, item, str);
+  setData(dataList) {
+
+    this.setMatchData(dataList);
 
     // TODO
-    this.canGoNextPage(e, item, str);
+    // this.canGoNextPage(dataList);
 
     var selectDataL = {
-      list:this.listData,
-      selectMatchNum:this.listData.length,
-      canGoMext:this.canGoNext
+      list: dataList,
+      selectMatchNum: this.selectMatchNum,
+      canGoMext: this.canGoNext
     }
-   
-    this.setStyle(e);
-
     return selectDataL;
   }
 
-   // 设置选择比赛的样式
-  setStyle(e) {
-    var isChecked = e.currentTarget.firstElementChild.checked;
-
-    if (!isChecked) {
-      e.currentTarget.firstElementChild.checked = true;
-      e.currentTarget.className = 'scoreSelect';
-    } else {
-      e.currentTarget.firstElementChild.checked = false;
-      e.currentTarget.className = '';
-    }
-  }
-
   // 记录已选比赛的信息
-  setMatchData(e, item:any, str) {
-    var isChecked = e.currentTarget.firstElementChild.checked;
-
-    if(isChecked){ //去掉已选择的竞彩选项
-      var spmap = this.getSelectSpMap(item);
-      // 本场次比赛有多项竞彩选项
-      if(spmap.split(',').length>1){
-        for(var i=0; i<this.listData.length; i++){
-          if(this.listData[i].matchNo == item.matchNo){
-           this.listData[i].selectSpMap = this.processStr(spmap,str);
-          }
-        }
-      }else{// 本场次比赛有一项竞彩选项
-        for(var i=0; i<this.listData.length; i++){
-          if(this.listData[i].matchNo == item.matchNo){
-           this.listData.splice(i,1);
-          }
-        }
+  setMatchData(dataList: any) {
+    this.selectMatchNum = 0;
+    for (var i = 0; i < dataList.list.length; i++) {
+      if (this.matchIsSelect(dataList.list[i].selectSpMap)) {
+        this.selectMatchNum++;
       }
+      dataList.list[i].selectedList = this.getOneSelectSpMap(dataList.list[i].selectSpMap);
     }
-    else if(!isChecked && !this.hasSetList(item)){ //选择竞彩选项（本场次没被选过）
-      item.selectSpMap = str;
-      this.listData.push(item);
-    }
-    else if(!isChecked && this.hasSetList(item)){ //选择竞彩选项（本场次已被选过）
-      var selectSpMaps = [];
-      for(var i=0; i<this.listData.length; i++){
-        if(this.listData[i].matchNo == item.matchNo){
-          selectSpMaps = this.listData[i].selectSpMap;
-          this.listData[i].selectSpMap = selectSpMaps+ ',' + str;
-        }
-      }
-    }
-    
-    console.log(this.listData)
   }
 
-  // 判断listData是否已经加入本场比赛
-  hasSetList(item){
-    for(var i=0; i<this.listData.length; i++){
-      if(this.listData[i].matchNo == item.matchNo){
+  // 查看每一场竞彩比赛是否被选
+  matchIsSelect(obj): boolean {
+    var selectArr = this.objToArr(obj);
+    for (var j = 0; j < selectArr.length; j++) {
+      if (selectArr[j] == true) {
         return true;
       }
     }
     return false;
   }
 
-  // 获取一场次比赛的竞猜选项
-  getSelectSpMap(item):string {
-    var str = "";
-    for(var i=0; i<this.listData.length; i++){
-      if(this.listData[i].matchNo == item.matchNo){
-        str = this.listData[i].selectSpMap;
-      }
+  // 对象转数组
+  objToArr(obj) {
+    var arr = []
+    for (let i in obj) {
+      arr.push(obj[i]);
     }
+    return arr;
+  }
+
+  // 获取一个场次比赛的选项
+  getOneSelectSpMap(obj): any {
+    var str = [];
+    str = this.findAllKey(obj, true);
     return str;
   }
 
-  // 处理selectSpMap
-  processStr(spmap,str){
-    var newSpmap=""
-    var arr = spmap.split(',');
-    var index = arr.indexOf(str);
-    arr.splice(index,1);
-
-    for(var i=0; i<arr.length; i++){
-      newSpmap += arr[i];
-      if(i!=arr.length-1){
-        newSpmap += ',';
-      }
-    }
-
-    return newSpmap;
-  }
-
   // 判断是否可以下一步跳转到提交订单页面
-  canGoNextPage(e, item, str){
-    if(this.listData.length>1){
+  canGoNextPage(e, item, str) {
+    if (this.listData.length > 1) {
       this.canGoNext = true;
-    }else{
+    } else {
       this.canGoNext = false;
     }
+  }
+
+  // 通过value找到key
+  findAllKey(obj, value) {
+    var arr = [];
+    for (var key in obj) {
+      if (obj[key] == value)
+        arr.push(key)
+    }
+    return arr;
   }
 }

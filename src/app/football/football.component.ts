@@ -54,28 +54,40 @@ export class FootballComponent implements OnInit {
   // 选择的竞彩比赛
   public selectMatchDataList: any = [];
 
-  constructor(private _menusService: MenusService,private _selectMatchService: SelectMatchListService) { }
+  constructor(private _menusService: MenusService, private _selectMatchService: SelectMatchListService) { }
 
   ngOnInit() {
     this._menusService.getFootballData().then(data => {
       this.footballList = data.resp;
+      var sespmap = this.selectedSpMap(this.footballList.list[0].spMap)
       for (var i = 0; i < this.footballList.list.length; i++) {
         this.footballList.list[i].expend = false;
+        this.footballList.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
       }
-      console.log(data.resp);
+      console.log("#######################")
+      console.log(this.footballList);
     });
   }
 
-  selectThisItem(e,item,str) {
-    this.selectMatchDataList =  this._selectMatchService.setData(e,item,str);
-    console.log(this.selectMatchDataList)
-    if(this.tabId == 1){
-      var list = this.selectMatchDataList.list;
-      for(var i=0; i<list.length; i++){
-        var oBox = document.getElementById(list[i].matchNo);
-        oBox.style.background = "#d0021b !important"
-      }
+  // 给每个竞彩选项设置选择的状态
+  selectedSpMap(obj) {
+    var arr = [];
+    var newArr = [];
+    for (var key in obj) {
+      arr.push(key)
     }
+    for (var i = 0; i < arr.length; i++) {
+      newArr[arr[i]] = false;
+    }
+    console.log(newArr)
+    return newArr;
+  }
+
+  selectThisItem() {
+    var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
+    this.selectMatchDataList = this._selectMatchService.setData(list);
+    console.log(this.selectMatchDataList);
+    // console.log(this.footballList)
   }
 
   // 查看详细数据
@@ -86,7 +98,6 @@ export class FootballComponent implements OnInit {
 
       this._menusService.getFootballDetail().then(data => {
         this.footballDetail = data.resp;
-        // console.log(data.resp);
       });
 
       item.expend = true;
@@ -116,8 +127,10 @@ export class FootballComponent implements OnInit {
     if (tabid == 1) {
       this._menusService.getFootballData2().then(data => {
         this.footballList2 = data.resp;
+        var sespmap = this.selectedSpMap(this.footballList2.list[0].spMap)
         for (var i = 0; i < this.footballList2.list.length; i++) {
           this.footballList2.list[i].expend = false;
+          this.footballList2.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
         }
         console.log(data.resp);
       });
@@ -125,8 +138,10 @@ export class FootballComponent implements OnInit {
     if (tabid == 2) {
       this._menusService.getFootballData3().then(data => {
         this.footballList3 = data.resp;
+        var sespmap = this.selectedSpMap(this.footballList3.list[0].spMap)
         for (var i = 0; i < this.footballList3.list.length; i++) {
           this.footballList3.list[i].expend = false;
+          this.footballList3.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
         }
         console.log(data.resp);
       });
@@ -134,8 +149,10 @@ export class FootballComponent implements OnInit {
     if (tabid == 3) {
       this._menusService.getFootballData4().then(data => {
         this.footballList4 = data.resp;
+        var sespmap = this.selectedSpMap(this.footballList4.list[0].spMap);
         for (var i = 0; i < this.footballList4.list.length; i++) {
           this.footballList4.list[i].expend = false;
+          this.footballList4.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
         }
         console.log(data.resp);
       });
@@ -143,8 +160,10 @@ export class FootballComponent implements OnInit {
     if (tabid == 4) {
       this._menusService.getFootballData5().then(data => {
         this.footballList5 = data.resp;
+        var sespmap = this.selectedSpMap(this.footballList5.list[0].spMap)
         for (var i = 0; i < this.footballList5.list.length; i++) {
           this.footballList5.list[i].expend = false;
+          this.footballList5.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
         }
         console.log(data.resp);
       });
@@ -153,7 +172,7 @@ export class FootballComponent implements OnInit {
     this.tabId = tabid;
   }
 
-  selectContent(item,clickTabId) {
+  selectContent(item, clickTabId) {
     this.popData = item;
     this.clickTabId = clickTabId;
     console.log(item);
@@ -170,5 +189,16 @@ export class FootballComponent implements OnInit {
   sure() {
     this.popData = [];
     this.showPop = false;
+
+    if (this.tabId == 1 || this.tabId == 2 || this.tabId == 4) {
+      var list = this.selectMatchDataList.list;
+      for (var i = 0; i < list.length; i++) {
+        var oBox = document.getElementById('id' + list[i].matchNo);
+        oBox.style.backgroundColor = "#d0021b";
+        oBox.innerHTML = list[i].selectSpMap;
+        oBox.style.color = "#fff";
+        oBox.style.borderColor = "#d0021b";
+      }
+    }
   }
 }

@@ -95,7 +95,11 @@
 }
 
 .score input{
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
 }
 
 .only{
@@ -160,7 +164,11 @@
 }
 
 .allscore input{
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
 }
 
 .only{
