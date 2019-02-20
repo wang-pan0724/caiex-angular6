@@ -18,6 +18,8 @@ export class FooterNextComponent implements OnInit {
   nextStep(){
     console.log("nextStep.....")
     console.log(this.selectData)
-    this.router.navigate(['/detail']);
+    if(this.selectData.canGoMext){
+      this.router.navigate(['home/firmorder']);
+    }
   }
 }

@@ -63,9 +63,10 @@ export class FootballComponent implements OnInit {
       for (var i = 0; i < this.footballList.list.length; i++) {
         this.footballList.list[i].expend = false;
         this.footballList.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+        this.footballList.list[i].selectedSpmapers = [];
       }
-      console.log("#######################")
-      console.log(this.footballList);
+      // console.log("#######################")
+      // console.log(this.footballList);
     });
   }
 
@@ -79,15 +80,19 @@ export class FootballComponent implements OnInit {
     for (var i = 0; i < arr.length; i++) {
       newArr[arr[i]] = false;
     }
-    console.log(newArr)
+    // console.log(newArr)
     return newArr;
   }
 
   selectThisItem() {
-    var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
-    this.selectMatchDataList = this._selectMatchService.setData(list);
-    console.log(this.selectMatchDataList);
-    // console.log(this.footballList)
+    // var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
+    // this.selectMatchDataList = this._selectMatchService.setData(list);
+    if(this.tabId==0){
+      this.selectMatchDataList = this._selectMatchService.setData(this.footballList);
+    }
+    if(this.tabId == 3){
+      this.selectMatchDataList = this._selectMatchService.setData(this.footballList4);
+    }
   }
 
   // 查看详细数据
@@ -125,47 +130,55 @@ export class FootballComponent implements OnInit {
   // tab切换
   tabChanged(tabid) {
     if (tabid == 1) {
+      this.selectMatchDataList = [];
       this._menusService.getFootballData2().then(data => {
         this.footballList2 = data.resp;
-        var sespmap = this.selectedSpMap(this.footballList2.list[0].spMap)
+        var sespmap = this.selectedSpMap(this.footballList2.list[0].spMap);
         for (var i = 0; i < this.footballList2.list.length; i++) {
           this.footballList2.list[i].expend = false;
           this.footballList2.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+          this.footballList2.list[i].selectedSpmapers = [];
         }
-        console.log(data.resp);
+        console.log(this.footballList2);
       });
     }
     if (tabid == 2) {
+      this.selectMatchDataList = [];
       this._menusService.getFootballData3().then(data => {
         this.footballList3 = data.resp;
         var sespmap = this.selectedSpMap(this.footballList3.list[0].spMap)
         for (var i = 0; i < this.footballList3.list.length; i++) {
           this.footballList3.list[i].expend = false;
           this.footballList3.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+          this.footballList3.list[i].selectedSpmapers = [];
         }
-        console.log(data.resp);
+        // console.log(data.resp);
       });
     }
     if (tabid == 3) {
+      this.selectMatchDataList = [];
       this._menusService.getFootballData4().then(data => {
         this.footballList4 = data.resp;
         var sespmap = this.selectedSpMap(this.footballList4.list[0].spMap);
         for (var i = 0; i < this.footballList4.list.length; i++) {
           this.footballList4.list[i].expend = false;
           this.footballList4.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+          this.footballList4.list[i].selectedSpmapers = [];
         }
-        console.log(data.resp);
+        // console.log(data.resp);
       });
     }
     if (tabid == 4) {
+      this.selectMatchDataList = [];
       this._menusService.getFootballData5().then(data => {
         this.footballList5 = data.resp;
         var sespmap = this.selectedSpMap(this.footballList5.list[0].spMap)
         for (var i = 0; i < this.footballList5.list.length; i++) {
           this.footballList5.list[i].expend = false;
           this.footballList5.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+          this.footballList5.list[i].selectedSpmapers = [];
         }
-        console.log(data.resp);
+        // console.log(data.resp);
       });
     }
 
@@ -175,7 +188,6 @@ export class FootballComponent implements OnInit {
   selectContent(item, clickTabId) {
     this.popData = item;
     this.clickTabId = clickTabId;
-    console.log(item);
     this.showPop = true;
   }
 
@@ -189,16 +201,7 @@ export class FootballComponent implements OnInit {
   sure() {
     this.popData = [];
     this.showPop = false;
-
-    if (this.tabId == 1 || this.tabId == 2 || this.tabId == 4) {
-      var list = this.selectMatchDataList.list;
-      for (var i = 0; i < list.length; i++) {
-        var oBox = document.getElementById('id' + list[i].matchNo);
-        oBox.style.backgroundColor = "#d0021b";
-        oBox.innerHTML = list[i].selectSpMap;
-        oBox.style.color = "#fff";
-        oBox.style.borderColor = "#d0021b";
-      }
-    }
+    var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
+    this.selectMatchDataList = this._selectMatchService.setData(list);
   }
 }

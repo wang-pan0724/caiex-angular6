@@ -31,17 +31,17 @@
                         <div class="scoreItem">
                             <div class="score">
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_3}">
-                                    <input [(ngModel)]="item.selectSpMap.spf_3" type="checkbox"
+                                    <input *ngIf="!!item.spMap.spf_3" [(ngModel)]="item.selectSpMap.spf_3" type="checkbox"
                                         (change)="selectThisItem()">
-                                    <i class="only">单</i>
+                                    <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i>
                                     <span class="state">胜</span>
                                     <span class="num">{{item.spMap.spf_3}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_1}">
-                                    <input [(ngModel)]="item.selectSpMap.spf_1" type="checkbox"
+                                    <input *ngIf="!!item.spMap.spf_1" [(ngModel)]="item.selectSpMap.spf_1" type="checkbox"
                                         (change)="selectThisItem()"><span class="state">平</span>
                                     <span class="num">{{item.spMap.spf_1}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_0}">
-                                    <input [(ngModel)]="item.selectSpMap.spf_0" type="checkbox"
+                                    <input *ngIf="!!item.spMap.spf_0" [(ngModel)]="item.selectSpMap.spf_0" type="checkbox"
                                         (change)="selectThisItem()"><span class="state">负</span>
                                     <span class="num">{{item.spMap.spf_0}}</span></div>
                             </div>
@@ -90,6 +90,7 @@
                 </div>
             </ng-container>
         </div>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==1">
         <app-match-title (click)="doList('0')"></app-match-title>
@@ -120,8 +121,12 @@
                             </div>
                         </div>
                         <div class="scoreItem">
-                            <div class="selectScoreItem" id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
-                                选择投注内容
+                            <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
+                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
+                                <span *ngIf="item.selectedSpmapers.length>0">
+                                    <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -139,12 +144,14 @@
                 </div>
             </ng-container>
         </div>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==2">
         <app-match-title (click)="doList('0')"></app-match-title>
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList3.list">
                 <div class="matchList">
+                    <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4073')>-1">单</i>
                     <div class="containerLeft">
                         <span>{{item.matchName}}</span>
                         <span>{{item.endTime | week}}{{item.matchNo}}</span>
@@ -169,8 +176,12 @@
                             </div>
                         </div>
                         <div class="scoreItem">
-                            <div class="selectScoreItem" id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
-                                选择投注内容
+                            <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
+                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
+                                <span *ngIf="item.selectedSpmapers.length>0">
+                                    <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -188,12 +199,14 @@
                 </div>
             </ng-container>
         </div>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==3">
         <app-match-title (click)="doList('0')"></app-match-title>
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList4.list">
                 <div class="matchList">
+                    <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4072')>-1">单</i>
                     <div class="containerLeft">
                         <span>{{item.matchName}}</span>
                         <span>{{item.endTime | week}}{{item.matchNo}}</span>
@@ -270,6 +283,7 @@
                 </div>
             </ng-container>
         </div>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
 
     <div class="container" *ngIf="tabId ==4">
@@ -277,6 +291,7 @@
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList5.list">
                 <div class="matchList">
+                    <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4074')>-1">单</i>
                     <div class="containerLeft">
                         <span>{{item.matchName}}</span>
                         <span>{{item.endTime | week}}{{item.matchNo}}</span>
@@ -301,8 +316,12 @@
                             </div>
                         </div>
                         <div class="scoreItem">
-                            <div class="selectScoreItem" id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
-                                选择投注内容
+                            <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
+                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
+                                <span *ngIf="item.selectedSpmapers.length>0">
+                                    <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -320,6 +339,7 @@
                 </div>
             </ng-container>
         </div>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
 </div>
 
@@ -336,25 +356,32 @@
             <!-- 胜平负 -->
             <div class="scoreItem">
                 <div class="score">
-                    <div (click)="selectThisItem($event,popData,'胜')"><input type="checkbox"><i class="only">单</i> <span
-                            class="state">胜</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_3}">
+                        <input [(ngModel)]="popData.selectSpMap.spf_3" type="checkbox" (change)="selectThisItem()">
+                        <i class="only" *ngIf="popData.betSinglePlaytype.indexOf('4076')>-1">单</i>
+                        <span class="state">胜</span>
                         <span class="num">{{popData.spMap.spf_3}}</span></div>
-                    <div (click)="selectThisItem($event,popData,'平')"><input type="checkbox"><span
-                            class="state">平</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_1}">
+                        <input [(ngModel)]="popData.selectSpMap.spf_1" type="checkbox" (change)="selectThisItem()">
+                        <span class="state">平</span>
                         <span class="num">{{popData.spMap.spf_1}}</span></div>
-                    <div (click)="selectThisItem($event,popData,'负')"><input type="checkbox"><span
-                            class="state">负</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_0}">
+                        <input [(ngModel)]="popData.selectSpMap.spf_0" type="checkbox" (change)="selectThisItem()">
+                        <span class="state">负</span>
                         <span class="num">{{popData.spMap.spf_0}}</span></div>
                 </div>
                 <div class="score">
-                    <div (click)="selectThisItem($event,popData,'rq_胜')"><input type="checkbox"><span class="state"><b
-                                *ngIf="popData.concede == 1">+</b>{{popData.concede}}胜</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_3}">
+                        <input [(ngModel)]="popData.selectSpMap.rqspf_3" type="checkbox" (change)="selectThisItem()">
+                        <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}胜</span>
                         <span class="num">{{popData.spMap.rqspf_3}}</span></div>
-                    <div (click)="selectThisItem($event,popData,'rq_平')"><input type="checkbox"><span class="state"><b
-                                *ngIf="popData.concede == 1">+</b>{{popData.concede}}平</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_1}">
+                        <input [(ngModel)]="popData.selectSpMap.rqspf_1" type="checkbox" (change)="selectThisItem()">
+                        <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}平</span>
                         <span class="num">{{popData.spMap.rqspf_1}}</span></div>
-                    <div (click)="selectThisItem($event,popData,'rq_负')"><input type="checkbox"><span class="state"><b
-                                *ngIf="popData.concede == 1">+</b>{{popData.concede}}负</span>
+                    <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_0}">
+                        <input [(ngModel)]="popData.selectSpMap.rqspf_0" type="checkbox" (change)="selectThisItem()">
+                        <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}负</span>
                         <span class="num">{{popData.spMap.rqspf_0}}</span></div>
                 </div>
             </div>
@@ -366,46 +393,86 @@
                     <div class="popTitle">胜</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'1:0')"><input type="checkbox"><span
-                                    class="state">1:0</span><span class="num">{{popData.spMap.dcbf_10}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:0')"><input type="checkbox"><span
-                                    class="state">2:0</span>
-                                <span class="num">{{popData.spMap.dcbf_20}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:1')"><input type="checkbox"><span
-                                    class="state">2:1</span>
-                                <span class="num">{{popData.spMap.dcbf_21}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:0')"><input type="checkbox"><span
-                                    class="state">3:0</span>
-                                <span class="num">{{popData.spMap.dcbf_30}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:1')"><input type="checkbox"><span
-                                    class="state">3:1</span>
-                                <span class="num">{{popData.spMap.dcbf_31}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:2')"><input type="checkbox"><span
-                                    class="state">3:2</span>
-                                <span class="num">{{popData.spMap.dcbf_32}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'4:0')"><input type="checkbox"><span
-                                    class="state">4:0</span>
-                                <span class="num">{{popData.spMap.dcbf_40}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_10}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_10" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:0</span>
+                                <span class="num">{{popData.spMap.dcbf_10}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_20}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_20" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:0</span>
+                                <span class="num">{{popData.spMap.dcbf_20}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_21}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_21" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:1</span>
+                                <span class="num">{{popData.spMap.dcbf_21}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_30}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_30" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:0</span>
+                                <span class="num">{{popData.spMap.dcbf_30}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_31}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_31" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:1</span>
+                                <span class="num">{{popData.spMap.dcbf_31}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_32}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_32" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:2</span>
+                                <span class="num">{{popData.spMap.dcbf_32}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_40}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_40" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:0</span>
+                                <span class="num">{{popData.spMap.dcbf_40}}</span>
+                            </div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'4:1')"><input type="checkbox"><span
-                                    class="state">4:1</span>
-                                <span class="num">{{popData.spMap.dcbf_41}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'4:2')"><input type="checkbox"><span
-                                    class="state">4:2</span>
-                                <span class="num">{{popData.spMap.dcbf_42}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:0')"><input type="checkbox"><span
-                                    class="state">5:0</span>
-                                <span class="num">{{popData.spMap.dcbf_50}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:1')"><input type="checkbox"><span
-                                    class="state">5:1</span>
-                                <span class="num">{{popData.spMap.dcbf_51}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:2')"><input type="checkbox"><span
-                                    class="state">5:2</span>
-                                <span class="num">{{popData.spMap.dcbf_52}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">胜其他</span>
-                                <span class="num">{{popData.spMap.dcbf_90}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_41}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_41" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:1</span>
+                                <span class="num">{{popData.spMap.dcbf_41}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_42}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_42" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:2</span>
+                                <span class="num">{{popData.spMap.dcbf_42}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_50}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_50" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:0</span>
+                                <span class="num">{{popData.spMap.dcbf_50}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_51}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_51" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:1</span>
+                                <span class="num">{{popData.spMap.dcbf_51}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_52}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_52" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:2</span>
+                                <span class="num">{{popData.spMap.dcbf_52}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_90}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_90" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜其他</span>
+                                <span class="num">{{popData.spMap.dcbf_90}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -413,20 +480,36 @@
                     <div class="popTitle">平</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'0:0')"><input type="checkbox"><span
-                                    class="state">0:0</span><span class="num">{{popData.spMap.dcbf_00}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:1')"><input type="checkbox"><span
-                                    class="state">1:1</span>
-                                <span class="num">{{popData.spMap.dcbf_11}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:2')"><input type="checkbox"><span
-                                    class="state">2:2</span>
-                                <span class="num">{{popData.spMap.dcbf_22}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:3')"><input type="checkbox"><span
-                                    class="state">3:3</span>
-                                <span class="num">{{popData.spMap.dcbf_33}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">平其他</span>
-                                <span class="num">{{popData.spMap.dcbf_99}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_00}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_00" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:0</span>
+                                <span class="num">{{popData.spMap.dcbf_00}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_11}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_11" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:1</span>
+                                <span class="num">{{popData.spMap.dcbf_11}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_22}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_22" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:2</span>
+                                <span class="num">{{popData.spMap.dcbf_22}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_33}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_33" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:3</span>
+                                <span class="num">{{popData.spMap.dcbf_33}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_99}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_99" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平其他</span>
+                                <span class="num">{{popData.spMap.dcbf_99}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -434,46 +517,86 @@
                     <div class="popTitle">负</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'0:1')"><input type="checkbox"><span
-                                    class="state">0:1</span><span class="num">{{popData.spMap.dcbf_01}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:2')"><input type="checkbox"><span
-                                    class="state">0:2</span>
-                                <span class="num">{{popData.spMap.dcbf_02}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:2')"><input type="checkbox"><span
-                                    class="state">1:2</span>
-                                <span class="num">{{popData.spMap.dcbf_12}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:3')"><input type="checkbox"><span
-                                    class="state">0:3</span>
-                                <span class="num">{{popData.spMap.dcbf_03}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:3')"><input type="checkbox"><span
-                                    class="state">1:3</span>
-                                <span class="num">{{popData.spMap.dcbf_13}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:3')"><input type="checkbox"><span
-                                    class="state">2:3</span>
-                                <span class="num">{{popData.spMap.dcbf_23}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:4')"><input type="checkbox"><span
-                                    class="state">0:4</span>
-                                <span class="num">{{popData.spMap.dcbf_04}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_01}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_01" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:1</span>
+                                <span class="num">{{popData.spMap.dcbf_01}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_02}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_02" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:2</span>
+                                <span class="num">{{popData.spMap.dcbf_02}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_12}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_12" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:2</span>
+                                <span class="num">{{popData.spMap.dcbf_12}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_03}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_03" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:3</span>
+                                <span class="num">{{popData.spMap.dcbf_03}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_13}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_13" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:3</span>
+                                <span class="num">{{popData.spMap.dcbf_13}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_23}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_23" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:3</span>
+                                <span class="num">{{popData.spMap.dcbf_23}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_04}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_04" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:4</span>
+                                <span class="num">{{popData.spMap.dcbf_04}}</span>
+                            </div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'1:4')"><input type="checkbox"><span
-                                    class="state">1:4</span>
-                                <span class="num">{{popData.spMap.dcbf_14}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:4')"><input type="checkbox"><span
-                                    class="state">2:4</span>
-                                <span class="num">{{popData.spMap.dcbf_24}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:5')"><input type="checkbox"><span
-                                    class="state">0:5</span>
-                                <span class="num">{{popData.spMap.dcbf_05}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:5')"><input type="checkbox"><span
-                                    class="state">1:5</span>
-                                <span class="num">{{popData.spMap.dcbf_15}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:5')"><input type="checkbox"><span
-                                    class="state">2:5</span>
-                                <span class="num">{{popData.spMap.dcbf_25}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">负其他</span>
-                                <span class="num">{{popData.spMap.dcbf_09}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_14}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_14" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:4</span>
+                                <span class="num">{{popData.spMap.dcbf_14}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_24}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_24" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:4</span>
+                                <span class="num">{{popData.spMap.dcbf_24}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_05}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_05" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:5</span>
+                                <span class="num">{{popData.spMap.dcbf_05}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_15}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_15" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:5</span>
+                                <span class="num">{{popData.spMap.dcbf_15}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_25}">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_25" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:5</span>
+                                <span class="num">{{popData.spMap.dcbf_25}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_09}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap.dcbf_09" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负其他</span>
+                                <span class="num">{{popData.spMap.dcbf_09}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -486,31 +609,55 @@
                     <div class="popTitle">总进球</div>
                     <div class="popContent">
                         <div class="popScoreAll">
-                            <div (click)="selectThisItem($event,popData,'0')"><input type="checkbox"><span
-                                    class="state">0</span><span class="num">{{popData.spMap.zjq_0}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1')"><input type="checkbox"><span
-                                    class="state">1</span>
-                                <span class="num">{{popData.spMap.zjq_1}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2')"><input type="checkbox"><span
-                                    class="state">2</span>
-                                <span class="num">{{popData.spMap.zjq_2}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3')"><input type="checkbox"><span
-                                    class="state">3</span>
-                                <span class="num">{{popData.spMap.zjq_3}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_0}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_0" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0</span>
+                                <span class="num">{{popData.spMap.zjq_0}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_1}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_1" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1</span>
+                                <span class="num">{{popData.spMap.zjq_1}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_2}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_2" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2</span>
+                                <span class="num">{{popData.spMap.zjq_2}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_3}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_3" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3</span>
+                                <span class="num">{{popData.spMap.zjq_3}}</span>
+                            </div>
                         </div>
                         <div class="popScoreAll">
-                            <div (click)="selectThisItem($event,popData,'4')"><input type="checkbox"><span
-                                    class="state">4</span>
-                                <span class="num">{{popData.spMap.zjq_4}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5')"><input type="checkbox"><span
-                                    class="state">5</span>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_4}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_4" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4</span>
+                                <span class="num">{{popData.spMap.zjq_4}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_5}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_5" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5</span>
                                 <span class="num">{{popData.spMap.zjq_5}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'6')"><input type="checkbox"><span
-                                    class="state">6</span>
-                                <span class="num">{{popData.spMap.zjq_6}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'7')"><input type="checkbox"><span
-                                    class="state">7+</span>
-                                <span class="num">{{popData.spMap.zjq_7}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_6}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_6" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">6</span>
+                                <span class="num">{{popData.spMap.zjq_6}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_7}">
+                                <input [(ngModel)]="popData.selectSpMap.zjq_7" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">7+</span>
+                                <span class="num">{{popData.spMap.zjq_7}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -523,36 +670,64 @@
                     <div class="popTitle">半全场</div>
                     <div class="popContent">
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'胜-胜')"><input type="checkbox"><span
-                                    class="state">胜-胜</span><span class="num">{{popData.spMap.bqc_33}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜-平')"><input type="checkbox"><span
-                                    class="state">胜-平</span>
-                                <span class="num">{{popData.spMap.bqc_31}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜-负')"><input type="checkbox"><span
-                                    class="state">胜-负</span>
-                                <span class="num">{{popData.spMap.bqc_30}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_33}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_33" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-胜</span>
+                                <span class="num">{{popData.spMap.bqc_33}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_31}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_31" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-平</span>
+                                <span class="num">{{popData.spMap.bqc_31}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_30}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_30" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-负</span>
+                                <span class="num">{{popData.spMap.bqc_30}}</span>
+                            </div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'平-胜')"><input type="checkbox"><span
-                                    class="state">平-胜</span>
-                                <span class="num">{{popData.spMap.bqc_13}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平-平')"><input type="checkbox"><span
-                                    class="state">平-平</span>
-                                <span class="num">{{popData.spMap.bqc_11}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平-负')"><input type="checkbox"><span
-                                    class="state">平-负</span>
-                                <span class="num">{{popData.spMap.bqc_10}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_13}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_13" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-胜</span>
+                                <span class="num">{{popData.spMap.bqc_13}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_11}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_11" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-平</span>
+                                <span class="num">{{popData.spMap.bqc_11}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_10}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_10" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-负</span>
+                                <span class="num">{{popData.spMap.bqc_10}}</span>
+                            </div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'负-胜')"><input type="checkbox"><span
-                                    class="state">负-胜</span>
-                                <span class="num">{{popData.spMap.bqc_03}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负-平')"><input type="checkbox"><span
-                                    class="state">负-平</span>
-                                <span class="num">{{popData.spMap.bqc_01}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负-负')"><input type="checkbox"><span
-                                    class="state">负-负</span>
-                                <span class="num">{{popData.spMap.bqc_00}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_03}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_03" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-胜</span>
+                                <span class="num">{{popData.spMap.bqc_03}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_01}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_01" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-平</span>
+                                <span class="num">{{popData.spMap.bqc_01}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_00}">
+                                <input [(ngModel)]="popData.selectSpMap.bqc_00" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-负</span>
+                                <span class="num">{{popData.spMap.bqc_00}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -567,46 +742,86 @@
                     <div class="popTitle">胜</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'1:0')"><input type="checkbox"><span
-                                    class="state">1:0</span><span class="num">{{popData.spMap['10']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:0')"><input type="checkbox"><span
-                                    class="state">2:0</span>
-                                <span class="num">{{popData.spMap['20']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:1')"><input type="checkbox"><span
-                                    class="state">2:1</span>
-                                <span class="num">{{popData.spMap['21']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:0')"><input type="checkbox"><span
-                                    class="state">3:0</span>
-                                <span class="num">{{popData.spMap['30']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:1')"><input type="checkbox"><span
-                                    class="state">3:1</span>
-                                <span class="num">{{popData.spMap['31']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:2')"><input type="checkbox"><span
-                                    class="state">3:2</span>
-                                <span class="num">{{popData.spMap['32']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'4:0')"><input type="checkbox"><span
-                                    class="state">4:0</span>
-                                <span class="num">{{popData.spMap['40']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['10']}">
+                                <input [(ngModel)]="popData.selectSpMap['10']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:0</span>
+                                <span class="num">{{popData.spMap['10']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['20']}">
+                                <input [(ngModel)]="popData.selectSpMap['20']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:0</span>
+                                <span class="num">{{popData.spMap['20']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['21']}">
+                                <input [(ngModel)]="popData.selectSpMap['21']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:1</span>
+                                <span class="num">{{popData.spMap['21']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['30']}">
+                                <input [(ngModel)]="popData.selectSpMap['30']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:0</span>
+                                <span class="num">{{popData.spMap['30']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['31']}">
+                                <input [(ngModel)]="popData.selectSpMap['31']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:1</span>
+                                <span class="num">{{popData.spMap['31']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['32']}">
+                                <input [(ngModel)]="popData.selectSpMap['32']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:2</span>
+                                <span class="num">{{popData.spMap['32']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['40']}">
+                                <input [(ngModel)]="popData.selectSpMap['40']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:0</span>
+                                <span class="num">{{popData.spMap['40']}}</span>
+                            </div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'4:1')"><input type="checkbox"><span
-                                    class="state">4:1</span>
-                                <span class="num">{{popData.spMap['41']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'4:2')"><input type="checkbox"><span
-                                    class="state">4:2</span>
-                                <span class="num">{{popData.spMap['42']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:0')"><input type="checkbox"><span
-                                    class="state">5:0</span>
-                                <span class="num">{{popData.spMap['50']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:1')"><input type="checkbox"><span
-                                    class="state">5:1</span>
-                                <span class="num">{{popData.spMap['51']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'5:2')"><input type="checkbox"><span
-                                    class="state">5:2</span>
-                                <span class="num">{{popData.spMap['52']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">胜其他</span>
-                                <span class="num">{{popData.spMap['90']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['41']}">
+                                <input [(ngModel)]="popData.selectSpMap['41']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:1</span>
+                                <span class="num">{{popData.spMap['41']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['42']}">
+                                <input [(ngModel)]="popData.selectSpMap['42']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">4:2</span>
+                                <span class="num">{{popData.spMap['42']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['50']}">
+                                <input [(ngModel)]="popData.selectSpMap['50']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:0</span>
+                                <span class="num">{{popData.spMap['50']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['51']}">
+                                <input [(ngModel)]="popData.selectSpMap['51']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:1</span>
+                                <span class="num">{{popData.spMap['51']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['52']}">
+                                <input [(ngModel)]="popData.selectSpMap['52']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">5:2</span>
+                                <span class="num">{{popData.spMap['52']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['90']}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap['90']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜其他</span>
+                                <span class="num">{{popData.spMap['90']}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -614,20 +829,36 @@
                     <div class="popTitle">平</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'0:0')"><input type="checkbox"><span
-                                    class="state">0:0</span><span class="num">{{popData.spMap['00']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:1')"><input type="checkbox"><span
-                                    class="state">1:1</span>
-                                <span class="num">{{popData.spMap['11']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:2')"><input type="checkbox"><span
-                                    class="state">2:2</span>
-                                <span class="num">{{popData.spMap['22']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'3:3')"><input type="checkbox"><span
-                                    class="state">3:3</span>
-                                <span class="num">{{popData.spMap['33']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">平其他</span>
-                                <span class="num">{{popData.spMap['99']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['00']}">
+                                <input [(ngModel)]="popData.selectSpMap['00']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:0</span>
+                                <span class="num">{{popData.spMap['00']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['11']}">
+                                <input [(ngModel)]="popData.selectSpMap['11']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:1</span>
+                                <span class="num">{{popData.spMap['11']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['22']}">
+                                <input [(ngModel)]="popData.selectSpMap['22']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:2</span>
+                                <span class="num">{{popData.spMap['22']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['33']}">
+                                <input [(ngModel)]="popData.selectSpMap['33']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">3:3</span>
+                                <span class="num">{{popData.spMap['33']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['99']}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap['99']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平其他</span>
+                                <span class="num">{{popData.spMap['99']}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -635,46 +866,86 @@
                     <div class="popTitle">负</div>
                     <div class="popContent">
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'0:1')"><input type="checkbox"><span
-                                    class="state">0:1</span><span class="num">{{popData.spMap['01']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:2')"><input type="checkbox"><span
-                                    class="state">0:2</span>
-                                <span class="num">{{popData.spMap['02']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:2')"><input type="checkbox"><span
-                                    class="state">1:2</span>
-                                <span class="num">{{popData.spMap['12']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:3')"><input type="checkbox"><span
-                                    class="state">0:3</span>
-                                <span class="num">{{popData.spMap['03']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:3')"><input type="checkbox"><span
-                                    class="state">1:3</span>
-                                <span class="num">{{popData.spMap['13']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:3')"><input type="checkbox"><span
-                                    class="state">2:3</span>
-                                <span class="num">{{popData.spMap['23']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:4')"><input type="checkbox"><span
-                                    class="state">0:4</span>
-                                <span class="num">{{popData.spMap['04']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['01']}">
+                                <input [(ngModel)]="popData.selectSpMap['01']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:1</span>
+                                <span class="num">{{popData.spMap['01']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['02']}">
+                                <input [(ngModel)]="popData.selectSpMap['02']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:2</span>
+                                <span class="num">{{popData.spMap['02']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['12']}">
+                                <input [(ngModel)]="popData.selectSpMap['12']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:2</span>
+                                <span class="num">{{popData.spMap['12']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['03']}">
+                                <input [(ngModel)]="popData.selectSpMap['03']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:3</span>
+                                <span class="num">{{popData.spMap['03']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['13']}">
+                                <input [(ngModel)]="popData.selectSpMap['13']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:3</span>
+                                <span class="num">{{popData.spMap['13']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['23']}">
+                                <input [(ngModel)]="popData.selectSpMap['23']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:3</span>
+                                <span class="num">{{popData.spMap['23']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['04']}">
+                                <input [(ngModel)]="popData.selectSpMap['04']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:4</span>
+                                <span class="num">{{popData.spMap['04']}}</span>
+                            </div>
                         </div>
                         <div class="popScore">
-                            <div (click)="selectThisItem($event,popData,'1:4')"><input type="checkbox"><span
-                                    class="state">1:4</span>
-                                <span class="num">{{popData.spMap['14']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:4')"><input type="checkbox"><span
-                                    class="state">2:4</span>
-                                <span class="num">{{popData.spMap['24']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'0:5')"><input type="checkbox"><span
-                                    class="state">0:5</span>
-                                <span class="num">{{popData.spMap['05']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'1:5')"><input type="checkbox"><span
-                                    class="state">1:5</span>
-                                <span class="num">{{popData.spMap['15']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'2:5')"><input type="checkbox"><span
-                                    class="state">2:5</span>
-                                <span class="num">{{popData.spMap['25']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负其他')" id="popOther"><input
-                                    type="checkbox"><span class="state">负其他</span>
-                                <span class="num">{{popData.spMap['09']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['14']}">
+                                <input [(ngModel)]="popData.selectSpMap['14']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:4</span>
+                                <span class="num">{{popData.spMap['14']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['24']}">
+                                <input [(ngModel)]="popData.selectSpMap['24']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:4</span>
+                                <span class="num">{{popData.spMap['24']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['05']}">
+                                <input [(ngModel)]="popData.selectSpMap['05']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">0:5</span>
+                                <span class="num">{{popData.spMap['05']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['15']}">
+                                <input [(ngModel)]="popData.selectSpMap['15']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">1:5</span>
+                                <span class="num">{{popData.spMap['15']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['25']}">
+                                <input [(ngModel)]="popData.selectSpMap['25']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">2:5</span>
+                                <span class="num">{{popData.spMap['25']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['09']}" id="popOther">
+                                <input [(ngModel)]="popData.selectSpMap['09']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负其他</span>
+                                <span class="num">{{popData.spMap['09']}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -689,36 +960,64 @@
                     <div class="popTitle">半全场</div>
                     <div class="popContent">
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'胜-胜')"><input type="checkbox"><span
-                                    class="state">胜-胜</span><span class="num">{{popData.spMap['33']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜-平')"><input type="checkbox"><span
-                                    class="state">胜-平</span>
-                                <span class="num">{{popData.spMap['31']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'胜-负')"><input type="checkbox"><span
-                                    class="state">胜-负</span>
-                                <span class="num">{{popData.spMap['30']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['33']}">
+                                <input [(ngModel)]="popData.selectSpMap['33']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-胜</span>
+                                <span class="num">{{popData.spMap['33']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['31']}">
+                                <input [(ngModel)]="popData.selectSpMap['31']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-平</span>
+                                <span class="num">{{popData.spMap['31']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['30']}">
+                                <input [(ngModel)]="popData.selectSpMap['30']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">胜-负</span>
+                                <span class="num">{{popData.spMap['30']}}</span>
+                            </div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'平-胜')"><input type="checkbox"><span
-                                    class="state">平-胜</span>
-                                <span class="num">{{popData.spMap['13']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平-平')"><input type="checkbox"><span
-                                    class="state">平-平</span>
-                                <span class="num">{{popData.spMap['11']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'平-负')"><input type="checkbox"><span
-                                    class="state">平-负</span>
-                                <span class="num">{{popData.spMap['10']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['13']}">
+                                <input [(ngModel)]="popData.selectSpMap['13']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-胜</span>
+                                <span class="num">{{popData.spMap['13']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['11']}">
+                                <input [(ngModel)]="popData.selectSpMap['11']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-平</span>
+                                <span class="num">{{popData.spMap['11']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['10']}">
+                                <input [(ngModel)]="popData.selectSpMap['10']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">平-负</span>
+                                <span class="num">{{popData.spMap['10']}}</span>
+                            </div>
                         </div>
                         <div class="popScoreHalf">
-                            <div (click)="selectThisItem($event,popData,'负-胜')"><input type="checkbox"><span
-                                    class="state">负-胜</span>
-                                <span class="num">{{popData.spMap['03']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负-平')"><input type="checkbox"><span
-                                    class="state">负-平</span>
-                                <span class="num">{{popData.spMap['01']}}</span></div>
-                            <div (click)="selectThisItem($event,popData,'负-负')"><input type="checkbox"><span
-                                    class="state">负-负</span>
-                                <span class="num">{{popData.spMap['00']}}</span></div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['03']}">
+                                <input [(ngModel)]="popData.selectSpMap['03']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-胜</span>
+                                <span class="num">{{popData.spMap['03']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['01']}">
+                                <input [(ngModel)]="popData.selectSpMap['01']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-平</span>
+                                <span class="num">{{popData.spMap['01']}}</span>
+                            </div>
+                            <div [ngClass]="{scoreSelect:popData.selectSpMap['00']}">
+                                <input [(ngModel)]="popData.selectSpMap['00']" type="checkbox"
+                                    (change)="selectThisItem()">
+                                <span class="state">负-负</span>
+                                <span class="num">{{popData.spMap['00']}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -731,5 +1030,3 @@
         </div>
     </div>
 </div>
-
-<app-footer-next [selectData]='selectMatchDataList'></app-footer-next>

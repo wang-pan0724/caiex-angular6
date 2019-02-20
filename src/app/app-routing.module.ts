@@ -24,6 +24,7 @@ import { ChangeLoginpasswordComponent } from './user/change-loginpassword/change
 import { MystoreComponent }  from './mystore/mystore.component';
 import { SetupComponent } from './setup/setup.component';
 import { AboutUsComponent } from './setup/about-us/about-us.component';
+import { FirmOrderComponent } from './firm-order/firm-order.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:'home/howtoTread',component:HowToTradeComponent},
   {path:'home/howtoissueorders',component:HowToIssueOrdersComponent},
   {path:'home/howtoawardprizes',component:HowToAwardPrizesComponent},
+  {path:'home/firmorder',component:FirmOrderComponent},
   {path:'mine/askedquestions',component:AskedQuestionsComponent},
   {path:'mine/userinfo',component:UserinfoComponent},
   {path:'mine/userinfo/changenick',component:ChangeNickComponent},

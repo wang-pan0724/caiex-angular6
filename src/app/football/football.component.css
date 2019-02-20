@@ -12,6 +12,7 @@
 }
 
 .matchList{
+    position: relative;
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -22,7 +23,7 @@
     width: 60px;
     font-size: 12px;
     margin-right: 10px;
-    padding-top: 22px;
+    padding-top: 10px;
 }
 
 .containerLeft span{
@@ -32,6 +33,7 @@
 
 .containerRight{
     flex: 1;
+    width: 80%;
 }
 
 .countryName{
@@ -142,6 +144,28 @@
     padding: 0px 12px;
     text-align: center;
     font-size: 12px;
+}
+
+.selectScoreItem_s{
+    background: #d0021b;
+    border: 1px solid #d0021b;
+    border-radius: 3px;
+    margin: 0px 3px 3px 0px;
+    width: 100%;
+    height: 30px;
+    line-height: 28px;
+    padding: 0px 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+.selectScoreItem_s span{
+    display: block;
+    width: 100%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* 总进球 */
@@ -297,6 +321,7 @@
     text-align: center;
     align-items:center; 
     display: -webkit-flex;
+    display: flex;
     justify-content:center;
 }
 
@@ -310,6 +335,7 @@
 }
 
 .popScore div{
+    position: relative;
     width: 14.28%;
     border-right: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
@@ -317,7 +343,11 @@
 }
 
 .popScore input{
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
 }
 
 .popScore span{
@@ -336,6 +366,7 @@
 }
 
 .popScoreAll div{
+    position: relative;
     width: 25%;
     border-right: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
@@ -345,7 +376,11 @@
 }
 
 .popScoreAll input{
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
 }
 
 .popScoreHalf{
@@ -354,6 +389,7 @@
 }
 
 .popScoreHalf div{
+    position: relative;
     width: 33.3%;
     border-right: 1px solid #bbb;
     border-bottom: 1px solid #bbb;
@@ -363,7 +399,11 @@
 }
 
 .popScoreHalf input{
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
 }
 
 .popButtonGroup{
