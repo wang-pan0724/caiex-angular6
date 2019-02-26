@@ -50,7 +50,11 @@ export class SelectMatchListService {
         } else {
           newArrItem = arrItem;
         }
-        spmapersList.push(newArrItem);
+
+        var pl = dataList.list[i].spMap[list[j]];
+        // console.log(pl)
+        
+        spmapersList.push(newArrItem+' '+pl);
       }
       dataList.list[i].selectedSpmapers = spmapersList;
     }

@@ -4,12 +4,19 @@
     <div class="firmOrderHeader">投注内容 <span>共{{firmOrder.selectMatchNum}}场比赛</span></div>
     <ng-container *ngFor="let item of firmOrder.list.list">
       <div class="firmOrderList" *ngIf="item.selectedList.length>0">
-        <div><i class="el-icon-circle-close"></i></div>
+        <div (click)="deleteThisItem(item.matchNo,item.matchTime)"><i class="el-icon-circle-close"></i></div>
         <div class="rightContent">
           <div class="firmOrderListDetail">
             <div>{{item.endTime | week}}{{item.matchNo}} &nbsp;&nbsp; {{item.homeTeam}} (主) VS {{item.guestTeam}} (客)
             </div>
-            <div class="can">胆</div>
+            <div id="can" [ngClass]="{can:!item.selectDan, selectCan:item.selectDan}" *ngIf="item.canSelectDan">
+              <input [(ngModel)]="item.selectDan" type="checkbox" (change)="setDan()">
+              胆
+            </div>
+            <div id="can" class="canSelectDan" *ngIf="!item.canSelectDan">
+                <input type="checkbox" (change)="setDan()">
+                胆
+              </div>
           </div>
           <div class="firmOrderListItem">
             <span *ngFor="let itemList of item.selectedSpmapers">{{itemList}}&nbsp;&nbsp;</span>
@@ -22,54 +29,33 @@
   <div class="firmOrder">
     <div class="firmOrderHeader">过关方式</div>
     <div class="type">
-      <!-- <div [ngClass]="{scoreSelect:false}">
-        <input [(ngModel)]="" type="checkbox"> 2串1
-      </div> -->
-      <div>
-        <input type="checkbox"> 单关
-      </div>
-      <div>
-        <input type="checkbox"> 2串1
-      </div>
-      <div>
-        <input type="checkbox"> 3串1
-      </div>
-      <div>
-        <input type="checkbox"> 4串1
-      </div>
-      <div>
-        <input type="checkbox"> 5串1
-      </div>
-      <div>
-        <input type="checkbox"> 6串1
-      </div>
-      <div>
-        <input type="checkbox"> 7串1
-      </div>
-      <div>
-        <input type="checkbox"> 8串1
-      </div>
+      <ng-container *ngFor="let item of guanType">
+          <div *ngIf="item.type==1" [ngClass]="{selectThisGuan: item.select}">
+              <input [(ngModel)]="item.select" type="checkbox" (change)="changeGuan(item.id)"> {{item.title}}
+          </div>
+      </ng-container>
+      
     </div>
   </div>
   <div class="firmOrder">
     <div class="firmOrderHeader">选择倍数</div>
     <div class="multiples">
-        <span>投</span>
-        <span class="num" (click)="sub()">-</span>
-        <input type="number" [(ngModel)]="multiples" onkeyup="value=value.replace(/[^0-9]/g, '')">
-        <span class="num" (click)="add()">+</span>
-        <span>倍</span>
+      <span>投</span>
+      <span class="num" (click)="sub()">-</span>
+      <input type="number" [(ngModel)]="multiples" onkeyup="value=value.replace(/[^0-9]/g, '')">
+      <span class="num" (click)="add()">+</span>
+      <span>倍</span>
     </div>
   </div>
   <div class="userShouldKnow">
     <div class="firmOrderHeader">预约须知</div>
     <div class="shoudRead">
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
-        <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
+      <p>1.提交方案后，站点将收到您的方案信息，并尽快为您处理。</p>
     </div>
   </div>
 
@@ -78,7 +64,7 @@
 <div class="shopAddress">
   <div><i class="el-icon-edit"></i></div>
   <div>
-    <p>大秦彩狼体彩店  186****2812</p>
+    <p>大秦彩狼体彩店 186****2812</p>
     <p>陕西省西安市雁塔区丈八北路与科技二路十字东南角</p>
   </div>
 </div>

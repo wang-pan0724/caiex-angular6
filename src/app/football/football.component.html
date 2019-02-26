@@ -31,18 +31,18 @@
                         <div class="scoreItem">
                             <div class="score">
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_3}">
-                                    <input *ngIf="!!item.spMap.spf_3" [(ngModel)]="item.selectSpMap.spf_3" type="checkbox"
-                                        (change)="selectThisItem()">
+                                    <input *ngIf="!!item.spMap.spf_3" [(ngModel)]="item.selectSpMap.spf_3"
+                                        type="checkbox" (change)="selectThisItem()">
                                     <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i>
                                     <span class="state">胜</span>
                                     <span class="num">{{item.spMap.spf_3}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_1}">
-                                    <input *ngIf="!!item.spMap.spf_1" [(ngModel)]="item.selectSpMap.spf_1" type="checkbox"
-                                        (change)="selectThisItem()"><span class="state">平</span>
+                                    <input *ngIf="!!item.spMap.spf_1" [(ngModel)]="item.selectSpMap.spf_1"
+                                        type="checkbox" (change)="selectThisItem()"><span class="state">平</span>
                                     <span class="num">{{item.spMap.spf_1}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_0}">
-                                    <input *ngIf="!!item.spMap.spf_0" [(ngModel)]="item.selectSpMap.spf_0" type="checkbox"
-                                        (change)="selectThisItem()"><span class="state">负</span>
+                                    <input *ngIf="!!item.spMap.spf_0" [(ngModel)]="item.selectSpMap.spf_0"
+                                        type="checkbox" (change)="selectThisItem()"><span class="state">负</span>
                                     <span class="num">{{item.spMap.spf_0}}</span></div>
                             </div>
                             <div class="score">
@@ -122,7 +122,7 @@
                         </div>
                         <div class="scoreItem">
                             <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
-                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                (click)="selectContent(item,tabId)">
                                 <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
                                 <span *ngIf="item.selectedSpmapers.length>0">
                                     <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="scoreItem">
                             <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
-                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                (click)="selectContent(item,tabId)">
                                 <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
                                 <span *ngIf="item.selectedSpmapers.length>0">
                                     <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
@@ -317,7 +317,7 @@
                         </div>
                         <div class="scoreItem">
                             <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
-                                id="id{{item.matchNo}}" (click)="selectContent(item,tabId)">
+                                (click)="selectContent(item,tabId)">
                                 <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
                                 <span *ngIf="item.selectedSpmapers.length>0">
                                     <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>

@@ -41,15 +41,35 @@
   line-height: 26px;
 }
 
-.firmOrderListDetail .can{
+.firmOrderListDetail #can{
   position: absolute;
   right: 10px;
   width: 16px;
   height: 16px;
   top: 3px;
-  background: #bbb;
   text-align: center;
   line-height: 16px;
+}
+
+.firmOrderListDetail .can{
+  background: #bbb;
+}
+
+.canSelectDan{
+  background: #eee;
+  color: #bbb;
+}
+
+.firmOrderListDetail .selectCan{
+  background: #f3a20b;
+  color: #fff;
+}
+
+.firmOrderListDetail #can input{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0;
 }
 
 .firmOrderListItem{
@@ -82,6 +102,12 @@
   float: left;
   /* padding: 0px 12px; */
   /* display: flex; */
+}
+
+.selectThisGuan{
+  color: #fff;
+  border: 1px solid #d0021b !important;
+  background: #d0021b !important;
 }
 
 .multiples{
