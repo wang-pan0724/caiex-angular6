@@ -12,6 +12,9 @@ export class FirmOrderComponent implements OnInit {
   public title: string = "确认订单";
   public multiples: any = 1;
   public firmOrder: any = [];
+  public minBonus: string = '0';
+  public maxBonus: string = '0';
+  public listZhu: number = 0;
   public guanType: any = [
     {
       id: 1,
@@ -71,18 +74,20 @@ export class FirmOrderComponent implements OnInit {
     this.firmOrder = JSON.parse(localStorage.getItem('firmOrder'));
     this.initDan();
     this.initGuan();
-    
+
     this.getPrize();
     // console.log( this.sortGroup(this.data))
   }
 
-  getPrize(){
+  getPrize() {
     var selectSpmaps = [];
+    var bonusArrAll = [];
+    var bonusArrMax = [];
     var data = []
     var index = 0;
-    for(var i=0; i<this.firmOrder.list.list.length; i++){
-      if(this.firmOrder.list.list[i].selectedSpmapers.length>0){
-        selectSpmaps[index]=this.firmOrder.list.list[i].selectedSpmapers;
+    for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+      if (this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
+        selectSpmaps[index] = this.firmOrder.list.list[i].selectedSpmapers;
         data.push(index);
         index++;
       }
@@ -96,39 +101,78 @@ export class FirmOrderComponent implements OnInit {
     console.log(sortGroupData);
 
     var guanTypeSelectArr = [];
-    for(var i=0; i<this.guanType.length; i++){
-      if(this.guanType[i].select==true){
-        guanTypeSelectArr.push(i+1)
+    for (var i = 0; i < this.guanType.length; i++) {
+      if (this.guanType[i].select == true) {
+        guanTypeSelectArr.push(i + 1)
       }
     }
 
     console.log("选择的过关方式");
     console.log(guanTypeSelectArr);
 
-    for(var i=0; i<guanTypeSelectArr.length; i++){
+    for (var i = 0; i < guanTypeSelectArr.length; i++) {
       var arr = [];
-      for(var j=0; j<sortGroupData.length; j++){
-        if(typeof(sortGroupData[j]) == "string" && sortGroupData[j].split(',').length == guanTypeSelectArr[i]){
-            arr.push(sortGroupData[j]);
+      for (var j = 0; j < sortGroupData.length; j++) {
+        if (typeof (sortGroupData[j]) == "string" && sortGroupData[j].split(',').length == guanTypeSelectArr[i]) {
+          arr.push(sortGroupData[j]);
         }
       }
-      console.log(arr);
 
-      console.log('........................')
-      for(var j=0; j<arr.length; j++){
+      for (var j = 0; j < arr.length; j++) {
         var groupArr = arr[j].split(',');
         var newArr = [];
-        for(var k=0; k<groupArr.length; k++){
-          newArr[k] =  selectSpmaps[groupArr[k]];
+        for (var k = 0; k < groupArr.length; k++) {
+          newArr[k] = selectSpmaps[groupArr[k]];
         }
-
-        // console.log(newArr);
-        // console.log('........................')
-
         console.log(this.hunhePrize(newArr));
+        var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
+        bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);
+        bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
       }
     }
 
+    // 预计奖金 
+    var minprice = !!this.getMinAndMax(bonusArrAll)[0] ? this.getMinAndMax(bonusArrAll)[0] : '0'
+    this.minBonus = (this.multiples * minprice).toFixed(2);
+    this.maxBonus = (this.multiples * this.getMinAndMax(bonusArrMax)[1]).toFixed(2)
+
+    // 计算注数
+    this.listZhu = bonusArrAll.length;
+    console.log(minprice)
+    console.log(this.getMinAndMax(bonusArrMax)[1])
+  }
+
+  getMinAndMax(bonusArr) {
+    var min = bonusArr[0];
+    var max = 0;
+    for (var i = 0; i < bonusArr.length; i++) {
+      max += bonusArr[i];
+      if (bonusArr[i] < min) {
+        min = bonusArr[i];
+      }
+    }
+
+    return [min, max];
+  }
+
+  // 计算奖金
+  calculatedBonus(arr) {
+    var prize = [];
+    for (var i = 0; i < arr.length; i++) {
+      var bonus = 2;
+      for (var j = 0; j < arr[i].length; j++) {
+        bonus = bonus * arr[i][j].split(' ')[1];
+      }
+      prize.push(bonus);
+    }
+
+    var maxPrize = prize[0]
+    for (var i = 0; i < prize.length; i++) {
+      if (prize[i] > maxPrize) {
+        maxPrize = prize[i];
+      }
+    }
+    return [prize, maxPrize];
   }
 
   // 删除所选的竞彩比赛
@@ -289,6 +333,7 @@ export class FirmOrderComponent implements OnInit {
   // 选择倍数（输入倍数）
   changeMuitples(e) {
     this.multiples = this.multiples.replace(/[^\d]/g, '');
+    this.getPrize()
   }
 
   // 选择倍数（点击按钮减少倍数）
@@ -301,6 +346,8 @@ export class FirmOrderComponent implements OnInit {
     } else {
       this.multiples = 0
     }
+
+    this.getPrize()
   }
 
   // 选择倍数（点击按钮增加倍数）
@@ -310,6 +357,8 @@ export class FirmOrderComponent implements OnInit {
     } else {
       alert("最大倍数为10000倍")
     }
+
+    this.getPrize()
   }
 
   sortGroup(data, index = 0, group = []) {
