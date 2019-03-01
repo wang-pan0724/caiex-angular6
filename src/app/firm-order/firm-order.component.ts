@@ -72,11 +72,12 @@ export class FirmOrderComponent implements OnInit {
   ngOnInit() {
     // 获取用户所选的竞彩比赛
     this.firmOrder = JSON.parse(localStorage.getItem('firmOrder'));
+    // console.log( this.sortGroup(this.data))
     this.initDan();
     this.initGuan();
 
     this.getPrize();
-    // console.log( this.sortGroup(this.data))
+
   }
 
   getPrize() {
@@ -85,61 +86,97 @@ export class FirmOrderComponent implements OnInit {
     var bonusArrMax = [];
     var data = []
     var index = 0;
+    var danindex = 0;
+    var danArr = [];
+    var dan = [];
     for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-      if (this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
+      if(this.firmOrder.list.list[i].selectDan == true && this.firmOrder.list.list[i].canSelectDan && this.firmOrder.list.list[i].selectedSpmapers.length > 0){
+        danArr[danindex] = this.firmOrder.list.list[i].selectedSpmapers;
+        dan.push('dan_'+danindex);
+        danindex++;
+      }
+      if (this.firmOrder.list.list[i].selectDan == false && this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
         selectSpmaps[index] = this.firmOrder.list.list[i].selectedSpmapers;
         data.push(index);
         index++;
       }
     }
 
-    console.log("选择的比赛。。。")
-    console.log(selectSpmaps);
-
-    var sortGroupData = this.sortGroup(data);
-    console.log("比赛排序。。。。。");
-    console.log(sortGroupData);
-
-    var guanTypeSelectArr = [];
-    for (var i = 0; i < this.guanType.length; i++) {
-      if (this.guanType[i].select == true) {
-        guanTypeSelectArr.push(i + 1)
+    if (data.length == 1 && dan.length == 0) {
+      // 预计奖金 
+      this.minBonus = (this.multiples * 0).toFixed(2);
+      var max = Number(selectSpmaps[0][0].split(' ')[1])
+      for(var i=0; i<selectSpmaps[0].length; i++){
+        if(Number(selectSpmaps[0][i].split(' ')[1])>max){
+          max = Number(selectSpmaps[0][i].split(' ')[1])
+        }
       }
-    }
+      this.maxBonus = (2*this.multiples * max).toFixed(2)
 
-    console.log("选择的过关方式");
-    console.log(guanTypeSelectArr);
+      // 计算注数
+      this.listZhu = 1;
+    } else{
+      var sortGroupData = [];
+      if(dan.length>0){
+        var sortData = this.sortGroup(data);
+        for(var i=0; i<sortData.length; i++){
+          sortData[i] = sortData[i]+','+dan;
+        }
+        sortGroupData = sortData;
+      }else{
+        sortGroupData = this.sortGroup(data);
+      }
+      
+      console.log("比赛排序。。。。。");
+      console.log(sortGroupData);
 
-    for (var i = 0; i < guanTypeSelectArr.length; i++) {
-      var arr = [];
-      for (var j = 0; j < sortGroupData.length; j++) {
-        if (typeof (sortGroupData[j]) == "string" && sortGroupData[j].split(',').length == guanTypeSelectArr[i]) {
-          arr.push(sortGroupData[j]);
+      var guanTypeSelectArr = [];
+      for (var i = 0; i < this.guanType.length; i++) {
+        if (this.guanType[i].select == true) {
+          guanTypeSelectArr.push(i + 1)
         }
       }
 
-      for (var j = 0; j < arr.length; j++) {
-        var groupArr = arr[j].split(',');
-        var newArr = [];
-        for (var k = 0; k < groupArr.length; k++) {
-          newArr[k] = selectSpmaps[groupArr[k]];
+      // console.log("选择的过关方式");
+      // console.log(guanTypeSelectArr);
+
+      for (var i = 0; i < guanTypeSelectArr.length; i++) {
+        var arr = [];
+        for (var j = 0; j < sortGroupData.length; j++) {
+          if (typeof (sortGroupData[j]) == "string" && sortGroupData[j].split(',').length == guanTypeSelectArr[i]) {
+            arr.push(sortGroupData[j]);
+          }
         }
-        console.log(this.hunhePrize(newArr));
-        var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
-        bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);
-        bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
+
+        for (var j = 0; j < arr.length; j++) {
+          var groupArr = arr[j].split(',');
+          var newArr = [];
+          for (var k = 0; k < groupArr.length; k++) {
+            if(groupArr[k].indexOf('dan_')>-1){
+              newArr[k] = danArr[groupArr[k].split('_')[1]]
+            }else{
+              newArr[k] = selectSpmaps[groupArr[k]];
+            }
+          }
+         
+          console.log(this.hunhePrize(newArr));
+          var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
+          bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);
+          bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
+        }
       }
+
+      // 预计奖金 
+      var minprice = !!this.getMinAndMax(bonusArrAll)[0] ? this.getMinAndMax(bonusArrAll)[0] : '0'
+      this.minBonus = (this.multiples * minprice).toFixed(2);
+      this.maxBonus = (this.multiples * this.getMinAndMax(bonusArrMax)[1]).toFixed(2)
+
+      // 计算注数
+      this.listZhu = bonusArrAll.length;
+      console.log(minprice)
+      console.log(this.getMinAndMax(bonusArrMax)[1])
     }
 
-    // 预计奖金 
-    var minprice = !!this.getMinAndMax(bonusArrAll)[0] ? this.getMinAndMax(bonusArrAll)[0] : '0'
-    this.minBonus = (this.multiples * minprice).toFixed(2);
-    this.maxBonus = (this.multiples * this.getMinAndMax(bonusArrMax)[1]).toFixed(2)
-
-    // 计算注数
-    this.listZhu = bonusArrAll.length;
-    console.log(minprice)
-    console.log(this.getMinAndMax(bonusArrMax)[1])
   }
 
   getMinAndMax(bonusArr) {
@@ -279,6 +316,9 @@ export class FirmOrderComponent implements OnInit {
 
       }
     }
+    this.getPrize();
+    console.log('设胆。。。。。')
+    console.log(this.firmOrder.list)
   }
 
   // 设置过关方式

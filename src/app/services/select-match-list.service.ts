@@ -43,8 +43,10 @@ export class SelectMatchListService {
         var arrItem = this.findKey(dataList.spmapers, list[j]);
         var concede = dataList.list[i].concede;
         var newArrItem = "";
-        // 处理rq_平，rq_胜，rq_负 字段
-        if (arrItem == "rq_平" || arrItem == "rq_胜" || arrItem == "rq_负") {
+        if(arrItem == "让球平" || arrItem == "让球胜" || arrItem == "让球负"){
+          var newConcede = concede > 0 ? "+" + concede : concede;
+          newArrItem = newConcede + arrItem.substring(2)
+        }else if (arrItem == "rq_平" || arrItem == "rq_胜" || arrItem == "rq_负") {// 处理rq_平，rq_胜，rq_负 字段
           var newConcede = concede > 0 ? "+" + concede : concede;
           newArrItem = newConcede + arrItem.split('_')[1]
         } else {
@@ -58,9 +60,8 @@ export class SelectMatchListService {
       }
       dataList.list[i].selectedSpmapers = spmapersList;
     }
+
   }
-
-
 
   // 查看每一场竞彩比赛是否被选
   matchIsSelect(obj): boolean {

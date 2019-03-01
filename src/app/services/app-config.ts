@@ -1,6 +1,6 @@
 export class AppConfig {
   static baseUrl: string = 'https://app.caieturn.com';
-  static agentId: string = '1025';
+  static agentId: number = 1025;
   static sid: string = '';
   static version: string = 'repo_android_1.0.0';
   static clientType: string = '1';

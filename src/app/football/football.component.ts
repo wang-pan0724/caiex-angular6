@@ -59,16 +59,16 @@ export class FootballComponent implements OnInit {
   ngOnInit() {
     this._menusService.getFootballData().then(data => {
       this.footballList = data.resp;
-      var sespmap = this.selectedSpMap(this.footballList.list[0].spMap)
       for (var i = 0; i < this.footballList.list.length; i++) {
         this.footballList.list[i].expend = false;
-        this.footballList.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+        this.footballList.list[i].selectSpMap = this.selectedSpMap(this.footballList.list[0].spMap);
+        this.footballList.list[i].canSelect = [0, 0, 0, 0, 0];
         this.footballList.list[i].selectedSpmapers = [];
       }
-      // console.log("#######################")
-      // console.log(this.footballList);
+      console.log(this.footballList)
     });
   }
+
 
   // 给每个竞彩选项设置选择的状态
   selectedSpMap(obj) {
@@ -84,14 +84,55 @@ export class FootballComponent implements OnInit {
     return newArr;
   }
 
-  selectThisItem() {
+  selectThisItem(index, item) {
     // var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
     // this.selectMatchDataList = this._selectMatchService.setData(list);
-    if(this.tabId==0){
+  
+    if (this.tabId == 0) {
+      this.canSelectFun(this.footballList, index, item)
       this.selectMatchDataList = this._selectMatchService.setData(this.footballList);
     }
-    if(this.tabId == 3){
+    if (this.tabId == 3) {
       this.selectMatchDataList = this._selectMatchService.setData(this.footballList4);
+    }
+
+    if(this.tabId == 1){
+      this.canSelectFun(this.footballList2, index, item)
+    }
+  }
+
+  canSelectFun(dataList, index, item) {
+    // var tmpArray = new Array();
+    for (var i = 0; i < dataList.list.length; i++) {
+      // var arr = [];
+      // tmpArray.push([[], [], [], [], []]);
+      var selectNum = 0
+      for (var key in dataList.list[i].selectSpMap) {
+        if (dataList.list[i].selectSpMap[key] == true) {
+          selectNum++;
+          if (key.split('_')[0]=='spf') {
+            // tmpArray[0].push(key);
+            dataList.list[i].canSelect = [1, -1, -1, -1, -1]
+          } else if (key.split('_')[0] =='rqspf') {
+            // tmpArray[1].push(key);
+            dataList.list[i].canSelect = [-1, 1, -1, -1, -1]
+          } else if (key.indexOf('zjq_') > -1) {
+            // tmpArray[2].push(key);
+            dataList.list[i].canSelect = [-1, -1, 1, -1, -1]
+          } else if (key.indexOf('bqc_') > -1) {
+            // tmpArray[3].push(key)
+            dataList.list[i].canSelect = [-1, -1, -1, 1, -1]
+          } else if (key.indexOf('dcbf_') > -1) {
+            // tmpArray[4].push(key)
+            dataList.list[i].canSelect = [-1, -1, -1, -1, 1]
+          }
+        }
+      }
+
+      if(selectNum == 0){
+        dataList.list[i].canSelect = [0, 0, 0, 0, 0];
+      }
+
     }
   }
 
@@ -137,6 +178,7 @@ export class FootballComponent implements OnInit {
         for (var i = 0; i < this.footballList2.list.length; i++) {
           this.footballList2.list[i].expend = false;
           this.footballList2.list[i].selectSpMap = JSON.parse(JSON.stringify(sespmap));
+          this.footballList2.list[i].canSelect = [0, 0, 0, 0, 0];
           this.footballList2.list[i].selectedSpmapers = [];
         }
         console.log(this.footballList2);
