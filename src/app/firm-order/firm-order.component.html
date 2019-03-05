@@ -14,9 +14,9 @@
               胆
             </div>
             <div id="can" class="canSelectDan" *ngIf="!item.canSelectDan">
-                <input type="checkbox" (change)="setDan()">
-                胆
-              </div>
+              <input type="checkbox" (change)="showTips()">
+              胆
+            </div>
           </div>
           <div class="firmOrderListItem">
             <span *ngFor="let itemList of item.selectedSpmapers">{{itemList}}&nbsp;&nbsp;</span>
@@ -30,11 +30,11 @@
     <div class="firmOrderHeader">过关方式</div>
     <div class="type">
       <ng-container *ngFor="let item of guanType">
-          <div *ngIf="item.type==1" [ngClass]="{selectThisGuan: item.select}">
-              <input [(ngModel)]="item.select" type="checkbox" (change)="changeGuan(item.id)"> {{item.title}}
-          </div>
+        <div *ngIf="item.type==1" [ngClass]="{selectThisGuan: item.select}">
+          <input [(ngModel)]="item.select" type="checkbox" (change)="changeGuan(item.id)"> {{item.title}}
+        </div>
       </ng-container>
-      
+
     </div>
   </div>
   <div class="firmOrder">
@@ -75,5 +75,11 @@
   </div>
   <div class="bottonRightRed" (click)="nextStep()">
     提交彩店出票
+  </div>
+</div>
+
+<div class="pop" *ngIf="showDanTips">
+  <div class="popContainer container showTipsFont">
+    {{showDanStr}}
   </div>
 </div>

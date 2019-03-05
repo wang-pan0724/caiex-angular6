@@ -15,6 +15,8 @@ export class FirmOrderComponent implements OnInit {
   public minBonus: string = '0';
   public maxBonus: string = '0';
   public listZhu: number = 0;
+  public showDanTips: boolean = false;
+  public showDanStr: string = "";
   public guanType: any = [
     {
       id: 1,
@@ -81,6 +83,26 @@ export class FirmOrderComponent implements OnInit {
     console.profileEnd()
   }
 
+  showTips() {
+    var num = 0;
+    for (var i = 0; i < this.guanType.length; i++) {
+      if (this.guanType[i].select == true) {
+        num++
+      }
+    }
+    if(num==0){
+      this.showDanStr = "请选择过关方式"
+    }else{
+      this.showDanStr = "当前过关方式已达最大设胆数量"
+    }
+    var that = this
+    that.showDanTips = true;
+    window.setTimeout(function () {
+      that.showDanTips = false;
+      this.showDanStr = ""
+    }, 2000);
+  }
+
   getPrize() {
     var selectSpmaps = [];
     var bonusArrAll = [];
@@ -91,9 +113,9 @@ export class FirmOrderComponent implements OnInit {
     var danArr = [];
     var dan = [];
     for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-      if(this.firmOrder.list.list[i].selectDan == true && this.firmOrder.list.list[i].canSelectDan && this.firmOrder.list.list[i].selectedSpmapers.length > 0){
+      if (this.firmOrder.list.list[i].selectDan == true && this.firmOrder.list.list[i].canSelectDan && this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
         danArr[danindex] = this.firmOrder.list.list[i].selectedSpmapers;
-        dan.push('dan_'+danindex);
+        dan.push('dan_' + danindex);
         danindex++;
       }
       if (this.firmOrder.list.list[i].selectDan == false && this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
@@ -107,27 +129,27 @@ export class FirmOrderComponent implements OnInit {
       // 预计奖金 
       this.minBonus = (this.multiples * 0).toFixed(2);
       var max = Number(selectSpmaps[0][0].split(' ')[1])
-      for(var i=0; i<selectSpmaps[0].length; i++){
-        if(Number(selectSpmaps[0][i].split(' ')[1])>max){
+      for (var i = 0; i < selectSpmaps[0].length; i++) {
+        if (Number(selectSpmaps[0][i].split(' ')[1]) > max) {
           max = Number(selectSpmaps[0][i].split(' ')[1])
         }
       }
-      this.maxBonus = (2*this.multiples * max).toFixed(2)
+      this.maxBonus = (2 * this.multiples * max).toFixed(2)
 
       // 计算注数
       this.listZhu = 1;
-    } else{
+    } else {
       var sortGroupData = [];
-      if(dan.length>0){
+      if (dan.length > 0) {
         var sortData = this.sortGroup(data);
-        for(var i=0; i<sortData.length; i++){
-          sortData[i] = sortData[i]+','+dan;
+        for (var i = 0; i < sortData.length; i++) {
+          sortData[i] = sortData[i] + ',' + dan;
         }
         sortGroupData = sortData;
-      }else{
+      } else {
         sortGroupData = this.sortGroup(data);
       }
-      
+
       console.log("比赛排序。。。。。");
       console.log(sortGroupData);
 
@@ -153,13 +175,13 @@ export class FirmOrderComponent implements OnInit {
           var groupArr = arr[j].split(',');
           var newArr = [];
           for (var k = 0; k < groupArr.length; k++) {
-            if(groupArr[k].indexOf('dan_')>-1){
+            if (groupArr[k].indexOf('dan_') > -1) {
               newArr[k] = danArr[groupArr[k].split('_')[1]]
-            }else{
+            } else {
               newArr[k] = selectSpmaps[groupArr[k]];
             }
           }
-         
+
           console.log(this.hunhePrize(newArr));
           var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
           bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);
