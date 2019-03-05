@@ -31,34 +31,57 @@
                         <div class="scoreItem">
                             <div class="score">
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_3}">
-                                    <input *ngIf="!!item.spMap.spf_3" [(ngModel)]="item.selectSpMap.spf_3"
-                                        type="checkbox" (change)="selectThisItem(1,item)" [disabled]="item.canSelect[0]==-1 ? true: false">
+                                    <input *ngIf="!!item.spMap.spf_3 && (item.canSelect[0]==1 || item.canSelect[0]==0)"
+                                        [(ngModel)]="item.selectSpMap.spf_3" type="checkbox"
+                                        (change)="selectThisItem(1,item)"
+                                        [disabled]="item.canSelect[0]==-1 ? true: false">
+                                    <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                        (change)="showTip()">
                                     <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i>
                                     <span class="state">胜</span>
                                     <span class="num">{{item.spMap.spf_3}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_1}">
-                                    <input *ngIf="!!item.spMap.spf_1" [(ngModel)]="item.selectSpMap.spf_1"
-                                        type="checkbox" (change)="selectThisItem(2,item)" [disabled]="item.canSelect[0]==-1 ? true: false"><span class="state">平</span>
+                                    <input *ngIf="!!item.spMap.spf_1 && (item.canSelect[0]==1 || item.canSelect[0]==0)"
+                                        [(ngModel)]="item.selectSpMap.spf_1" type="checkbox"
+                                        (change)="selectThisItem(2,item)"
+                                        [disabled]="item.canSelect[0]==-1 ? true: false">
+                                    <input *ngIf="!!item.spMap.spf_1 && item.canSelect[0]==-1" type="checkbox"
+                                        (change)="showTip()">
+                                    <span class="state">平</span>
                                     <span class="num">{{item.spMap.spf_1}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.spf_0}">
-                                    <input *ngIf="!!item.spMap.spf_0" [(ngModel)]="item.selectSpMap.spf_0"
-                                        type="checkbox" (change)="selectThisItem(3,item)" [disabled]="item.canSelect[0]==-1 ? true: false"><span class="state">负</span>
+                                    <input *ngIf="!!item.spMap.spf_0 && (item.canSelect[0]==1 || item.canSelect[0]==0)"
+                                        [(ngModel)]="item.selectSpMap.spf_0" type="checkbox"
+                                        (change)="selectThisItem(3,item)"
+                                        [disabled]="item.canSelect[0]==-1 ? true: false">
+                                    <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                        (change)="showTip()">
+                                    <span class="state">负</span>
                                     <span class="num">{{item.spMap.spf_0}}</span></div>
                             </div>
                             <div class="score">
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.rqspf_3}">
-                                    <input [(ngModel)]="item.selectSpMap.rqspf_3" type="checkbox"
-                                        (change)="selectThisItem(4,item)" [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==1 || item.canSelect[1]==0"
+                                        [(ngModel)]="item.selectSpMap.rqspf_3" type="checkbox"
+                                        (change)="selectThisItem(4,item)"
+                                        [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==-1" type="checkbox" (change)="showTip()">
                                     <span class="state"><b *ngIf="item.concede == 1">+</b>{{item.concede}}胜</span>
                                     <span class="num">{{item.spMap.rqspf_3}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.rqspf_1}">
-                                    <input [(ngModel)]="item.selectSpMap.rqspf_1" type="checkbox"
-                                        (change)="selectThisItem(5,item)" [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==1 || item.canSelect[1]==0"
+                                        [(ngModel)]="item.selectSpMap.rqspf_1" type="checkbox"
+                                        (change)="selectThisItem(5,item)"
+                                        [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==-1" type="checkbox" (change)="showTip()">
                                     <span class="state"><b *ngIf="item.concede == 1">+</b>{{item.concede}}平</span>
                                     <span class="num">{{item.spMap.rqspf_1}}</span></div>
                                 <div [ngClass]="{scoreSelect:item.selectSpMap.rqspf_0}">
-                                    <input [(ngModel)]="item.selectSpMap.rqspf_0" type="checkbox"
-                                        (change)="selectThisItem(6,item)" [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==1 || item.canSelect[1]==0"
+                                        [(ngModel)]="item.selectSpMap.rqspf_0" type="checkbox"
+                                        (change)="selectThisItem(6,item)"
+                                        [disabled]="item.canSelect[1]==-1 ? true: false">
+                                    <input *ngIf="item.canSelect[1]==-1" type="checkbox" (change)="showTip()">
                                     <span class="state"><b *ngIf="item.concede == 1">+</b>{{item.concede}}负</span>
                                     <span class="num">{{item.spMap.rqspf_0}}</span></div>
                             </div>
@@ -357,36 +380,54 @@
             <div class="scoreItem">
                 <div class="score">
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_3}">
-                        <input [(ngModel)]="popData.selectSpMap.spf_3" type="checkbox" (change)="selectThisItem(1,popData)" [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[0]==0 || popData.canSelect[0]==1"
+                            [(ngModel)]="popData.selectSpMap.spf_3" type="checkbox" (change)="selectThisItem(1,popData)"
+                            [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[0]==-1" (change)="showTip()">
                         <i class="only" *ngIf="popData.betSinglePlaytype.indexOf('4076')>-1">单</i>
                         <span class="state">胜</span>
                         <span class="num">{{popData.spMap.spf_3}}</span></div>
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_1}">
-                        <input [(ngModel)]="popData.selectSpMap.spf_1" type="checkbox" (change)="selectThisItem(2,popData)" [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[0]==0 || popData.canSelect[0]==1"
+                            [(ngModel)]="popData.selectSpMap.spf_1" type="checkbox" (change)="selectThisItem(2,popData)"
+                            [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[0]==-1" (change)="showTip()">
                         <span class="state">平</span>
                         <span class="num">{{popData.spMap.spf_1}}</span></div>
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.spf_0}">
-                        <input [(ngModel)]="popData.selectSpMap.spf_0" type="checkbox" (change)="selectThisItem(3,popData)" [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[0]==0 || popData.canSelect[0]==1"
+                            [(ngModel)]="popData.selectSpMap.spf_0" type="checkbox" (change)="selectThisItem(3,popData)"
+                            [disabled]="popData.canSelect[0]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[0]==-1" (change)="showTip()">
                         <span class="state">负</span>
                         <span class="num">{{popData.spMap.spf_0}}</span></div>
                 </div>
                 <div class="score">
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_3}">
-                        <input [(ngModel)]="popData.selectSpMap.rqspf_3" type="checkbox" (change)="selectThisItem(4,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[1]==0 || popData.canSelect[1]==1"
+                            [(ngModel)]="popData.selectSpMap.rqspf_3" type="checkbox"
+                            (change)="selectThisItem(4,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[1]==-1" (change)="showTip()">
                         <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}胜</span>
                         <span class="num">{{popData.spMap.rqspf_3}}</span></div>
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_1}">
-                        <input [(ngModel)]="popData.selectSpMap.rqspf_1" type="checkbox" (change)="selectThisItem(5,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[1]==0 || popData.canSelect[1]==1"
+                            [(ngModel)]="popData.selectSpMap.rqspf_1" type="checkbox"
+                            (change)="selectThisItem(5,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[1]==-1" (change)="showTip()">
                         <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}平</span>
                         <span class="num">{{popData.spMap.rqspf_1}}</span></div>
                     <div [ngClass]="{scoreSelect:popData.selectSpMap.rqspf_0}">
-                        <input [(ngModel)]="popData.selectSpMap.rqspf_0" type="checkbox" (change)="selectThisItem(6,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input *ngIf="popData.canSelect[1]==0 || popData.canSelect[1]==1"
+                            [(ngModel)]="popData.selectSpMap.rqspf_0" type="checkbox"
+                            (change)="selectThisItem(6,popData)" [disabled]="popData.canSelect[1]==-1 ? true: false">
+                        <input type="checkbox" *ngIf="popData.canSelect[1]==-1" (change)="showTip()">
                         <span class="state"><b *ngIf="popData.concede == 1">+</b>{{popData.concede}}负</span>
                         <span class="num">{{popData.spMap.rqspf_0}}</span></div>
                 </div>
             </div>
 
-            <!-- 胜 平 负 -->
+            <!-- 胜/平/负 -->
             <div class="popScoreItem">
                 <div class="popHeader">单</div>
                 <div class="popList">
@@ -394,82 +435,121 @@
                     <div class="popContent">
                         <div class="popScore">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_10}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_10" type="checkbox"
-                                    (change)="selectThisItem(24,popData)"  [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_10" type="checkbox"
+                                    (change)="selectThisItem(24,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:0</span>
                                 <span class="num">{{popData.spMap.dcbf_10}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_20}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_20" type="checkbox"
-                                    (change)="selectThisItem(25,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_20" type="checkbox"
+                                    (change)="selectThisItem(25,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:0</span>
                                 <span class="num">{{popData.spMap.dcbf_20}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_21}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_21" type="checkbox"
-                                    (change)="selectThisItem(26,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_21" type="checkbox"
+                                    (change)="selectThisItem(26,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:1</span>
                                 <span class="num">{{popData.spMap.dcbf_21}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_30}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_30" type="checkbox"
-                                    (change)="selectThisItem(27,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_30" type="checkbox"
+                                    (change)="selectThisItem(27,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">3:0</span>
                                 <span class="num">{{popData.spMap.dcbf_30}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_31}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_31" type="checkbox"
-                                    (change)="selectThisItem(28,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_31" type="checkbox"
+                                    (change)="selectThisItem(28,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">3:1</span>
                                 <span class="num">{{popData.spMap.dcbf_31}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_32}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_32" type="checkbox"
-                                    (change)="selectThisItem(29,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_32" type="checkbox"
+                                    (change)="selectThisItem(29,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">3:2</span>
                                 <span class="num">{{popData.spMap.dcbf_32}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_40}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_40" type="checkbox"
-                                    (change)="selectThisItem(30,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_40" type="checkbox"
+                                    (change)="selectThisItem(30,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">4:0</span>
                                 <span class="num">{{popData.spMap.dcbf_40}}</span>
                             </div>
                         </div>
                         <div class="popScore">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_41}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_41" type="checkbox"
-                                    (change)="selectThisItem(31,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_41" type="checkbox"
+                                    (change)="selectThisItem(31,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">4:1</span>
                                 <span class="num">{{popData.spMap.dcbf_41}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_42}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_42" type="checkbox"
-                                    (change)="selectThisItem(32,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_42" type="checkbox"
+                                    (change)="selectThisItem(32,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">4:2</span>
                                 <span class="num">{{popData.spMap.dcbf_42}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_50}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_50" type="checkbox"
-                                    (change)="selectThisItem(33,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_50" type="checkbox"
+                                    (change)="selectThisItem(33,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">5:0</span>
                                 <span class="num">{{popData.spMap.dcbf_50}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_51}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_51" type="checkbox"
-                                    (change)="selectThisItem(34,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_51" type="checkbox"
+                                    (change)="selectThisItem(34,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">5:1</span>
                                 <span class="num">{{popData.spMap.dcbf_51}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_52}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_52" type="checkbox"
-                                    (change)="selectThisItem(35,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_52" type="checkbox"
+                                    (change)="selectThisItem(35,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">5:2</span>
                                 <span class="num">{{popData.spMap.dcbf_52}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_90}" id="popOther">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_90" type="checkbox"
-                                    (change)="selectThisItem(36,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_90" type="checkbox"
+                                    (change)="selectThisItem(36,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">胜其他</span>
                                 <span class="num">{{popData.spMap.dcbf_90}}</span>
                             </div>
@@ -481,32 +561,47 @@
                     <div class="popContent">
                         <div class="popScore">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_00}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_00" type="checkbox"
-                                    (change)="selectThisItem(37,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_00" type="checkbox"
+                                    (change)="selectThisItem(37,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:0</span>
                                 <span class="num">{{popData.spMap.dcbf_00}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_11}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_11" type="checkbox"
-                                    (change)="selectThisItem(38,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_11" type="checkbox"
+                                    (change)="selectThisItem(38,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:1</span>
                                 <span class="num">{{popData.spMap.dcbf_11}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_22}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_22" type="checkbox"
-                                    (change)="selectThisItem(39,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_22" type="checkbox"
+                                    (change)="selectThisItem(39,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:2</span>
                                 <span class="num">{{popData.spMap.dcbf_22}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_33}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_33" type="checkbox"
-                                    (change)="selectThisItem(40,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_33" type="checkbox"
+                                    (change)="selectThisItem(40,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">3:3</span>
                                 <span class="num">{{popData.spMap.dcbf_33}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_99}" id="popOther">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_99" type="checkbox"
-                                    (change)="selectThisItem(41,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_99" type="checkbox"
+                                    (change)="selectThisItem(41,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">平其他</span>
                                 <span class="num">{{popData.spMap.dcbf_99}}</span>
                             </div>
@@ -518,82 +613,121 @@
                     <div class="popContent">
                         <div class="popScore">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_01}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_01" type="checkbox"
-                                    (change)="selectThisItem(42,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_01" type="checkbox"
+                                    (change)="selectThisItem(42,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:1</span>
                                 <span class="num">{{popData.spMap.dcbf_01}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_02}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_02" type="checkbox"
-                                    (change)="selectThisItem(43,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_02" type="checkbox"
+                                    (change)="selectThisItem(43,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:2</span>
                                 <span class="num">{{popData.spMap.dcbf_02}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_12}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_12" type="checkbox"
-                                    (change)="selectThisItem(44,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_12" type="checkbox"
+                                    (change)="selectThisItem(44,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:2</span>
                                 <span class="num">{{popData.spMap.dcbf_12}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_03}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_03" type="checkbox"
-                                    (change)="selectThisItem(45,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_03" type="checkbox"
+                                    (change)="selectThisItem(45,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:3</span>
                                 <span class="num">{{popData.spMap.dcbf_03}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_13}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_13" type="checkbox"
-                                    (change)="selectThisItem(46,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_13" type="checkbox"
+                                    (change)="selectThisItem(46,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:3</span>
                                 <span class="num">{{popData.spMap.dcbf_13}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_23}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_23" type="checkbox"
-                                    (change)="selectThisItem(47,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_23" type="checkbox"
+                                    (change)="selectThisItem(47,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:3</span>
                                 <span class="num">{{popData.spMap.dcbf_23}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_04}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_04" type="checkbox"
-                                    (change)="selectThisItem(48,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_04" type="checkbox"
+                                    (change)="selectThisItem(48,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:4</span>
                                 <span class="num">{{popData.spMap.dcbf_04}}</span>
                             </div>
                         </div>
                         <div class="popScore">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_14}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_14" type="checkbox"
-                                    (change)="selectThisItem(49,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_14" type="checkbox"
+                                    (change)="selectThisItem(49,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:4</span>
                                 <span class="num">{{popData.spMap.dcbf_14}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_24}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_24" type="checkbox"
-                                    (change)="selectThisItem(50,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_24" type="checkbox"
+                                    (change)="selectThisItem(50,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:4</span>
                                 <span class="num">{{popData.spMap.dcbf_24}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_05}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_05" type="checkbox"
-                                    (change)="selectThisItem(51,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_05" type="checkbox"
+                                    (change)="selectThisItem(51,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">0:5</span>
                                 <span class="num">{{popData.spMap.dcbf_05}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_15}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_15" type="checkbox"
-                                    (change)="selectThisItem(52,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_15" type="checkbox"
+                                    (change)="selectThisItem(52,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">1:5</span>
                                 <span class="num">{{popData.spMap.dcbf_15}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_25}">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_25" type="checkbox"
-                                    (change)="selectThisItem(53,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_25" type="checkbox"
+                                    (change)="selectThisItem(53,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">2:5</span>
                                 <span class="num">{{popData.spMap.dcbf_25}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.dcbf_09}" id="popOther">
-                                <input [(ngModel)]="popData.selectSpMap.dcbf_09" type="checkbox"
-                                    (change)="selectThisItem(54,popData)" [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[4]==0 || popData.canSelect[4]==1"
+                                    [(ngModel)]="popData.selectSpMap.dcbf_09" type="checkbox"
+                                    (change)="selectThisItem(54,popData)"
+                                    [disabled]="popData.canSelect[4]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[4]==-1" (change)="showTip()">
                                 <span class="state">负其他</span>
                                 <span class="num">{{popData.spMap.dcbf_09}}</span>
                             </div>
@@ -610,51 +744,75 @@
                     <div class="popContent">
                         <div class="popScoreAll">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_0}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_0" type="checkbox"
-                                    (change)="selectThisItem(7,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_0" type="checkbox"
+                                    (change)="selectThisItem(7,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">0</span>
                                 <span class="num">{{popData.spMap.zjq_0}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_1}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_1" type="checkbox"
-                                    (change)="selectThisItem(8,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_1" type="checkbox"
+                                    (change)="selectThisItem(8,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">1</span>
                                 <span class="num">{{popData.spMap.zjq_1}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_2}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_2" type="checkbox"
-                                    (change)="selectThisItem(9,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_2" type="checkbox"
+                                    (change)="selectThisItem(9,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">2</span>
                                 <span class="num">{{popData.spMap.zjq_2}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_3}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_3" type="checkbox"
-                                    (change)="selectThisItem(10,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_3" type="checkbox"
+                                    (change)="selectThisItem(10,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">3</span>
                                 <span class="num">{{popData.spMap.zjq_3}}</span>
                             </div>
                         </div>
                         <div class="popScoreAll">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_4}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_4" type="checkbox"
-                                    (change)="selectThisItem(11,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_4" type="checkbox"
+                                    (change)="selectThisItem(11,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">4</span>
                                 <span class="num">{{popData.spMap.zjq_4}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_5}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_5" type="checkbox"
-                                    (change)="selectThisItem(12,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_5" type="checkbox"
+                                    (change)="selectThisItem(12,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">5</span>
                                 <span class="num">{{popData.spMap.zjq_5}}</span></div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_6}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_6" type="checkbox"
-                                    (change)="selectThisItem(13,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_6" type="checkbox"
+                                    (change)="selectThisItem(13,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">6</span>
                                 <span class="num">{{popData.spMap.zjq_6}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.zjq_7}">
-                                <input [(ngModel)]="popData.selectSpMap.zjq_7" type="checkbox"
-                                    (change)="selectThisItem(14,popData)" [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[2]==0 || popData.canSelect[2]==1"
+                                    [(ngModel)]="popData.selectSpMap.zjq_7" type="checkbox"
+                                    (change)="selectThisItem(14,popData)"
+                                    [disabled]="popData.canSelect[2]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[2]==-1" (change)="showTip()">
                                 <span class="state">7+</span>
                                 <span class="num">{{popData.spMap.zjq_7}}</span>
                             </div>
@@ -671,60 +829,87 @@
                     <div class="popContent">
                         <div class="popScoreHalf">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_33}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_33" type="checkbox"
-                                    (change)="selectThisItem(15,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_33" type="checkbox"
+                                    (change)="selectThisItem(15,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">胜-胜</span>
                                 <span class="num">{{popData.spMap.bqc_33}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_31}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_31" type="checkbox"
-                                    (change)="selectThisItem(16,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_31" type="checkbox"
+                                    (change)="selectThisItem(16,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">胜-平</span>
                                 <span class="num">{{popData.spMap.bqc_31}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_30}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_30" type="checkbox"
-                                    (change)="selectThisItem(17,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_30" type="checkbox"
+                                    (change)="selectThisItem(17,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">胜-负</span>
                                 <span class="num">{{popData.spMap.bqc_30}}</span>
                             </div>
                         </div>
                         <div class="popScoreHalf">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_13}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_13" type="checkbox"
-                                    (change)="selectThisItem(18,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_13" type="checkbox"
+                                    (change)="selectThisItem(18,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">平-胜</span>
                                 <span class="num">{{popData.spMap.bqc_13}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_11}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_11" type="checkbox"
-                                    (change)="selectThisItem(19,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_11" type="checkbox"
+                                    (change)="selectThisItem(19,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">平-平</span>
                                 <span class="num">{{popData.spMap.bqc_11}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_10}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_10" type="checkbox"
-                                    (change)="selectThisItem(20,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_10" type="checkbox"
+                                    (change)="selectThisItem(20,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">平-负</span>
                                 <span class="num">{{popData.spMap.bqc_10}}</span>
                             </div>
                         </div>
                         <div class="popScoreHalf">
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_03}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_03" type="checkbox"
-                                    (change)="selectThisItem(21,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_03" type="checkbox"
+                                    (change)="selectThisItem(21,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">负-胜</span>
                                 <span class="num">{{popData.spMap.bqc_03}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_01}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_01" type="checkbox"
-                                    (change)="selectThisItem(22,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_01" type="checkbox"
+                                    (change)="selectThisItem(22,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">负-平</span>
                                 <span class="num">{{popData.spMap.bqc_01}}</span>
                             </div>
                             <div [ngClass]="{scoreSelect:popData.selectSpMap.bqc_00}">
-                                <input [(ngModel)]="popData.selectSpMap.bqc_00" type="checkbox"
-                                    (change)="selectThisItem(23,popData)" [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input *ngIf="popData.canSelect[3]==0 || popData.canSelect[3]==1"
+                                    [(ngModel)]="popData.selectSpMap.bqc_00" type="checkbox"
+                                    (change)="selectThisItem(23,popData)"
+                                    [disabled]="popData.canSelect[3]==-1 ? true: false">
+                                <input type="checkbox" *ngIf="popData.canSelect[3]==-1" (change)="showTip()">
                                 <span class="state">负-负</span>
                                 <span class="num">{{popData.spMap.bqc_00}}</span>
                             </div>
@@ -1028,5 +1213,12 @@
             <button class="cancel" (click)="cancel()">取消</button>
             <button class="sure" (click)="sure()">确定</button>
         </div>
+    </div>
+
+</div>
+
+<div class="pop" *ngIf="showTips">
+    <div class="popContainer container showTipsFont">
+        一场比赛只能选择一种玩法进行串关计算；如计算单关，请删除已选的未开单关的选项！
     </div>
 </div>

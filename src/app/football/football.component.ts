@@ -53,6 +53,8 @@ export class FootballComponent implements OnInit {
   public popData: any = [];
   // 选择的竞彩比赛
   public selectMatchDataList: any = [];
+  // 显示提示信息
+  public showTips:boolean = false;
 
   constructor(private _menusService: MenusService, private _selectMatchService: SelectMatchListService) { }
 
@@ -67,6 +69,17 @@ export class FootballComponent implements OnInit {
       }
       console.log(this.footballList)
     });
+  }
+
+  showTip(){
+    // this.canSelectFun(this.footballList, index, item)
+    console.log('showTip');
+    var that = this
+    that.showTips = true;
+    window.setTimeout(function(){
+      that.showTips = false;
+    }, 2000);
+    
   }
 
 
