@@ -71,7 +71,7 @@ export class FirmOrderComponent implements OnInit {
 
   ngOnInit() {
     // 获取用户所选的竞彩比赛
-    console.profile()
+    // console.profile()
     this.firmOrder = JSON.parse(localStorage.getItem('firmOrder'));
     // console.log( this.sortGroup(this.data))
     this.initDan();
