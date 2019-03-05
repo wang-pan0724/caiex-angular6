@@ -90,9 +90,9 @@ export class FirmOrderComponent implements OnInit {
         num++
       }
     }
-    if(num==0){
+    if (num == 0) {
       this.showDanStr = "请选择过关方式"
-    }else{
+    } else {
       this.showDanStr = "当前过关方式已达最大设胆数量"
     }
     var that = this
@@ -258,11 +258,23 @@ export class FirmOrderComponent implements OnInit {
         }
 
         if (betSinglePlaytypeNum == 0) {
-          alert('至少选择两场比赛');
+          this.showDanStr = "至少选择两场比赛"
+          var that = this
+          that.showDanTips = true;
+          window.setTimeout(function () {
+            that.showDanTips = false;
+            that.showDanStr = ""
+          }, 2000);
         } else if (betSinglePlaytypeNum == 1) {
           for (var i = 0; i < this.firmOrder.list.list.length; i++) {
             if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1 && this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
-              alert('至少选择两场比赛');
+              this.showDanStr = "至少选择两场比赛"
+              var that = this
+              that.showDanTips = true;
+              window.setTimeout(function () {
+                that.showDanTips = false;
+                that.showDanStr = ""
+              }, 2000);
             } else if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
               this.firmOrder.list.list.splice(i, 1);
               this.firmOrder.selectMatchNum--;
@@ -289,7 +301,13 @@ export class FirmOrderComponent implements OnInit {
         }
       }
     } else {
-      alert('至少选择一场比赛');
+      this.showDanStr = "至少选择一场比赛"
+      var that = this
+      that.showDanTips = true;
+      window.setTimeout(function () {
+        that.showDanTips = false;
+        that.showDanStr = ""
+      }, 2000);
     }
 
     this.changeGuan();
@@ -402,7 +420,13 @@ export class FirmOrderComponent implements OnInit {
   // 选择倍数（点击按钮减少倍数）
   sub() {
     if (this.multiples == 0) {
-      alert("最小倍数为1倍");
+      this.showDanStr = "最小倍数为1倍"
+      var that = this
+      that.showDanTips = true;
+      window.setTimeout(function () {
+        that.showDanTips = false;
+        that.showDanStr = ""
+      }, 2000);
     }
     if (this.multiples > 1) {
       this.multiples--;
@@ -418,7 +442,13 @@ export class FirmOrderComponent implements OnInit {
     if (this.multiples < 10000) {
       this.multiples++;
     } else {
-      alert("最大倍数为10000倍")
+      this.showDanStr = "最大倍数为10000倍"
+      var that = this
+      that.showDanTips = true;
+      window.setTimeout(function () {
+        that.showDanTips = false;
+        that.showDanStr = ""
+      }, 2000);
     }
 
     this.getPrize()
