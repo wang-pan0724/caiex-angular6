@@ -2,9 +2,9 @@
 
 <div class="match">
     <div class="container" *ngIf="tabId==0">
-        <app-match-title (click)="doList('0')"></app-match-title>
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList.list">
+                <app-match-title (click)="doList('0')"></app-match-title>
                 <div class="matchList">
                     <div class="containerLeft">
                         <span>{{item.matchName}}</span>
@@ -18,11 +18,9 @@
                                 <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
                                 <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
                                 <span class="name">{{item.homeTeam}}</span>
-                                <!-- <span class="number">[{{item.betRatio}}]</span> -->
                             </div>
                             <div class="vs">VS</div>
                             <div>
-                                <!-- <span class="number">[{{item.rfBetRatio}}]</span> -->
                                 <span class="name">{{item.guestTeam}}</span>
                                 <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
                                 <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
@@ -116,9 +114,10 @@
         <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==1">
-        <app-match-title (click)="doList('0')"></app-match-title>
+
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList2.list">
+                <app-match-title (click)="doList('0')"></app-match-title>
                 <div class="matchList">
                     <div class="containerLeft">
                         <span>{{item.matchName}}</span>
@@ -170,9 +169,10 @@
         <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==2">
-        <app-match-title (click)="doList('0')"></app-match-title>
+
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList3.list">
+                <app-match-title (click)="doList('0')"></app-match-title>
                 <div class="matchList">
                     <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4073')>-1">单</i>
                     <div class="containerLeft">
@@ -225,9 +225,10 @@
         <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId==3">
-        <app-match-title (click)="doList('0')"></app-match-title>
+
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList4.list">
+                <app-match-title (click)="doList('0')"></app-match-title>
                 <div class="matchList">
                     <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4072')>-1">单</i>
                     <div class="containerLeft">
@@ -310,9 +311,10 @@
     </div>
 
     <div class="container" *ngIf="tabId ==4">
-        <app-match-title (click)="doList('0')"></app-match-title>
+
         <div class="matchItem" *ngIf="listItem == 0">
             <ng-container *ngFor="let item of footballList5.list">
+                <app-match-title (click)="doList('0')"></app-match-title>
                 <div class="matchList">
                     <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4074')>-1">单</i>
                     <div class="containerLeft">

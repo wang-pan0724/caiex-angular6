@@ -133,7 +133,11 @@ export class SelectMatchListService {
           }
         }
         this.canGoNext = canGo;
-      }else{
+      }else if(dataList.gameId == 4061){
+        this.canGoNext = false;
+        var canGo = false;
+      }
+      else{
         this.canGoNext = true;
       }
     }

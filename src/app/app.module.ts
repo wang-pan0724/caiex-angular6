@@ -46,6 +46,7 @@ import { TimePipe } from './pipe/time.pipe';
 import { LeagueResultDescPipe } from './pipe/league-result-desc.pipe';
 import { AgainstRecordPipe } from './pipe/against-record.pipe';
 import { FirmOrderComponent } from './firm-order/firm-order.component';
+import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +87,7 @@ import { FirmOrderComponent } from './firm-order/firm-order.component';
     LeagueResultDescPipe,
     AgainstRecordPipe,
     FirmOrderComponent,
+    DealWithDataPipe,
   ],
   imports: [
     BrowserModule,

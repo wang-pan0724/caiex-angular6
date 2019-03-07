@@ -1,0 +1,190 @@
+.match{
+    padding: 90px 0px 80px 0px;
+}
+
+/* .matchItem{
+    position: relative;
+    margin-bottom: 8px;
+    padding-top: 24px;
+} */
+
+.matchList{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background: #fff;
+}
+
+.containerLeft{
+    width: 60px;
+    font-size: 12px;
+    margin-right: 10px;
+    padding-top: 24px;
+}
+
+.containerLeft span{
+    display: block;
+    text-align: center;
+}
+
+.containerRight{
+    flex: 1;
+    width: 80%;
+}
+
+.countryName{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.countryName div{
+    width: 33.3%;
+    height: 22px;
+    line-height: 22px;
+}
+
+.countryName div:nth-child(3){
+    text-align: right;
+}
+
+.countryName img{
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    vertical-align: middle;
+}
+
+.name{
+    font-size: 12px;
+}
+
+.countryName .number{
+    font-size: 10px;
+    color: #bbb;
+}
+
+.vs{
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+}
+
+.score{
+    display: flex;
+    font-size: 12px;
+}
+
+.scorediv{
+    position: relative;
+    background: #F5F5F9;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    margin: 0px 3px 3px 0px;
+    width: 49%;
+    height: 48px;
+    line-height: 20px;
+    padding: 4px 12px;
+    /* display: flex; */
+}
+
+.scoreWinDefdiv{
+    position: relative;
+    background: #F5F5F9;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    margin: 0px 3px 3px 0px;
+    width: 43%;
+    height: 48px;
+    line-height: 20px;
+    padding: 4px 12px;
+}
+
+.scoreNum{
+    width: 14%;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.score input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+}
+
+.only{
+    position: absolute;
+    font-size: 8px;
+    width: 14px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    left: 3px;
+    top: 0px;
+    display: block;
+    padding: 0px;
+    color: #fff;
+    background: #d0021b;
+}
+
+.score span{
+   display: block;
+   text-align: center;
+   width: 100%;
+}
+
+/* .state{
+    text-align: right;
+    margin-right: 10%
+} */
+
+.score .num{
+    font-size: 10px;
+    color: #bbb;
+}
+
+.scoreSelect{
+    background: #d0021b !important;
+    color: #fff !important;
+}
+
+.scoreSelect .num{
+    color: #fff !important;
+}
+
+/* 详细数据 */
+
+.detailList{
+    display: flex;
+    text-align: center;
+    font-size: 10px;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+}
+
+.detailName,.detailContent{
+    border-right:1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.detailName{
+    width: 70px;
+}
+
+.detailContent{
+    flex: 1;
+}
+
+.average span{
+    width: 33.3%;
+    text-align: center;
+    display: inline-block;
+}
+
+.detailNumber{
+    display: block;
+    border-bottom: 1px solid #fff;
+}

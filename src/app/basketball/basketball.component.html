@@ -1,1 +1,353 @@
 <app-navbar (onNavChanged)='navChanged($event)' (onTabChanged)='tabChanged($event)' [navData]='navData'></app-navbar>
+<div class="match">
+    <div class="container" *ngIf="tabId == 0">
+        <ng-container *ngFor="let item of basketballList.list">
+            <app-match-title (click)="doList('0')"></app-match-title>
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>{{item.matchName}}</span>
+                    <span>{{item.endTime | week}}{{item.matchNo}}</span>
+                    <span>{{item.endTime | time}}截至</span>
+                    <span (click)="goDetail($event,item)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div>
+                            <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
+                            <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
+                            <span class="name">{{item.guestTeam}}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div>
+                            <span class="name">{{item.homeTeam}}</span>
+                            <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
+                            <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="score">
+                            <div class="scorediv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                        (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scorediv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                        (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="item.expend">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">
+                        近{{basketballDetail.historyInfo.historyRecord.length}}次交锋，{{basketballDetail.historyInfo.historyRecordDesc | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">
+                        {{basketballDetail.hostMilitInfo.hostMilitDes | dealWithData}}，{{basketballDetail.awayMilitInfo.awayMilitDes | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>{{item.op.split('^')[1]}}</span>
+                        <span>{{item.op.split('^')[0]}}</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </ng-container>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
+    </div>
+    <div class="container" *ngIf="tabId == 1">
+        <ng-container *ngFor="let item of basketballList.list">
+            <app-match-title (click)="doList('0')"></app-match-title>
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>{{item.matchName}}</span>
+                    <span>{{item.endTime | week}}{{item.matchNo}}</span>
+                    <span>{{item.endTime | time}}截至</span>
+                    <span (click)="goDetail($event,item)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div>
+                            <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
+                            <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
+                            <span class="name">{{item.guestTeam}}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div>
+                            <span class="name">{{item.homeTeam}}</span>
+                            <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
+                            <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="score scoreWinDef">
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                                (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scoreNum">
+                                <p>让分</p>
+                                <p>2.5</p>
+                            </div>
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                                (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="item.expend">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">
+                        近{{basketballDetail.historyInfo.historyRecord.length}}次交锋，{{basketballDetail.historyInfo.historyRecordDesc | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">
+                        {{basketballDetail.hostMilitInfo.hostMilitDes | dealWithData}}，{{basketballDetail.awayMilitInfo.awayMilitDes | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>{{item.op.split('^')[1]}}</span>
+                        <span>{{item.op.split('^')[0]}}</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </ng-container>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
+    </div>
+    <div class="container" *ngIf="tabId == 2">
+        <ng-container *ngFor="let item of basketballList.list">
+            <app-match-title (click)="doList('0')"></app-match-title>
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>{{item.matchName}}</span>
+                    <span>{{item.endTime | week}}{{item.matchNo}}</span>
+                    <span>{{item.endTime | time}}截至</span>
+                    <span (click)="goDetail($event,item)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div>
+                            <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
+                            <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
+                            <span class="name">{{item.guestTeam}}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div>
+                            <span class="name">{{item.homeTeam}}</span>
+                            <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
+                            <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="score">
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                                        (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scoreNum">
+                                <p>让分</p>
+                                <p>2.5</p>
+                            </div>
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                                        (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                        <div class="score">
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                                            (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scoreNum">
+                                <p>让分</p>
+                                <p>2.5</p>
+                            </div>
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                                            (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                        <div class="score">
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                                                (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scoreNum">
+                                <p>让分</p>
+                                <p>2.5</p>
+                            </div>
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                                                (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="item.expend">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">
+                        近{{basketballDetail.historyInfo.historyRecord.length}}次交锋，{{basketballDetail.historyInfo.historyRecordDesc | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">
+                        {{basketballDetail.hostMilitInfo.hostMilitDes | dealWithData}}，{{basketballDetail.awayMilitInfo.awayMilitDes | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>{{item.op.split('^')[1]}}</span>
+                        <span>{{item.op.split('^')[0]}}</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </ng-container>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
+    </div>
+    <div class="container" *ngIf="tabId == 3">
+        <ng-container *ngFor="let item of basketballList.list">
+            <app-match-title (click)="doList('0')"></app-match-title>
+            <div class="matchList">
+                <div class="containerLeft">
+                    <span>{{item.matchName}}</span>
+                    <span>{{item.endTime | week}}{{item.matchNo}}</span>
+                    <span>{{item.endTime | time}}截至</span>
+                    <span (click)="goDetail($event,item)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div>
+                            <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
+                            <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
+                            <span class="name">{{item.guestTeam}}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div>
+                            <span class="name">{{item.homeTeam}}</span>
+                            <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
+                            <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="scoreItem">
+                        <div class="score scoreWinDef">
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                                <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
+                                    (change)="selectThisItem(1,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
+                                                        (change)="showTip()"> -->
+                                <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
+                                <span class="state">客胜</span>
+                                <span class="num">{{item.spMap['2']}}</span>
+                            </div>
+                            <div class="scoreNum">
+                                <p>预设总分</p>
+                                <p>2.5</p>
+                            </div>
+                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                                <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
+                                    (change)="selectThisItem(3,item)">
+                                <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
+                                                        (change)="showTip()"> -->
+                                <span class="state">主胜</span>
+                                <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="item.expend">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">
+                        近{{basketballDetail.historyInfo.historyRecord.length}}次交锋，{{basketballDetail.historyInfo.historyRecordDesc | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">
+                        {{basketballDetail.hostMilitInfo.hostMilitDes | dealWithData}}，{{basketballDetail.awayMilitInfo.awayMilitDes | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>{{item.op.split('^')[1]}}</span>
+                        <span>{{item.op.split('^')[0]}}</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </ng-container>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
+    </div>
+    <div class="container" *ngIf="tabId == 4">
+        <app-match-title (click)="doList('0')"></app-match-title>
+        5
+    </div>
+</div>

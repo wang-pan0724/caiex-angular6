@@ -54,7 +54,7 @@ export class FootballComponent implements OnInit {
   // 选择的竞彩比赛
   public selectMatchDataList: any = [];
   // 显示提示信息
-  public showTips:boolean = false;
+  public showTips:boolean = false; 
 
   constructor(private _menusService: MenusService, private _selectMatchService: SelectMatchListService) { }
 

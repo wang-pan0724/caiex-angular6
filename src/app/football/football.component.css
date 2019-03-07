@@ -2,7 +2,7 @@
 /* 头部 */
 /* 比赛 */
 .match{
-    padding: 90px 0px 80px 0px;
+    padding: 67px 0px 80px 0px;
 }
 
 .matchItem{
@@ -80,6 +80,10 @@
 
 .scoreSelect{
     background: #d0021b !important;
+    color: #fff !important;
+}
+
+.scoreSelect .num{
     color: #fff !important;
 }
 

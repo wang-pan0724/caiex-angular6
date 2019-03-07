@@ -6,6 +6,8 @@ import { FOOTBALL3 } from './football3-mock'
 import { FOOTBALL4 } from './football4-mock'
 import { FOOTBALL5 } from './football5-mock'
 import { FootballDetail } from './footballDetali-mock'
+import { BASSKETBALL } from './basketball-mock'
+import { BASKETBALLDETAILS } from './basketballDetail'
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +42,13 @@ export class MenusService {
 
   getFootballDetail():Promise<any>{
     return Promise.resolve(FootballDetail);
+  }
+
+  getBassketballData():Promise<any>{
+    return Promise.resolve(BASSKETBALL);
+  }
+
+  getBassketballDetail():Promise<any>{
+    return Promise.resolve(BASKETBALLDETAILS);
   }
 }

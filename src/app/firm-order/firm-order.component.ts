@@ -80,7 +80,7 @@ export class FirmOrderComponent implements OnInit {
     this.initGuan();
 
     this.getPrize();
-    console.profileEnd()
+    // console.profileEnd()
   }
 
   showTips() {
@@ -99,7 +99,7 @@ export class FirmOrderComponent implements OnInit {
     that.showDanTips = true;
     window.setTimeout(function () {
       that.showDanTips = false;
-      this.showDanStr = ""
+      that.showDanStr = ""
     }, 2000);
   }
 
@@ -150,8 +150,8 @@ export class FirmOrderComponent implements OnInit {
         sortGroupData = this.sortGroup(data);
       }
 
-      console.log("比赛排序。。。。。");
-      console.log(sortGroupData);
+      // console.log("比赛排序。。。。。");
+      // console.log(sortGroupData);
 
       var guanTypeSelectArr = [];
       for (var i = 0; i < this.guanType.length; i++) {
@@ -159,9 +159,6 @@ export class FirmOrderComponent implements OnInit {
           guanTypeSelectArr.push(i + 1)
         }
       }
-
-      // console.log("选择的过关方式");
-      // console.log(guanTypeSelectArr);
 
       for (var i = 0; i < guanTypeSelectArr.length; i++) {
         var arr = [];
@@ -301,8 +298,8 @@ export class FirmOrderComponent implements OnInit {
         }
       }
     } else {
-      this.showDanStr = "至少选择一场比赛"
-      var that = this
+      this.showDanStr = "至少选择一场比赛";
+      var that = this;
       that.showDanTips = true;
       window.setTimeout(function () {
         that.showDanTips = false;
@@ -370,9 +367,15 @@ export class FirmOrderComponent implements OnInit {
     }
 
     var betSinglePlaytypeNum = 0;
-    if (this.firmOrder.list.gameId == 4077 || this.firmOrder.list.gameId == 4075) { //胜平负 混合过关
+    if (this.firmOrder.list.gameId == 4077 || this.firmOrder.list.gameId == 4075) { //足球胜平负 混合过关
       for (var i = 0; i < this.firmOrder.list.list.length; i++) {
         if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1 && this.firmOrder.list.list[i].selectedList.length > 0) {
+          betSinglePlaytypeNum++;
+        }
+      }
+    }else if (this.firmOrder.list.gameId == 4061) { //篮球胜负
+      for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+        if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4061') > -1 && this.firmOrder.list.list[i].selectedList.length > 0) {
           betSinglePlaytypeNum++;
         }
       }
@@ -460,8 +463,8 @@ export class FirmOrderComponent implements OnInit {
     for (var i = 0; i < group.length; i++) {
       need_apply.push(group[i] + "," + data[index]);
     }
-    group.push.apply(group, need_apply);
-
+    // group.push.apply(group, need_apply);
+    group = group.concat(need_apply);
     if (index + 1 >= data.length) return group;
     else return this.sortGroup(data, index + 1, group);
   }
