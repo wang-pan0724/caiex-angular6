@@ -113,13 +113,14 @@ export class FirmOrderComponent implements OnInit {
     var danArr = [];
     var dan = [];
     for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-      if (this.firmOrder.list.list[i].selectDan == true && this.firmOrder.list.list[i].canSelectDan && this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
+      var listData = this.firmOrder.list.list[i]
+      if (listData.selectDan == true && listData.canSelectDan && listData.selectedSpmapers.length > 0) {
         danArr[danindex] = this.firmOrder.list.list[i].selectedSpmapers;
         dan.push('dan_' + danindex);
         danindex++;
       }
-      if (this.firmOrder.list.list[i].selectDan == false && this.firmOrder.list.list[i].selectedSpmapers.length > 0) {
-        selectSpmaps[index] = this.firmOrder.list.list[i].selectedSpmapers;
+      if (listData.selectDan == false && listData.selectedSpmapers.length > 0) {
+        selectSpmaps[index] = listData.selectedSpmapers;
         data.push(index);
         index++;
       }
@@ -181,7 +182,7 @@ export class FirmOrderComponent implements OnInit {
 
           console.log(this.hunhePrize(newArr));
           var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
-          bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);
+          bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);//奖金数组
           bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
         }
       }
@@ -246,11 +247,18 @@ export class FirmOrderComponent implements OnInit {
       }
 
     } else if (this.firmOrder.selectMatchNum == 2) {
+      // TODO
       if (this.firmOrder.list.gameId == 4077 || this.firmOrder.list.gameId == 4075) { // 胜平负
         var betSinglePlaytypeNum = 0;
         for (var i = 0; i < this.firmOrder.list.list.length; i++) {
           if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1) {
-            betSinglePlaytypeNum++;
+            if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_") == -1) {
+              betSinglePlaytypeNum++;
+            }
+          } else {
+            if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_0") == -1 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_0") == -1) {
+              betSinglePlaytypeNum++;
+            }
           }
         }
 
@@ -264,7 +272,8 @@ export class FirmOrderComponent implements OnInit {
           }, 2000);
         } else if (betSinglePlaytypeNum == 1) {
           for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-            if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1 && this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
+            var listData = this.firmOrder.list.list[i]
+            if (listData.betSinglePlaytype.indexOf('4076') > -1 && listData.matchNo == matchNo && listData.matchTime == matchTime) {
               this.showDanStr = "至少选择两场比赛"
               var that = this
               that.showDanTips = true;
@@ -272,7 +281,7 @@ export class FirmOrderComponent implements OnInit {
                 that.showDanTips = false;
                 that.showDanStr = ""
               }, 2000);
-            } else if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
+            } else if (listData.matchNo == matchNo && listData.matchTime == matchTime) {
               this.firmOrder.list.list.splice(i, 1);
               this.firmOrder.selectMatchNum--;
               this.initGuan();
@@ -355,8 +364,8 @@ export class FirmOrderComponent implements OnInit {
       }
     }
     this.getPrize();
-    console.log('设胆。。。。。')
-    console.log(this.firmOrder.list)
+    // console.log('设胆。。。。。')
+    // console.log(this.firmOrder.list)
   }
 
   // 设置过关方式
@@ -367,13 +376,31 @@ export class FirmOrderComponent implements OnInit {
     }
 
     var betSinglePlaytypeNum = 0;
-    if (this.firmOrder.list.gameId == 4077 || this.firmOrder.list.gameId == 4075) { //足球胜平负 混合过关
+    if (this.firmOrder.list.gameId == 4077) { //足球胜平负
       for (var i = 0; i < this.firmOrder.list.list.length; i++) {
         if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1 && this.firmOrder.list.list[i].selectedList.length > 0) {
           betSinglePlaytypeNum++;
         }
+        // if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1) {
+        //   if (this.firmOrder.list.list[i].selectedList.length>0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_") > -1) {
+        //     betSinglePlaytypeNum++;
+        //   }
+        // }
       }
-    }else if (this.firmOrder.list.gameId == 4061) { //篮球胜负
+    } else if (this.firmOrder.list.gameId == 4075) { //足球混合过关
+      // TODO
+      for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+        if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1) {
+          if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_") == -1) {
+            betSinglePlaytypeNum++;
+          }
+        } else {
+          if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_") == -1 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_") == -1) {
+            betSinglePlaytypeNum++;
+          }
+        }
+      }
+    } else if (this.firmOrder.list.gameId == 4061) { //篮球胜负
       for (var i = 0; i < this.firmOrder.list.list.length; i++) {
         if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4061') > -1 && this.firmOrder.list.list[i].selectedList.length > 0) {
           betSinglePlaytypeNum++;
@@ -411,33 +438,33 @@ export class FirmOrderComponent implements OnInit {
     }
 
     this.initDan();
-    this.getPrize()
+    this.getPrize();
   }
 
   // 选择倍数（输入倍数）
   changeMuitples(e) {
     this.multiples = this.multiples.replace(/[^\d]/g, '');
-    this.getPrize()
+    this.getPrize();
   }
 
   // 选择倍数（点击按钮减少倍数）
   sub() {
     if (this.multiples == 0) {
       this.showDanStr = "最小倍数为1倍"
-      var that = this
+      var that = this;
       that.showDanTips = true;
       window.setTimeout(function () {
         that.showDanTips = false;
-        that.showDanStr = ""
+        that.showDanStr = "";
       }, 2000);
     }
     if (this.multiples > 1) {
       this.multiples--;
     } else {
-      this.multiples = 0
+      this.multiples = 0;
     }
 
-    this.getPrize()
+    this.getPrize();
   }
 
   // 选择倍数（点击按钮增加倍数）
@@ -446,42 +473,42 @@ export class FirmOrderComponent implements OnInit {
       this.multiples++;
     } else {
       this.showDanStr = "最大倍数为10000倍"
-      var that = this
+      var that = this;
       that.showDanTips = true;
       window.setTimeout(function () {
         that.showDanTips = false;
-        that.showDanStr = ""
+        that.showDanStr = "";
       }, 2000);
     }
 
-    this.getPrize()
+    this.getPrize();
   }
 
+
   sortGroup(data, index = 0, group = []) {
-    var need_apply = new Array();
-    need_apply.push(data[index]);
+    var needApply = new Array();
+    needApply.push(data[index]);
     for (var i = 0; i < group.length; i++) {
-      need_apply.push(group[i] + "," + data[index]);
+      needApply.push(group[i] + "," + data[index]);
     }
     // group.push.apply(group, need_apply);
-    group = group.concat(need_apply);
-    if (index + 1 >= data.length) return group;
-    else return this.sortGroup(data, index + 1, group);
+    group = group.concat(needApply);
+    if (index + 1 >= data.length) {
+      return group;
+    }
+    else {
+      return this.sortGroup(data, index + 1, group)
+    };
   }
+
 
   hunhePrize(arr) {
     var len = arr.length;
-    // 当数组大于等于2个的时候
     if (len >= 2) {
-      // 第一个数组的长度
       var len1 = arr[0].length;
-      // 第二个数组的长度
       var len2 = arr[1].length;
-      // 2个数组产生的组合数
       var lenBoth = len1 * len2;
-      //  申明一个新数组
       var items = new Array(lenBoth);
-      // 申明新数组的索引
       var index = 0;
       for (var i = 0; i < len1; i++) {
         for (var j = 0; j < len2; j++) {

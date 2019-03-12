@@ -12,7 +12,12 @@ export class BasketballComponent implements OnInit {
   public navId: number = 0;
   public tabId: number = 0;
   public basketballList:any = [];
+  public basketballList5:any = [];
   public basketballDetail:any = [];
+  public showPop: boolean = false;
+  // 弹出层数据
+  public popData: any = []; 
+  public clickTabId: number = 0;
   public navData = [
     {
       id:0,
@@ -58,7 +63,17 @@ export class BasketballComponent implements OnInit {
     if (this.tabId == 0) {
       this.selectMatchDataList = this._selectMatchService.setData(this.basketballList);
     }
+
+    if (this.tabId == 4) {
+      this.selectMatchDataList = this._selectMatchService.setData(this.basketballList5);
+    }
     console.log(this.selectMatchDataList)
+  }
+
+  selectContent(item, clickTabId) {
+    this.popData = item;
+    this.clickTabId = clickTabId;
+    this.showPop = true;
   }
 
   // 给每个竞彩选项设置选择的状态
@@ -107,6 +122,32 @@ export class BasketballComponent implements OnInit {
   // tab切换
   tabChanged(tabid){
     this.tabId = tabid;
+    if(tabid==4){
+      this._menusService.getBassketballData5().then(data => {
+        console.log(data)
+        this.basketballList5 = data.resp;
+        for (var i = 0; i < this.basketballList5.list.length; i++) {
+          this.basketballList5.list[i].expend = false;
+          this.basketballList5.list[i].selectSpMap = {1: false, 2: false};
+          // this.basketballList.list[i].canSelect = [0, 0, 0, 0, 0];
+          this.basketballList5.list[i].selectedSpmapers = [];
+        }
+      })
+    }
+  }
+
+   // 取消按钮
+   cancel() {
+    this.popData = [];
+    this.showPop = false;
+  }
+
+  // 确定按钮
+  sure() {
+    this.popData = [];
+    this.showPop = false;
+    // var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
+    // this.selectMatchDataList = this._selectMatchService.setData(list);
   }
 
 }

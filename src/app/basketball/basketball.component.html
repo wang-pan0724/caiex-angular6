@@ -152,7 +152,7 @@
         <ng-container *ngFor="let item of basketballList.list">
             <app-match-title (click)="doList('0')"></app-match-title>
             <div class="matchList">
-                <div class="containerLeft">
+                <div class="containerLeft hhcontainerLeft">
                     <span>{{item.matchName}}</span>
                     <span>{{item.endTime | week}}{{item.matchNo}}</span>
                     <span>{{item.endTime | time}}截至</span>
@@ -173,8 +173,8 @@
                         </div>
                     </div>
                     <div class="scoreItem">
-                        <div class="score">
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                        <div class="hhscore">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
                                 <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
                                     (change)="selectThisItem(1,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
@@ -183,11 +183,10 @@
                                 <span class="state">客胜</span>
                                 <span class="num">{{item.spMap['2']}}</span>
                             </div>
-                            <div class="scoreNum">
-                                <p>让分</p>
-                                <p>2.5</p>
+                            <div class="hhscoreNum">
+                                <p>胜负</p>
                             </div>
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
                                 <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
                                     (change)="selectThisItem(3,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
@@ -196,8 +195,8 @@
                                 <span class="num">{{item.spMap['1']}}</span>
                             </div>
                         </div>
-                        <div class="score">
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                        <div class="hhscore">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
                                 <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
                                     (change)="selectThisItem(1,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
@@ -206,11 +205,11 @@
                                 <span class="state">客胜</span>
                                 <span class="num">{{item.spMap['2']}}</span>
                             </div>
-                            <div class="scoreNum">
+                            <div class="hhscoreNum">
                                 <p>让分</p>
                                 <p>2.5</p>
                             </div>
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
                                 <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
                                     (change)="selectThisItem(3,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
@@ -219,27 +218,37 @@
                                 <span class="num">{{item.spMap['1']}}</span>
                             </div>
                         </div>
-                        <div class="score">
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
+                        <div class="hhscore">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['2']}">
                                 <input [(ngModel)]="item.selectSpMap['2']" type="checkbox"
                                     (change)="selectThisItem(1,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
                                                                 (change)="showTip()"> -->
                                 <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
-                                <span class="state">客胜</span>
+                                <span class="state">大分</span>
                                 <span class="num">{{item.spMap['2']}}</span>
                             </div>
-                            <div class="scoreNum">
-                                <p>让分</p>
-                                <p>2.5</p>
+                            <div class="hhscoreNum">
+                                <p>预设总分</p>
+                                <p>122</p>
                             </div>
-                            <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
+                            <div class="hhscoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
                                 <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
                                     (change)="selectThisItem(3,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
                                                                 (change)="showTip()"> -->
-                                <span class="state">主胜</span>
+                                <span class="state">小分</span>
                                 <span class="num">{{item.spMap['1']}}</span>
+                            </div>
+                        </div>
+                        <div class="hhscore">
+                            <div [ngClass]="{selectScoreItem:item.selectedSpmapers.length==0,selectScoreItem_s:item.selectedSpmapers.length>0}"
+                                (click)="selectContent(item,tabId)">
+                                <span class="only">单</span>
+                                <span *ngIf="item.selectedSpmapers.length==0">选择投注内容</span>
+                                <span *ngIf="item.selectedSpmapers.length>0">
+                                    <b *ngFor="let selectItem of item.selectedSpmapers">{{selectItem}} &nbsp;</b>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -302,19 +311,19 @@
                                 <!-- <input *ngIf="!!item.spMap.spf_3 && item.canSelect[0]==-1" type="checkbox"
                                                         (change)="showTip()"> -->
                                 <!-- <i class="only" *ngIf="item.betSinglePlaytype.indexOf('4076')>-1">单</i> -->
-                                <span class="state">客胜</span>
+                                <span class="state">大分</span>
                                 <span class="num">{{item.spMap['2']}}</span>
                             </div>
                             <div class="scoreNum">
                                 <p>预设总分</p>
-                                <p>2.5</p>
+                                <p>122</p>
                             </div>
                             <div class="scoreWinDefdiv" [ngClass]="{scoreSelect:item.selectSpMap['1']}">
                                 <input [(ngModel)]="item.selectSpMap['1']" type="checkbox"
                                     (change)="selectThisItem(3,item)">
                                 <!-- <input *ngIf="!!item.spMap.spf_0 && item.canSelect[0]==-1" type="checkbox"
                                                         (change)="showTip()"> -->
-                                <span class="state">主胜</span>
+                                <span class="state">小分</span>
                                 <span class="num">{{item.spMap['1']}}</span>
                             </div>
                         </div>
@@ -347,7 +356,149 @@
         <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
     </div>
     <div class="container" *ngIf="tabId == 4">
-        <app-match-title (click)="doList('0')"></app-match-title>
-        5
+        <ng-container *ngFor="let item of basketballList5.list">
+            <app-match-title (click)="doList('0')"></app-match-title>
+            <div class="matchList">
+                <i class="only">单</i>
+                <div class="containerLeft">
+                    <span>{{item.matchName}}</span>
+                    <span>{{item.endTime | week}}{{item.matchNo}}</span>
+                    <span>{{item.endTime | time}}截至</span>
+                    <span (click)="goDetail($event,item)"> <i class="icon ion-ios-arrow-down"></i></span>
+                </div>
+                <div class="containerRight">
+                    <div class="countryName">
+                        <div>
+                            <img *ngIf="!!item.guestImgPath" src="{{item.guestImgPath}}" alt="">
+                            <img *ngIf="!!!item.guestImgPath" src="../../assets/country.jpg" alt="">
+                            <span class="name">{{item.guestTeam}}</span>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div>
+                            <span class="name">{{item.homeTeam}}</span>
+                            <img *ngIf="!!item.homeImgPath" src="{{item.homeImgPath}}" alt="">
+                            <img *ngIf="!!!item.homeImgPath" src="../../assets/country.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="sfcScore">
+                        <div class="sfcLeft">
+                            <div class="header">客胜</div>
+                            <div class="sfcList">
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['11']}"><input [(ngModel)]="item.selectSpMap['11']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>1-5</span><span>{{item.spMap['11']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['12']}"><input [(ngModel)]="item.selectSpMap['12']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>6-10</span><span>{{item.spMap['12']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['13']}"><input [(ngModel)]="item.selectSpMap['13']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>11-15</span><span>{{item.spMap['13']}}</span></div>
+                            </div>
+                            <div class="sfcList">
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['14']}"><input [(ngModel)]="item.selectSpMap['14']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>16-20</span><span>{{item.spMap['14']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['15']}"><input [(ngModel)]="item.selectSpMap['15']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>21-25</span><span>{{item.spMap['15']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['16']}"><input [(ngModel)]="item.selectSpMap['16']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>26+</span><span>{{item.spMap['16']}}</span></div>
+                            </div>
+                        </div>
+                        <div class="sfcRight">
+                            <div class="scfHeader header">主胜</div>
+                            <div class="sfcList">
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['01']}"><input [(ngModel)]="item.selectSpMap['01']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>1-5</span><span>{{item.spMap['01']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['02']}"><input [(ngModel)]="item.selectSpMap['02']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>6-10</span><span>{{item.spMap['02']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['03']}"><input [(ngModel)]="item.selectSpMap['03']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>11-15</span><span>{{item.spMap['03']}}</span></div>
+                            </div>
+                            <div class="sfcList">
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['04']}"><input [(ngModel)]="item.selectSpMap['04']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>16-20</span><span>{{item.spMap['04']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['05']}"><input [(ngModel)]="item.selectSpMap['05']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>21-25</span><span>{{item.spMap['05']}}</span></div>
+                                <div [ngClass]="{scoreSelect:item.selectSpMap['06']}"><input [(ngModel)]="item.selectSpMap['06']" type="checkbox"
+                                    (change)="selectThisItem(1,item)"><span>26+</span><span>{{item.spMap['06']}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="match-detail" *ngIf="item.expend">
+                <div class="detailList">
+                    <div class="detailName">历史交锋</div>
+                    <div class="detailContent">
+                        近{{basketballDetail.historyInfo.historyRecord.length}}次交锋，{{basketballDetail.historyInfo.historyRecordDesc | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">近期战绩</div>
+                    <div class="detailContent">
+                        {{basketballDetail.hostMilitInfo.hostMilitDes | dealWithData}}，{{basketballDetail.awayMilitInfo.awayMilitDes | dealWithData}}
+                    </div>
+                </div>
+                <div class="detailList">
+                    <div class="detailName">平均欧赔</div>
+                    <div class="detailContent average">
+                        <span>{{item.op.split('^')[1]}}</span>
+                        <span>{{item.op.split('^')[0]}}</span>
+                    </div>
+                </div>
+                <div class="detailList detailNumber">详细数据 <i class="icon ion-ios-arrow-right"></i></div>
+            </div>
+        </ng-container>
+        <app-footer-next [selectData]='selectMatchDataList'></app-footer-next>
+    </div>
+</div>
+
+<div class="pop" *ngIf="showPop">
+    <div class="popContainer container">
+        <div class="popCountry">
+            <div>{{popData.homeTeam}}</div>
+            <div>VS</div>
+            <div>{{popData.guestTeam}}</div>
+        </div>
+        <div class="sfcScore">
+                <div class="sfcLeft">
+                    <div class="header">客胜</div>
+                    <div class="sfcList">
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['11']}"><input [(ngModel)]="item.selectSpMap['11']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>1-5</span><span>{{item.spMap['11']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['12']}"><input [(ngModel)]="item.selectSpMap['12']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>6-10</span><span>{{item.spMap['12']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['13']}"><input [(ngModel)]="item.selectSpMap['13']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>11-15</span><span>{{item.spMap['13']}}</span></div>
+                    </div>
+                    <div class="sfcList">
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['14']}"><input [(ngModel)]="item.selectSpMap['14']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>16-20</span><span>{{item.spMap['14']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['15']}"><input [(ngModel)]="item.selectSpMap['15']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>21-25</span><span>{{item.spMap['15']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['16']}"><input [(ngModel)]="item.selectSpMap['16']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>26+</span><span>{{item.spMap['16']}}</span></div>
+                    </div>
+                </div>
+                <div class="sfcRight">
+                    <div class="scfHeader header">主胜</div>
+                    <div class="sfcList">
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['01']}"><input [(ngModel)]="item.selectSpMap['01']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>1-5</span><span>{{item.spMap['01']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['02']}"><input [(ngModel)]="item.selectSpMap['02']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>6-10</span><span>{{item.spMap['02']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['03']}"><input [(ngModel)]="item.selectSpMap['03']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>11-15</span><span>{{item.spMap['03']}}</span></div>
+                    </div>
+                    <div class="sfcList">
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['04']}"><input [(ngModel)]="item.selectSpMap['04']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>16-20</span><span>{{item.spMap['04']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['05']}"><input [(ngModel)]="item.selectSpMap['05']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>21-25</span><span>{{item.spMap['05']}}</span></div>
+                        <div [ngClass]="{scoreSelect:item.selectSpMap['06']}"><input [(ngModel)]="item.selectSpMap['06']" type="checkbox"
+                            (change)="selectThisItem(1,item)"><span>26+</span><span>{{item.spMap['06']}}</span></div>
+                    </div>
+                </div>
+            </div>
+        <div class="popButtonGroup">
+            <button class="cancel" (click)="cancel()">取消</button>
+            <button class="sure" (click)="sure()">确定</button>
+        </div>
     </div>
 </div>
