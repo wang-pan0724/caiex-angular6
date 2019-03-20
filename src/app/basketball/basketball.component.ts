@@ -67,22 +67,8 @@ export class BasketballComponent implements OnInit {
       this.selectMatchDataList = this._selectMatchService.setData(this.basketballList);
     }
 
-    if (this.tabId == 2) {
+    if (this.tabId == 2) { 
       this.canSelectFun(this.basketballList3, index, item)
-      this.selectMatchDataList = this._selectMatchService.setData(this.basketballList3);
-      for(let i=0; i<this.selectMatchDataList.list.list.length; i++){
-        var selectedSpmapersData = this.selectMatchDataList.list.list[i].selectedSpmapers;
-        var SFC = []
-        for(let j=0; j<selectedSpmapersData.length; j++){
-          if(selectedSpmapersData[j].indexOf('-')>-1){
-            SFC.push(selectedSpmapersData[j])
-          }
-        }
-
-        this.selectMatchDataList.list.list[i].SFC = SFC;
-      }
-
-      this.basketballList3 = this.selectMatchDataList.list
     }
 
     if (this.tabId == 4) {
@@ -223,8 +209,18 @@ export class BasketballComponent implements OnInit {
   sure() {
     this.popData = [];
     this.showPop = false;
-    // var list = this.tabId == 0 ? this.footballList : this.tabId == 1 ? this.footballList2 : this.tabId == 2 ? this.footballList3 : this.tabId == 3 ? this.footballList4 : this.footballList5;
-    // this.selectMatchDataList = this._selectMatchService.setData(list);
+    this.selectMatchDataList = this._selectMatchService.setData(this.basketballList3);
+      for(let i=0; i<this.selectMatchDataList.list.list.length; i++){
+        var selectedSpmapersData = this.selectMatchDataList.list.list[i].selectedSpmapers;
+        var SFC = []
+        for(let j=0; j<selectedSpmapersData.length; j++){
+          if(selectedSpmapersData[j].indexOf('-')>-1){
+            SFC.push(selectedSpmapersData[j])
+          }
+        }
+        this.selectMatchDataList.list.list[i].SFC = SFC;
+      }
+      this.basketballList3 = this.selectMatchDataList.list
   }
 
 }

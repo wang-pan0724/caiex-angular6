@@ -134,28 +134,30 @@ export class SelectMatchListService {
           }
         }
         this.canGoNext = canGo;
-      } else if(dataList.gameId == 4065){
+      } else if (dataList.gameId == 4065) {
         this.canGoNext = false;
         var canGo = false;
         for (let i = 0; i < dataList.list.length; i++) {
           var arr = dataList.list[i].selectedList;
-          var notSinglePlayNum = 0;
-          var singlePlayNum = 0;
-          for(let j=0; j<arr.length; j++){
-            if (arr[j]>20) {
-              notSinglePlayNum++;
-            }else{
-              singlePlayNum++;
+          if (arr.length > 0) {
+            var notSinglePlayNum = 0;
+            var singlePlayNum = 0;
+            for (let j = 0; j < arr.length; j++) {
+              if (arr[j] > 20) {
+                notSinglePlayNum++;
+              } else {
+                singlePlayNum++;
+              }
             }
-          }
-          if(singlePlayNum>0 && notSinglePlayNum==0){
-            canGo = true;
-          }else {
-            canGo = false;
+            if (singlePlayNum > 0 && notSinglePlayNum == 0) {
+              canGo = true;
+            } else {
+              canGo = false;
+            }
           }
         }
         this.canGoNext = canGo;
-      }else if (dataList.gameId == 4061) {
+      } else if (dataList.gameId == 4061) {
         this.canGoNext = false;
         var canGo = false;
       }
