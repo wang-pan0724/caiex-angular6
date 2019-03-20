@@ -43,10 +43,10 @@ export class SelectMatchListService {
         var arrItem = this.findKey(dataList.spmapers, list[j]);
         var concede = dataList.list[i].concede;
         var newArrItem = "";
-        if(arrItem == "让球平" || arrItem == "让球胜" || arrItem == "让球负"){
+        if (arrItem == "让球平" || arrItem == "让球胜" || arrItem == "让球负") {
           var newConcede = concede > 0 ? "+" + concede : concede;
           newArrItem = newConcede + arrItem.substring(2)
-        }else if (arrItem == "rq_平" || arrItem == "rq_胜" || arrItem == "rq_负") {// 处理rq_平，rq_胜，rq_负 字段
+        } else if (arrItem == "rq_平" || arrItem == "rq_胜" || arrItem == "rq_负") {// 处理rq_平，rq_胜，rq_负 字段
           var newConcede = concede > 0 ? "+" + concede : concede;
           newArrItem = newConcede + arrItem.split('_')[1]
         } else {
@@ -55,8 +55,8 @@ export class SelectMatchListService {
 
         var pl = dataList.list[i].spMap[list[j]];
         // console.log(pl)
-        
-        spmapersList.push(newArrItem+' '+pl);
+
+        spmapersList.push(newArrItem + ' ' + pl);
       }
       dataList.list[i].selectedSpmapers = spmapersList;
     }
@@ -124,8 +124,9 @@ export class SelectMatchListService {
             } else {
               canGo = true;
             }
-          } else if(arr.length > 0 && dataList.list[i].betSinglePlaytype.indexOf('4076') == -1) {
-            if (arr.indexOf("rqspf_0") > -1 || arr.indexOf("rqspf_1") > -1 || arr.indexOf("rqspf_3") > -1 || arr.indexOf("spf_0") > -1 || arr.indexOf("spf_1") > -1 || arr.indexOf("spf_3") > -1) {
+          } else if (arr.length > 0 && dataList.list[i].betSinglePlaytype.indexOf('4076') == -1) {
+            // if (arr.indexOf("rqspf_0") > -1 || arr.indexOf("rqspf_1") > -1 || arr.indexOf("rqspf_3") > -1 || arr.indexOf("spf_0") > -1 || arr.indexOf("spf_1") > -1 || arr.indexOf("spf_3") > -1) {
+            if (arr.indexOf("spf_") > -1) {
               canGo = false;
             } else {
               canGo = true;
@@ -133,11 +134,32 @@ export class SelectMatchListService {
           }
         }
         this.canGoNext = canGo;
-      }else if(dataList.gameId == 4061){
+      } else if(dataList.gameId == 4065){
+        this.canGoNext = false;
+        var canGo = false;
+        for (let i = 0; i < dataList.list.length; i++) {
+          var arr = dataList.list[i].selectedList;
+          var notSinglePlayNum = 0;
+          var singlePlayNum = 0;
+          for(let j=0; j<arr.length; j++){
+            if (arr[j]>20) {
+              notSinglePlayNum++;
+            }else{
+              singlePlayNum++;
+            }
+          }
+          if(singlePlayNum>0 && notSinglePlayNum==0){
+            canGo = true;
+          }else {
+            canGo = false;
+          }
+        }
+        this.canGoNext = canGo;
+      }else if (dataList.gameId == 4061) {
         this.canGoNext = false;
         var canGo = false;
       }
-      else{
+      else {
         this.canGoNext = true;
       }
     }

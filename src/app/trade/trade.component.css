@@ -53,6 +53,11 @@
     padding: 6px 0px;
 }
 
+.totalMoneyRed{
+    padding: 6px 0px;
+    color: red;
+}
+
 .state{
     padding: 5px 0px;
     text-align: right;

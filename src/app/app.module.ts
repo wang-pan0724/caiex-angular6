@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule,HttpClientJsonpModule } from '@angular/common/http';
 
+import {NgxEchartsModule} from 'ngx-echarts';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -47,6 +49,7 @@ import { LeagueResultDescPipe } from './pipe/league-result-desc.pipe';
 import { AgainstRecordPipe } from './pipe/against-record.pipe';
 import { FirmOrderComponent } from './firm-order/firm-order.component';
 import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
+import { TradeDetailComponent } from './trade-detail/trade-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +91,7 @@ import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
     AgainstRecordPipe,
     FirmOrderComponent,
     DealWithDataPipe,
+    TradeDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,8 @@ import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
     ReactiveFormsModule,
     ElModule.forRoot(),
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    NgxEchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

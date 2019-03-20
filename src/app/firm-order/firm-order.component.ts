@@ -166,24 +166,34 @@ export class FirmOrderComponent implements OnInit {
         for (var j = 0; j < sortGroupData.length; j++) {
           if (typeof (sortGroupData[j]) == "string" && sortGroupData[j].split(',').length == guanTypeSelectArr[i]) {
             arr.push(sortGroupData[j]);
+          } else if (typeof (sortGroupData[j]) == "number" && 1 == guanTypeSelectArr[i]) {
+            arr.push(sortGroupData[j]);
           }
         }
 
         for (var j = 0; j < arr.length; j++) {
-          var groupArr = arr[j].split(',');
-          var newArr = [];
-          for (var k = 0; k < groupArr.length; k++) {
-            if (groupArr[k].indexOf('dan_') > -1) {
-              newArr[k] = danArr[groupArr[k].split('_')[1]]
-            } else {
-              newArr[k] = selectSpmaps[groupArr[k]];
-            }
-          }
 
-          console.log(this.hunhePrize(newArr));
-          var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
-          bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);//奖金数组
-          bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
+          var newArr = [];
+          if (typeof (arr[j]) == 'string') {
+            var groupArr = arr[j].split(',');
+            for (var k = 0; k < groupArr.length; k++) {
+              if (groupArr[k].indexOf('dan_') > -1) {
+                newArr[k] = danArr[groupArr[k].split('_')[1]]
+              } else {
+                newArr[k] = selectSpmaps[groupArr[k]];
+              }
+            }
+
+            console.log(this.hunhePrize(newArr));
+            var getMinAndMaxArr = this.calculatedBonus(this.hunhePrize(newArr))
+            bonusArrAll = bonusArrAll.concat(getMinAndMaxArr[0]);//奖金数组
+            bonusArrMax = bonusArrMax.concat(getMinAndMaxArr[1])
+          } else {
+            var groupArr = arr[j];
+            var price = Number(selectSpmaps[groupArr][0].split(' ')[1]);
+            bonusArrAll = bonusArrAll.concat(price);//奖金数组
+            bonusArrMax = bonusArrMax.concat(price)
+          }
         }
       }
 
@@ -238,13 +248,7 @@ export class FirmOrderComponent implements OnInit {
     // 如果所选的比赛大于两场
     if (this.firmOrder.selectMatchNum > 2) {
 
-      for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-        if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
-          this.firmOrder.list.list.splice(i, 1);
-          this.firmOrder.selectMatchNum--;
-          this.initGuan();
-        }
-      }
+      this.deleteMatch(matchNo, matchTime)
 
     } else if (this.firmOrder.selectMatchNum == 2) {
       // TODO
@@ -256,31 +260,19 @@ export class FirmOrderComponent implements OnInit {
               betSinglePlaytypeNum++;
             }
           } else {
-            if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_0") == -1 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_0") == -1) {
+            if (this.isSinglePlay(this.firmOrder.list.list[i].selectedList)) {
               betSinglePlaytypeNum++;
             }
           }
         }
 
         if (betSinglePlaytypeNum == 0) {
-          this.showDanStr = "至少选择两场比赛"
-          var that = this
-          that.showDanTips = true;
-          window.setTimeout(function () {
-            that.showDanTips = false;
-            that.showDanStr = ""
-          }, 2000);
+          this.selectMatchTips("至少选择两场比赛")
         } else if (betSinglePlaytypeNum == 1) {
           for (var i = 0; i < this.firmOrder.list.list.length; i++) {
             var listData = this.firmOrder.list.list[i]
             if (listData.betSinglePlaytype.indexOf('4076') > -1 && listData.matchNo == matchNo && listData.matchTime == matchTime) {
-              this.showDanStr = "至少选择两场比赛"
-              var that = this
-              that.showDanTips = true;
-              window.setTimeout(function () {
-                that.showDanTips = false;
-                that.showDanStr = ""
-              }, 2000);
+              this.selectMatchTips("至少选择两场比赛")
             } else if (listData.matchNo == matchNo && listData.matchTime == matchTime) {
               this.firmOrder.list.list.splice(i, 1);
               this.firmOrder.selectMatchNum--;
@@ -288,32 +280,49 @@ export class FirmOrderComponent implements OnInit {
             }
           }
         } else if (betSinglePlaytypeNum == 2) {
+          this.deleteMatch(matchNo, matchTime)
+        }
+      } else if (this.firmOrder.list.gameId == 4065) { //篮球混合过关
+        var betSinglePlaytypeNum = 0;
+        for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+          if (this.isSinglePlayBasketball(this.firmOrder.list.list[i].selectedList)) {
+            betSinglePlaytypeNum++;
+          }
+        }
+        if (betSinglePlaytypeNum == 0) {
+          this.selectMatchTips("至少选择两场比赛");
+        } else if (betSinglePlaytypeNum == 1) {
           for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-            if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
+            var listData = this.firmOrder.list.list[i];
+            //hhh
+            var hasSingPlay = true;
+            if (listData.selectedList.length > 0) {
+              for (var j = 0; j < listData.selectedList.length; j++) {
+                if (listData.selectedList[j] > 20) {
+                  hasSingPlay = false
+                }
+              }
+            } else {
+              hasSingPlay = false
+            }
+
+            if (!hasSingPlay && listData.matchNo == matchNo && listData.matchTime == matchTime) {
               this.firmOrder.list.list.splice(i, 1);
               this.firmOrder.selectMatchNum--;
               this.initGuan();
+            } else if (listData.matchNo == matchNo && listData.matchTime == matchTime) {
+              this.selectMatchTips("至少选择两场比赛")
             }
           }
+        } else if (betSinglePlaytypeNum == 2) {
+          this.deleteMatch(matchNo, matchTime)
         }
 
       } else { //比分 总进球 半全场
-        for (var i = 0; i < this.firmOrder.list.list.length; i++) {
-          if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
-            this.firmOrder.list.list.splice(i, 1);
-            this.firmOrder.selectMatchNum--;
-            this.initGuan();
-          }
-        }
+        this.deleteMatch(matchNo, matchTime)
       }
     } else {
-      this.showDanStr = "至少选择一场比赛";
-      var that = this;
-      that.showDanTips = true;
-      window.setTimeout(function () {
-        that.showDanTips = false;
-        that.showDanStr = ""
-      }, 2000);
+      this.selectMatchTips("至少选择一场比赛");
     }
 
     this.changeGuan();
@@ -364,8 +373,65 @@ export class FirmOrderComponent implements OnInit {
       }
     }
     this.getPrize();
-    // console.log('设胆。。。。。')
-    // console.log(this.firmOrder.list)
+  }
+
+  deleteMatch(matchNo, matchTime) {
+    for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+      if (this.firmOrder.list.list[i].matchNo == matchNo && this.firmOrder.list.list[i].matchTime == matchTime) {
+        this.firmOrder.list.list.splice(i, 1);
+        this.firmOrder.selectMatchNum--;
+        this.initGuan();
+      }
+    }
+  }
+
+  // 提示选择比赛场数
+  selectMatchTips(str) {
+    this.showDanStr = str
+    var that = this
+    that.showDanTips = true;
+    window.setTimeout(function () {
+      that.showDanTips = false;
+      that.showDanStr = ""
+    }, 2000);
+  }
+
+  // 判断篮球是否含有单关选项
+  isSinglePlayBasketball(selectedList: any) {
+    if (selectedList.length > 0) {
+      let num = 0;
+      for (let i = 0; i < selectedList.length; i++) {
+        if (selectedList[i]<20) {
+          num++;
+        }
+      }
+      if (num == selectedList.length) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  // 判断足球是否含有单关选项
+  isSinglePlay(selectedList: any) {
+    if (selectedList.length > 0) {
+      let num = 0;
+      for (let i = 0; i < selectedList.length; i++) {
+        if (selectedList[i].indexOf('spf_') == -1) {
+          num++;
+        }
+      }
+      if (num == selectedList.length) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   // 设置过关方式
@@ -381,11 +447,6 @@ export class FirmOrderComponent implements OnInit {
         if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1 && this.firmOrder.list.list[i].selectedList.length > 0) {
           betSinglePlaytypeNum++;
         }
-        // if (this.firmOrder.list.list[i].betSinglePlaytype.indexOf('4076') > -1) {
-        //   if (this.firmOrder.list.list[i].selectedList.length>0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_") > -1) {
-        //     betSinglePlaytypeNum++;
-        //   }
-        // }
       }
     } else if (this.firmOrder.list.gameId == 4075) { //足球混合过关
       // TODO
@@ -395,9 +456,21 @@ export class FirmOrderComponent implements OnInit {
             betSinglePlaytypeNum++;
           }
         } else {
-          if (this.firmOrder.list.list[i].selectedList.length > 0 && this.firmOrder.list.list[i].selectedList.indexOf("spf_") == -1 && this.firmOrder.list.list[i].selectedList.indexOf("rqspf_") == -1) {
+          if (this.isSinglePlay(this.firmOrder.list.list[i].selectedList)) {
             betSinglePlaytypeNum++;
           }
+        }
+      }
+    } else if (this.firmOrder.list.gameId == 4065) {
+      for (var i = 0; i < this.firmOrder.list.list.length; i++) {
+        var hasSingPlay = false;
+        for (var j = 0; j < this.firmOrder.list.list[i].selectedList.length; j++) {
+          if (this.firmOrder.list.list[i].selectedList[j] < 20) {
+            hasSingPlay = true
+          }
+        }
+        if (hasSingPlay) {
+          betSinglePlaytypeNum++;
         }
       }
     } else if (this.firmOrder.list.gameId == 4061) { //篮球胜负

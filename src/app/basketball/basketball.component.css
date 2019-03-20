@@ -162,7 +162,7 @@
 .only{
     position: absolute;
     font-size: 8px;
-    width: 14px;
+    width: 14px !important;
     height: 16px;
     text-align: center;
     line-height: 16px;
@@ -389,4 +389,9 @@
 .sure{
     background: #d0021b;
     color: #fff;
+}
+
+
+.showTipsFont{
+    font-size: 14px;
 }
