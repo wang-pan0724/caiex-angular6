@@ -15,17 +15,27 @@
     <div class="tradeList">
         <ul>
             <li class="list" *ngFor="let item of tradeData.list" (click)="teadeDetail(item)">
-                <div class="ballKinds">
-                    <img src="../../assets/football.jpg" alt="">
-                    <div>{{item.gameName}}</div>
+                <div class="listContent">
+                    <div class="ballKinds">
+                        <img src="../../assets/football.jpg" alt="">
+                        <div>{{item.gameName}}</div>
+                    </div>
+                    <div class="listTimeAndMoney">
+                        <p class="money">{{item.amount}}元</p>
+                        <p class="time">{{item.time}}</p>
+                    </div>
+                    <div class="listState">
+                        <p class="totalMoney" [ngClass]="{'totalMoneyRed': !!item.postaxPrize || !!item.repoAmount}">
+                            {{item.showOrderPayStatusDesc}}</p>
+                        <p class="state">{{item.showWinStatusAndExceptionDesc}}</p>
+                    </div>
                 </div>
-                <div class="listTimeAndMoney">
-                    <p class="money">{{item.amount}}元</p>
-                    <p class="time">{{item.time}}</p>
-                </div>
-                <div class="listState">
-                    <p class="totalMoney" [ngClass]="{'totalMoneyRed': !!item.postaxPrize || !!item.repoAmount}">{{item.showOrderPayStatusDesc}}</p>
-                    <p class="state">{{item.showWinStatusAndExceptionDesc}}</p>
+                <div class="listContent doList">
+                    <div class="nowPrice">实时价值：<span>{{item.planPrice}}</span></div>
+                    <div class="buttonGroup">
+                        <button class="setPrice">设置金额</button>
+                        <button class="trade">发起交易</button>
+                    </div>
                 </div>
             </li>
         </ul>

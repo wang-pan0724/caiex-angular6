@@ -17,10 +17,47 @@
 
 .list{
     border: 1px solid #bbb;
-    display: flex;
-    padding: 10px 10px 10px 0px;
     border-radius: 3px;
     margin-bottom: 5px;
+    background: #fff;
+}
+
+.listContent{
+    display: flex;
+    padding: 10px 10px 10px 0px;
+}
+
+.doList{
+    position: relative;
+    padding-left: 10px;
+    font-size: 14px;
+    border-top:1px solid #bbb;
+}
+
+.nowPrice span{
+    color: #ffd600;
+}
+
+.buttonGroup{
+    position: absolute;
+    right: 10px;
+    top: 4px;
+}
+
+.buttonGroup button{
+    background: #fff;
+    margin-left: 10px;
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+.setPrice{
+    border: 1px solid #bbb;
+}
+
+.trade{
+    border: 1px solid #d0021b;
+    color: #d0021b;
 }
 
 .ballKinds{
@@ -55,7 +92,7 @@
 
 .totalMoneyRed{
     padding: 6px 0px;
-    color: red;
+    color: #d0021b;
 }
 
 .state{

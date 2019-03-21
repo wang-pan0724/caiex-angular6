@@ -212,7 +212,7 @@ export class BasketballComponent implements OnInit {
     this.selectMatchDataList = this._selectMatchService.setData(this.basketballList3);
       for(let i=0; i<this.selectMatchDataList.list.list.length; i++){
         var selectedSpmapersData = this.selectMatchDataList.list.list[i].selectedSpmapers;
-        var SFC = []
+        var SFC = []; //胜分差
         for(let j=0; j<selectedSpmapersData.length; j++){
           if(selectedSpmapersData[j].indexOf('-')>-1){
             SFC.push(selectedSpmapersData[j])

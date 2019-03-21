@@ -1,3 +1,164 @@
 .demo-chart{
     height: 200px;
 }
+
+.status-bar{
+    position: fixed;
+    left: 0px;
+    top: 48px;
+    width: 100%;
+    display: flex;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    color: #222;
+    font-size: 14px;
+    z-index: 999;
+}
+
+.status-bar span{
+    position: relative;
+    width: 50%;
+    text-align: center;
+}
+
+.status-bar span i{
+    position: absolute;
+    width: 0px;
+    height: 2px;
+    left: 0px;
+    bottom: 0px;
+    background: #d0021b;
+}
+
+.statusBarActive{
+    color: #d0021b;
+    font-weight: 400;
+}
+
+.statusBarActive i{
+    -webkit-transition: width .3s linear;
+    transition: width  .3s linear;
+    width: 100% !important;
+}
+
+.contant{
+    padding: 50px 5px 5px;
+}
+
+.title{
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.contant ul li{
+    position: relative;
+    margin-bottom: 5px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+.contantListTitle{
+    display: flex;
+    padding: 10px 5px;
+}
+
+.contantListTime{
+    font-size: 13px;
+    width: 170px;
+}
+
+.contantListTime span{
+    display: inline-block;
+}
+
+.time{
+    font-size: 8px;
+    color: #d0021b;
+}
+
+.contantCountry{
+    font-size: 13px;
+    display: flex;
+}
+
+.contantCountry span{
+    width: 52px;
+    text-align: center;
+}
+
+.contantCountry span:nth-child(1){
+    text-align: right;
+}
+
+.contantCountry span:nth-child(3){
+    text-align: left;
+}
+
+.iconDown{
+    position: absolute;
+    right: 5px;
+}
+
+.contantListBody{
+    padding: 10px 5px 15px 5px;
+    background: #f5e7e9;
+    font-size: 12px;
+}
+
+.chart{
+    padding: 0px 7px 0px 5px;
+}
+
+.chartTitle{
+    position: relative;
+    line-height: 26px;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    background: #fff;
+    display: flex;
+    box-shadow: 1px -1px 1px #bbb;
+}
+
+.footer div{
+    width: 33.3%;
+    text-align: center;
+}
+
+.price{
+    padding-top: 30px;
+    font-size: 14px;
+}
+
+.price p:nth-child(2){
+    font-size: 8px;
+    font-weight: 100;
+    margin-top:5px;
+}
+
+.button{
+    padding: 10px;
+}
+
+.button span{
+    width: 70px;
+    height: 70px;
+    display: block;
+    background: #d0021b;
+    color: #fff;
+    border-radius: 60px;
+    margin: auto;
+    font-size: 14px;
+    padding-top: 25px;
+}
+
+.button b{
+    font-size: 8px;
+    font-weight: 100;
+}
+

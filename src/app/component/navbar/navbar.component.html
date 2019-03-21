@@ -11,7 +11,9 @@
     <i class="icon ion-navicon-round"></i>
   </div>
   <div class="status-bar">
-    <span *ngFor="let item of navData" [class.statusBarActive]="switchIndex === item.id" (click)="switchTab(item.id)">{{item.name}}</span>
+    <span *ngFor="let item of navData" [class.statusBarActive]="switchIndex === item.id" (click)="switchTab(item.id)">
+      {{item.name}}
+    </span>
   </div>
 
 </div>
