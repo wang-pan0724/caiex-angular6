@@ -152,8 +152,8 @@ export class FootballComponent implements OnInit {
   // 查看详细数据
   goDetail(e, item) {
     var that = this;
-    if (e.currentTarget.firstElementChild.className == "icon ion-ios-arrow-down") {
-      e.currentTarget.firstElementChild.className = "icon ion-ios-arrow-up"
+    if (e.currentTarget.firstElementChild.className == "iconfont icon-down") {
+      e.currentTarget.firstElementChild.className = "iconfont icon-up"
 
       this._menusService.getFootballDetail().then(data => {
         this.footballDetail = data.resp;
@@ -162,7 +162,7 @@ export class FootballComponent implements OnInit {
       item.expend = true;
 
     } else {
-      e.currentTarget.firstElementChild.className = "icon ion-ios-arrow-down"
+      e.currentTarget.firstElementChild.className = "iconfont icon-down"
       item.expend = false;
     }
   }

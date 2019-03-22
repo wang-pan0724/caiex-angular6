@@ -17,7 +17,7 @@
               <span>待开赛</span>
               <span>{{item.jsonContent.guestTeam}}</span>
             </div>
-            <i class="icon ion-ios-arrow-down iconDown" (click)="goDetail($event,item)"></i>
+            <i class="iconfont icon-down iconDown" (click)="goDetail($event,item)"></i>
           </div>
           <div class="contantListBody" *ngIf="item.expend">
             您投注了: {{item.content}}
@@ -28,7 +28,7 @@
     <div class="chart">
       <div class="chartTitle">
         <span class="title">价格走势明细</span>
-        <i class="icon ion-ios-arrow-down iconDown" (click)="goDetail($event,option)"></i>
+        <i class="iconfont icon-down iconDown" (click)="goDetail($event,option)"></i>
       </div>
       <div *ngIf="option.expend" echarts [options]="option" class="demo-chart"></div>
     </div>

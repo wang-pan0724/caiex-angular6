@@ -1,8 +1,9 @@
 <div class="backgroundRed title">
-  <i (click)="goBack()" class="icon ion-chevron-left" *ngIf="showReturn"></i>
+  <!-- <i (click)="goBack()" class="icon ion-chevron-left" *ngIf="showReturn"></i> -->
+  <i *ngIf="showReturn" class="iconfont icon-left" (click)="goBack()"></i>
   <span (click)="selectItem()">
     {{title}}
-    <i *ngIf="selectDown" class="icon ion-ios-arrow-down iconDown"></i>
+    <i *ngIf="selectDown" class="iconfont icon-down iconDown"></i>
   </span>
  
   <i class="anticon anticon-right"></i>

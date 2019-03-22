@@ -115,11 +115,11 @@ export class TradeDetailComponent implements OnInit {
 
   goDetail(e, item) {
     console.log(e)
-    if (e.currentTarget.className == "icon ion-ios-arrow-down iconDown") {
-      e.currentTarget.className = "icon ion-ios-arrow-up iconDown";
+    if (e.currentTarget.className == "iconfont icon-down iconDown") {
+      e.currentTarget.className = "iconfont icon-up iconDown";
       item.expend = false;
     } else {
-      e.currentTarget.className = "icon ion-ios-arrow-down iconDown"
+      e.currentTarget.className = "iconfont icon-down iconDown"
       item.expend = true;
     }
   }
