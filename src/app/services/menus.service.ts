@@ -13,6 +13,7 @@ import { BASKET3 } from './basketball3-mock'
 import { TRADE } from './trade-mock'
 import { TRADEDETAILDATA } from './trade-detail-mock'
 import { TRADEDETAILDATA2 } from './trade-detail2-mock'
+import { TRADEDETAIL3 } from './trade-detail3-mock'
 
 @Injectable({
   providedIn: 'root'
@@ -75,5 +76,9 @@ export class MenusService {
 
   getTradeDetail2():Promise<any>{
     return Promise.resolve(TRADEDETAILDATA2)
+  }
+
+  getTradeDetail3():Promise<any>{
+    return Promise.resolve(TRADEDETAIL3)
   }
 }

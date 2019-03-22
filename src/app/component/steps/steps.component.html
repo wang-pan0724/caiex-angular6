@@ -1,0 +1,19 @@
+<div class="steps">
+  <ul class="lineUl">
+    <li *ngFor="let item of stepsData; let i=index" [ngClass]="{'liWidth': i+1 == stepsData.length}">
+      <div class="stepsIcon">
+        <div class="radioSelect radioSelectDisabled" [ngClass]="{'radioSelectDisabled': i+1>active}"></div>
+        <div *ngIf="i+1 != stepsData.length" class="line" [ngClass]="{'lineDefaule': i+2>active}">
+          <span *ngIf="!!item.tips">{{item.tips}}</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <ul class="text">
+    <li *ngFor="let item of stepsData; let i=index">
+        <div class="title" *ngIf="!!item.title">{{item.title}}</div>
+        <div class="description" *ngIf="!!item.description">{{item.description}}</div>
+    </li>
+  </ul>
+</div>

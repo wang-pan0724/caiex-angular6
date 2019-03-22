@@ -50,6 +50,7 @@ import { AgainstRecordPipe } from './pipe/against-record.pipe';
 import { FirmOrderComponent } from './firm-order/firm-order.component';
 import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
 import { TradeDetailComponent } from './trade-detail/trade-detail.component';
+import { StepsComponent } from './component/steps/steps.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +93,7 @@ import { TradeDetailComponent } from './trade-detail/trade-detail.component';
     FirmOrderComponent,
     DealWithDataPipe,
     TradeDetailComponent,
+    StepsComponent,
   ],
   imports: [
     BrowserModule,

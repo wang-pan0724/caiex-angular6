@@ -11,7 +11,26 @@ export class TradeDetailComponent implements OnInit {
   public title = "方案详情";
   public tradeDetailData: any = [];
   public tradeDetailList:any = [];
-  public tabIndex:number = 0;
+  public tabIndex:number = 1;
+  public stepsData:any = [
+    {
+      title:'步骤1',
+      description:'描述文件'
+    },
+    {
+      title:'步骤2',
+      description:'描述文件'
+    },
+    {
+      title:'步骤3',
+      description:'描述文件',
+      tips:'待开奖'
+    },
+    {
+      title:'步骤4',
+      description:'描述文件'
+    }
+  ];
   public navData:any = [
     {
       id:0,
@@ -103,13 +122,12 @@ export class TradeDetailComponent implements OnInit {
       if(data.resp.orderAmount>this.option.yAxis[0].max){
         this.option.yAxis[0].max = data.resp.orderAmount
       }
-      dataList.lostPrice = (Number(dataList.orderAmount)-Number(dataList.planPrice.split(' ')[1])).toFixed(2);
+      dataList.lostPrice = (Number(dataList.planPrice.split(' ')[1])-Number(dataList.orderAmount)).toFixed(2);
       for(var i=0; i<dataList.contentList.length; i++){
         dataList.contentList[i].jsonContent = JSON.parse(data.resp.contentList[i].jsonContent);
         dataList.contentList[i].expend = true;
       }
       this.tradeDetailList = dataList;
-      console.log(dataList)
     })
   }
 
@@ -127,10 +145,14 @@ export class TradeDetailComponent implements OnInit {
    // 切换tab
    switchTab(index) {
     this.tabIndex = index;
+    if(index == 1){
+      this._menusService.getTradeDetail2().then(data => {
+        console.log(data)
+      }) 
+    }
   }
 
   handle(e){
     console.log(e)
   }
-
 }

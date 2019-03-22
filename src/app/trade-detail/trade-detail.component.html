@@ -45,11 +45,15 @@
           </span>
         </div>
         <div class="price">
-          <p>可盈利</p>
-          <p>( <b *ngIf="tradeDetailList.lostPrice>0">-</b>{{tradeDetailList.lostPrice}}元)</p>
+          <p>可盈利</p> 
+          <p>({{tradeDetailList.lostPrice}}元)</p>
         </div>
     </div>
   </div>
-
+  <div *ngIf="tabIndex==1">
+    <div  class="contant">
+      <app-steps [stepsData]="stepsData" [active]='3'></app-steps>
+    </div>
+  </div>
 
 </div>

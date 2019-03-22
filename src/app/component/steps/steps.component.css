@@ -1,0 +1,79 @@
+.steps ul{
+    display: flex;
+}
+
+li{
+    width: 100%;
+    text-align: center;
+}
+
+.lineUl{
+    padding: 0px 10%;
+    margin-bottom: 5px;
+}
+
+.liWidth{
+    width: 20px;
+}
+
+.stepsIcon{
+    display: flex;
+}
+
+.radioSelect {
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: 100%;
+  border: 1px solid #26a2ff;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-color: #26a2ff;
+}
+
+.radioSelect::after {
+  border: 2px solid transparent;
+  border-left: 0;
+  border-top: 0;
+  content: ' ';
+  top: 3px;
+  left: 6px;
+  position: absolute;
+  width: 4px;
+  height: 8px;
+  border-color: #fff;
+  -webkit-transform: rotate(45deg) scale(1);
+  transform: rotate(45deg) scale(1);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.radioSelectDisabled {
+    background-color: #d9d9d9;
+    border-color: #ccc;
+}
+
+.line{
+    display: block;
+    flex: 1;
+    height: 16px;
+    border-bottom: 1px solid#26a2ff;
+    margin-top: -5px;
+    font-size: 12px;
+    color: #26a2ff;
+}
+
+.lineDefaule{
+    border-bottom: 1px solid#d9d9d9;
+}
+
+.title{
+    font-size: 14px;
+}
+
+.description{
+    font-size: 12px;
+}
