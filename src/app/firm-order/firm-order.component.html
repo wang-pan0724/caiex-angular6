@@ -42,7 +42,7 @@
     <div class="multiples">
       <span>投</span>
       <span class="num" (click)="sub()">-</span>
-      <input type="number" [(ngModel)]="multiples" onkeyup="value=value.replace(/[^0-9]/g, '')">
+      <input type="number" [(ngModel)]="multiples" onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');">
       <span class="num" (click)="add()">+</span>
       <span>倍</span>
     </div>

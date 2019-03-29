@@ -26,7 +26,7 @@
             <button class="signIn">登录</button>
             <button class="signUp" routerLink="/mine/signout">注册</button>
         </div>
-    </div>
+    </div> 
     <div *ngIf="signIndex == 1">
         <div class="input">
             <input type="tel" placeholder="请输入用户名">
@@ -34,7 +34,7 @@
         <div class="input auth">
             <input type="number" id="code" placeholder="请输入验证码">
             <span class="send" *ngIf="sendCode == false" (click)="send()">发送验证码</span>
-            <span class="num" *ngIf="sendCode == true">60秒后可重新发送</span>
+            <span class="num" *ngIf="sendCode == true">{{seconds}}秒后可重新发送</span>
         </div>
 
         <div class="buttonGroup">

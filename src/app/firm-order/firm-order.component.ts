@@ -210,6 +210,19 @@ export class FirmOrderComponent implements OnInit {
 
   }
 
+  changeNum(){
+    var number = this.multiples;
+    var reg = /[^\d]/g;
+    console.log("change")
+    if(reg.test(number)){
+      console.log('测试数据2--'+number)
+      // return false;
+    }else{
+      console.log("正整数")
+    }
+
+  }
+
   getMinAndMax(bonusArr) {
     var min = bonusArr[0];
     var max = 0;

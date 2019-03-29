@@ -42,7 +42,7 @@
     width: 100% !important;
 }
 
-.contant{
+.content{
     padding: 50px 5px 5px;
 }
 
@@ -51,24 +51,24 @@
     line-height: 28px;
 }
 
-.contant ul li{
+.content ul li{
     position: relative;
     margin-bottom: 5px;
     border: 1px solid #bbb;
     border-radius: 5px;
 }
 
-.contantListTitle{
+.contentListTitle{
     display: flex;
     padding: 10px 5px;
 }
 
-.contantListTime{
+.contentListTime{
     font-size: 13px;
     width: 170px;
 }
 
-.contantListTime span{
+.contentListTime span{
     display: inline-block;
 }
 
@@ -77,21 +77,21 @@
     color: #d0021b;
 }
 
-.contantCountry{
+.contentCountry{
     font-size: 13px;
     display: flex;
 }
 
-.contantCountry span{
+.contentCountry span{
     width: 52px;
     text-align: center;
 }
 
-.contantCountry span:nth-child(1){
+.contentCountry span:nth-child(1){
     text-align: right;
 }
 
-.contantCountry span:nth-child(3){
+.contentCountry span:nth-child(3){
     text-align: left;
 }
 
@@ -100,7 +100,7 @@
     right: 5px;
 }
 
-.contantListBody{
+.contentListBody{
     padding: 10px 5px 15px 5px;
     background: #f5e7e9;
     font-size: 12px;
@@ -163,3 +163,24 @@
 }
 
 
+.gameDesc{
+    display: flex;
+    padding: 10px;
+}
+
+.gameDesc img{
+    width: 40px;
+    height: 40px;
+}
+
+.prizeDesc{
+    display: flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #bbb;
+}
+
+.prizeDesc div{
+    width: 50%;
+}

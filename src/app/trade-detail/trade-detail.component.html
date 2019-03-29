@@ -5,21 +5,21 @@
       (click)="switchTab(item.id)">{{item.name}}<i></i></span>
   </div>
   <div *ngIf="tabIndex==0">
-    <div class="contant">
+    <div class="content">
       <p class="title">方案包含赛事</p>
       <ul>
         <li *ngFor="let item of tradeDetailList.contentList">
-          <div class="contantListTitle">
-            <div class="contantListTime"><span>{{item.jsonContent.week}}{{item.jsonContent.matchNo}}</span> <span
+          <div class="contentListTitle">
+            <div class="contentListTime"><span>{{item.jsonContent.week}}{{item.jsonContent.matchNo}}</span> <span
                 class="time">({{item.jsonContent.matchTime | date:'yyyy-MM-dd HH:mm'}})</span></div>
-            <div class="contantCountry">
+            <div class="contentCountry">
               <span>{{item.jsonContent.homeTeam}}</span>
               <span>待开赛</span>
               <span>{{item.jsonContent.guestTeam}}</span>
             </div>
             <i class="iconfont icon-down iconDown" (click)="goDetail($event,item)"></i>
           </div>
-          <div class="contantListBody" *ngIf="item.expend">
+          <div class="contentListBody" *ngIf="item.expend">
             您投注了: {{item.content}}
           </div>
         </li>
@@ -51,8 +51,31 @@
     </div>
   </div>
   <div *ngIf="tabIndex==1">
-    <div  class="contant">
-      <app-steps [stepsData]="stepsData" [active]='3'></app-steps>
+    <div class="content">
+      <div class="gameDesc">
+        <img src="../../assets/basketball.jpg" alt="">
+        <div>
+          <h4>竞彩篮球</h4>
+          <p>让分胜负</p>
+        </div>
+      </div>
+      <div class="prizeDesc">
+        <div>
+          <p>￥2 1倍</p>
+          <p>方案本金</p>
+        </div>
+        <div>
+          <p>未中奖</p>
+          <p>中奖金额</p>
+        </div>
+      </div>
+      <div>
+        <p>方案状态</p>
+        <div>
+            <app-steps [stepsData]="stepsData" [active]='3'></app-steps>
+        </div>
+      </div>
+      
     </div>
   </div>
 

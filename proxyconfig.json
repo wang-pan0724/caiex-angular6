@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://app.caieturn.com",
+    "target": "http://192.168.1.139",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,

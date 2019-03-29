@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class SignInComponent implements OnInit {
 
   signIndex = 0;
-  sendCode = false;
+  public sendCode:boolean = false;
+  public seconds;
   constructor() { }
 
   ngOnInit() {
@@ -18,12 +19,25 @@ export class SignInComponent implements OnInit {
     history.go(-1);
   }
 
-  signIn(index){
+  signIn(index) {
     this.signIndex = index;
   }
 
-  getCode(){
+  getCode() {
     alert('hello')
+  }
+
+  send() {
+    this.sendCode = true
+    this.seconds = 60
+    var that = this;
+    var timeIn = setInterval(function () {
+      that.seconds--
+      if (that.seconds <= 0) {
+        clearInterval(timeIn)
+        that.sendCode = false
+      }
+    }, 1000);
   }
 
 }

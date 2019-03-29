@@ -58,6 +58,14 @@
     color: #d0021b;
 }
 
+.num{
+    font-size: 12px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #d0021b;
+}
+
 
 .password{
     padding: 0px 10px;
