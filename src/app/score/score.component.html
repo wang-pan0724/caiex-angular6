@@ -7,7 +7,7 @@
         <el-menu-item index="3">已购赛事</el-menu-item>
     </el-menu>
 
-    <app-scroll (onRefresh)="onScrollRefresh()" (onSlideLeft)="onSlideLeft()">
+    <app-scroll (onRefresh)="onScrollRefresh()" (onSlideLeft)="onSlideLeft()" [IsRefreshFinish]="_IsRefreshFinish">
         <div class="lists haveTab" *ngIf="tabIndex==0">
             <div class="listTitle">2019-01-04 2场比赛</div>
             <div class="listContant">

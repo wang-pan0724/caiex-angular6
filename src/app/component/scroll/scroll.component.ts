@@ -39,7 +39,8 @@ export class ScrollComponent implements OnInit,OnChanges {
   ngOnInit() {
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(){
+    console.log("ngOnChanges")
     if (!!this._IsRefreshFinish) {
       const { Info, divTop } = this;
       Info.TitleTop = '更新完成...';

@@ -1,22 +1,22 @@
 <app-common-title [showReturn]=true [title]='title'></app-common-title>
 <div class="page">
-  <div class="input">
+  <!-- <div class="input">
     <span>手机号</span>
-    <input type="tel" placeholder="请输入手机号码" [(ngModel)]="tel">
-  </div>
-  <div class="input auth">
+    <input type="tel" placeholder="请输入手机号码">
+  </div> -->
+  <!-- <div class="input auth">
     <span>验证码</span>
-    <input type="number" id="code" placeholder="请输入验证码" [(ngModel)]="code">
+    <input type="number" id="code" placeholder="请输入验证码">
     <span class="send" *ngIf="sendCode == false" (click)="getCode()">发送验证码</span>
     <span class="num" *ngIf="sendCode == true">{{seconds}}秒后可重新发送</span>
-  </div>
-  <!-- <div class="input">
+  </div> -->
+  <div class="input">
     <span>登录密码</span>
     <input type="password" placeholder="请输入用户名" #passwordType>
     <i class="iconfont icon-eye-slash" (click)="visible($event)"></i>
-  </div> -->
+  </div>
   <div class="buttonGroup">
-    <button class="signIn" (click)="next()">下一步</button>
+    <button class="signIn" (click)="submit()">确定</button>
   </div>
 </div>
 

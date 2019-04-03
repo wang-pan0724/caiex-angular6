@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenusService } from '../services/menus.service'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mine',
@@ -8,10 +9,15 @@ import { MenusService } from '../services/menus.service'
 })
 export class MineComponent implements OnInit {
 
-  menus = [];
-  constructor(
-    private _menusService: MenusService
-  ) { }
+  public menus = [];
+  public data:any;
+  constructor(private _menusService: MenusService,private ActivatedRoute: ActivatedRoute) { 
+    this.data = this.ActivatedRoute.queryParams['_value']['data']
+    // console.log(this.data);
+    if(!!this.data){
+      this.data = JSON.parse(this.data)
+    }
+  }
   ngOnInit() {
     this._menusService.getMenu().then(data => {
       this.menus = data;

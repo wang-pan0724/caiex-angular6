@@ -115,7 +115,6 @@ export class BasketballComponent implements OnInit {
   // 查看详细数据
   goDetail(e, item) {
     var that = this;
-    debugger;
     if (e.currentTarget.firstElementChild.className == "iconfont icon-down") {
       e.currentTarget.firstElementChild.className = "iconfont icon-up"
 

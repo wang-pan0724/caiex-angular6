@@ -51,6 +51,8 @@ import { FirmOrderComponent } from './firm-order/firm-order.component';
 import { DealWithDataPipe } from './pipe/deal-with-data.pipe';
 import { TradeDetailComponent } from './trade-detail/trade-detail.component';
 import { StepsComponent } from './component/steps/steps.component';
+import { AlertComponent } from './component/alert/alert.component';
+import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-checkcode.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +96,8 @@ import { StepsComponent } from './component/steps/steps.component';
     DealWithDataPipe,
     TradeDetailComponent,
     StepsComponent,
+    AlertComponent,
+    ForgotpwdCheckcodeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service'
-import { SignService } from '../services/sign.service'
 
 @Component({
   selector: 'app-home',
@@ -11,17 +9,10 @@ export class HomeComponent implements OnInit {
 
   title = "首页";
 
-  constructor(public storage: LoginService,private signService:SignService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.storage.getData();
-    let arr = {
-      "agentId":'1025',
-      "version":"repo_android_1.0.0",
-      "sid":"",
-      "format":"json",
-    }
-    this.signService.getsecretkey()
+   
   }
 
   

@@ -85,7 +85,7 @@ export class SignService {
     var str = this.processJson(json);
     var sign = this.getSign(str);
     str += "&sign=" + sign;
-    return str
+    return str;
   }
 
   getStrUrl(json) {

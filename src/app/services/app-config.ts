@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AppConfig {
   static baseUrl: string = 'https://192.168.1.139';
   // "target": "https://app.caieturn.com",
@@ -17,6 +18,9 @@ export class AppConfig {
     "xgDeviceToken": "38ab50020688478645f0aec582ceea6b3c71ea59",
     "miDeviceToken": null,
     "hwDeviceToken": ""
-  }
+  };
+  static httpOptions: any = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8', "Access-Control-Allow-Origin": "*" })
+  };
 }
 

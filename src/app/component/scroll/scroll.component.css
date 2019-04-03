@@ -1,6 +1,7 @@
 .scrollCss {
     position: relative;
     /* padding: 10px 5px; */
+    padding-top: 45px;
   }
 
 .title {
@@ -30,5 +31,5 @@
 .title {
     position: absolute;
     width: 100%;
-    bottom: 10px;
+    bottom: -5px;
 }
