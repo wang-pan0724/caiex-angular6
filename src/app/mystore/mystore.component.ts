@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SignService } from '../services/sign.service'
+import { AppConfig } from '../services/app-config';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-mystore',
@@ -6,13 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mystore.component.css']
 })
 export class MystoreComponent implements OnInit {
-  title = "我的彩店";
-  isWeiXin = true;
-  changeNewStore = false;
-  constructor() { }
+  public title = "我的彩店";
+  public isWeiXin = true;
+  public changeNewStore = false;
+  public DataList:any = [];
+  constructor(private signService: SignService, private http: HttpClient) { }
 
   ngOnInit() {
     this.isWeiXin = this.isWeiXinFun();
+
+    this.getData()
+  }
+
+  getData(){
+    
+    let data = {
+      'realTimeQuery':true
+    }
+
+    var that = this;
+    this.http.get('/api/m/consumer/providerInfo.do?' + this.signService.getStrUrl(data)).subscribe(response => {
+      console.log(response)
+     that.DataList = response['resp'];
+    });
   }
 
   // openApp(){

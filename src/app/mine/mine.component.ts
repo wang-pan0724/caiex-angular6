@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenusService } from '../services/menus.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { SignService } from '../services/sign.service'
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-mine',
@@ -8,20 +9,37 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./mine.component.css']
 })
 export class MineComponent implements OnInit {
+  public DataList:any;
+  constructor(private router: Router,private signService: SignService, private http: HttpClient) { 
+    this.getData()
+  }
 
-  public menus = [];
-  public data:any;
-  constructor(private _menusService: MenusService,private ActivatedRoute: ActivatedRoute) { 
-    this.data = this.ActivatedRoute.queryParams['_value']['data']
-    // console.log(this.data);
-    if(!!this.data){
-      this.data = JSON.parse(this.data)
+  ngOnInit() {
+  }
+
+  getData(){
+    let data = {}
+
+    var that = this;
+    this.http.get('/api/m/consumer/account.do?' + this.signService.getStrUrl(data)).subscribe(response => {
+      console.log(response)
+      that.doData(response)
+    });
+  }
+
+  userInfo(){
+    if(!!this.DataList){
+      this.router.navigate(['/mine/userinfo'])
+    }else{
+      this.router.navigate(['/mine/signin'])
     }
   }
-  ngOnInit() {
-    this._menusService.getMenu().then(data => {
-      this.menus = data;
-    });
+
+  doData(res){
+    if(res.ro.code == '0000'){
+      this.DataList = res.resp;
+      // this.router.navigate(['/mine/signin']);
+    }
   }
 
   onScrollRefresh() {

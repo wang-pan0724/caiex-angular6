@@ -72,6 +72,8 @@ export class SignInComponent implements OnInit {
       this.showPopFun(res.ro.msg);
     }else{
       console.log(res)
+      localStorage.setItem('sid',res.resp.sessionId);
+      localStorage.setItem('loginData',JSON.stringify(res))
       this.router.navigate(['/mine'],navigationExtras);
     }
   }

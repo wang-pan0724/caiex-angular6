@@ -1,7 +1,7 @@
 <div>
     <div class="userInfo">
-        <img routerLink="userinfo" src="../../assets/country.jpg" alt="">
-        <p routerLink="signin">caoisodns</p>
+        <img (click)="userInfo()" src="../../assets/country.jpg" alt="">
+        <p>{{!!DataList ? DataList.nickname : '请登录'}}</p>
     </div>
     <div class="tradeList">
         <ul class="tradeListUl">
@@ -12,11 +12,11 @@
         </ul>
         <div class="allMoney">
             <div>
-                <p>0.00</p>
+                <p>{{!!DataList ? DataList.ableBalance: '-'}}</p>
                 <p>可用余额(元)</p>
             </div>
             <div>
-                <p>0.00</p>
+                <p>{{!!DataList ? DataList.freezeAmount : '-'}}</p>
                 <p>冻结余额(元)</p>
             </div>
         </div>

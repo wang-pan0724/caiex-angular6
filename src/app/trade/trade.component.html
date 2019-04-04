@@ -1,14 +1,14 @@
 <app-common-title [showReturn]=false [title]='title'></app-common-title>
 <div class="page">
     <div class="menuList">
-        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
+        <el-dropdown [model]="GameIddata" trigger="click" (selected)="checkGameId($event)" class="menuItem">
             {{value}}
         </el-dropdown>
-        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
-            下拉菜单2
+        <el-dropdown [model]="winStatus" trigger="click" (selected)="checkWinStatus($event)" class="menuItem">
+            {{value2}}
         </el-dropdown>
-        <el-dropdown [model]="data" trigger="click" (selected)="handle($event)" class="menuItem">
-            下拉菜单3
+        <el-dropdown [model]="planStatus" trigger="click" (selected)="checkPlanStatus($event)" class="menuItem">
+            {{value3}}
         </el-dropdown>
     </div>
 

@@ -3,7 +3,7 @@ export class AppConfig {
   static baseUrl: string = 'https://192.168.1.139';
   // "target": "https://app.caieturn.com",
   static agentId: number = 1025;
-  static sid: string = '';
+  // static sid: string = localStorage.getItem('sid');
   static version: string = 'repo_android_1.0.0';
   static clientType: string = '1';
   static imei: string = '860758044968719';
@@ -21,6 +21,9 @@ export class AppConfig {
   };
   static httpOptions: any = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8', "Access-Control-Allow-Origin": "*" })
+  };
+  static httpOptionsApiVersion: any = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json;charset=UTF-8', "Access-Control-Allow-Origin": "*" ,'api-version':'2'})
   };
 }
 

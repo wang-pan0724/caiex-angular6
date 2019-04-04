@@ -17,7 +17,7 @@ export class SignService {
 
   public mustPassParam = {
     "agentId": AppConfig.agentId,
-    "sid": AppConfig.sid,
+    "sid": localStorage.getItem('sid'),
     "version": AppConfig.version,
     "clientType": AppConfig.clientType,
     "appType": AppConfig.appType,
@@ -91,7 +91,7 @@ export class SignService {
   getStrUrl(json) {
     var staticJson = {
       "agentId": AppConfig.agentId,
-      "sid": AppConfig.sid,
+      "sid": localStorage.getItem('sid'),
       "version": AppConfig.version,
       "clientType": AppConfig.clientType,
       "appType": AppConfig.appType,
