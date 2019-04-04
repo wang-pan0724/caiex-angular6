@@ -10,9 +10,8 @@ export class HowToAwardPrizesComponent implements OnInit {
   title = "如何颁奖";
   menus = [];
 
-  constructor(
-    private _menusService: MenusService
-  ) { }
+  constructor(private _menusService: MenusService) { }
+  
   ngOnInit() {
     this._menusService.getMenu().then(data => {
       this.menus = data;
