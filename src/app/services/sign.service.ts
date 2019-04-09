@@ -29,13 +29,20 @@ export class SignService {
   }
 
   getLoginPassword(password) {  //RSA
-    //创建一个对象
-    let rsa = new jsrsasign.RSAKey();
-    let publicKey = "-----BEGIN PUBLIC KEY-----\n" + localStorage.getItem('secretkey') + "\n-----END PUBLIC KEY-----";
-    rsa = jsrsasign.KEYUTIL.getKey(publicKey)
-    var enc = jsrsasign.KJUR.crypto.Cipher.encrypt(password, rsa);
-    let loginPassword = jsrsasign.hextob64(enc);
-    return loginPassword;
+    let nowTime = new Date().getTime();
+    localStorage.timeTag = nowTime.toString();
+    localStorage.token = (nowTime + 3600000).toString();
+    let data = {
+      "timeTag": localStorage.getItem("timeTag"),
+      "token": localStorage.getItem('token')
+    }
+
+    var jsonToStr = this.doJson(data);
+    var that = this;
+    this.http.post('/api/m/support/secretkey.do?' + jsonToStr, this.httpOptions).subscribe(res => {
+      localStorage.secretkey = res['key'];
+      that.getsecretkey(password)
+    });
   }
 
   processJson(obj) {
@@ -64,19 +71,13 @@ export class SignService {
     return base64;
   }
 
-  getsecretkey() {
-    let nowTime = new Date().getTime();
-    localStorage.timeTag = nowTime.toString();
-    localStorage.token = (nowTime + 3600000).toString();
-    let data = {
-      "timeTag": localStorage.getItem("timeTag"),
-      "token": localStorage.getItem('token')
-    }
-
-    var jsonToStr = this.doJson(data)
-    this.http.post('/api/m/support/secretkey.do?' + jsonToStr, this.httpOptions).subscribe(res => {
-      localStorage.secretkey = res['key'];
-    });
+  getsecretkey(password) {
+    let rsa = new jsrsasign.RSAKey();
+    let publicKey = "-----BEGIN PUBLIC KEY-----\n" + localStorage.getItem('secretkey') + "\n-----END PUBLIC KEY-----";
+    rsa = jsrsasign.KEYUTIL.getKey(publicKey)
+    var enc = jsrsasign.KJUR.crypto.Cipher.encrypt(password, rsa);
+    let loginPassword = jsrsasign.hextob64(enc);
+    return loginPassword;
   }
 
   doJson(json) {

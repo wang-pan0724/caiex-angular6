@@ -65,12 +65,12 @@ export class SignUpComponent implements OnInit {
       this.showPopFun("请同意平台服务协议");
       return;
     }
+
 // this.providerInvite ==== 969636
     this.regeister(this.tel, this.code, this.passwordType.nativeElement.value, this.providerInvite)
   }
 
   regeister(phone, code, passw, providerInvite) {
-    this.signService.getsecretkey();
     var password = this.signService.getLoginPassword(passw);
     let data = {
       "code": code,
@@ -88,6 +88,8 @@ export class SignUpComponent implements OnInit {
     if (res.ro.code !== '0000') {
       this.showPopFun(res.ro.msg);
     } else {
+      localStorage.setItem('sid',res.resp.sessionId);
+      localStorage.setItem('loginData',JSON.stringify(res))
       this.router.navigate(['/mine']);
     }
   }

@@ -23,6 +23,7 @@ export class MineComponent implements OnInit {
     var that = this;
     this.http.get('/api/m/consumer/account.do?' + this.signService.getStrUrl(data)).subscribe(response => {
       console.log(response)
+      localStorage.setItem('loginData',JSON.stringify(response))
       that.doData(response)
     });
   }

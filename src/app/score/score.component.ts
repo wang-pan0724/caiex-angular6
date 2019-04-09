@@ -28,7 +28,7 @@ export class ScoreComponent implements OnInit {
       'gameId':407
     }
 
-    this.http.post('/league/instantscore/zqscore/livezcmatchList.do?' + this.signService.getStrUrl(data), AppConfig.httpOptions).subscribe(response => {
+    this.http.get('/league/instantscore/zqscore/livezcmatchList.do?' + this.signService.getStrUrl(data), AppConfig.httpOptions).subscribe(response => {
       // this.doRegeisterData(response)
       console.log(response)
     });

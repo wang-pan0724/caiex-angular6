@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SignService } from '../services/sign.service'
+import { AppConfig } from '../services/app-config';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-userinfo',
@@ -10,10 +13,26 @@ export class UserinfoComponent implements OnInit {
 
   title="个人信息";
   imageUrl ="../../assets/country.jpg"
+  public userInfo:any = [];
+  public isSetUserInfo:any = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private signService: SignService, private http: HttpClient) { }
 
   ngOnInit() {
+    this.userInfo = localStorage.getItem('loginData')
+    this.getData()
+  }
+
+  getData(){
+    let data = {
+      'type':3
+    }
+
+    this.http.post('/api/m/consumer/queryStatus.do?' + this.signService.getStrUrl(data), AppConfig.httpOptions).subscribe(response => {
+      // this.doRegeisterData(response)
+      console.log(response)
+      this.isSetUserInfo = response['resp']
+    });
   }
 
   successHandle(file: any): void {

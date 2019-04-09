@@ -79,7 +79,6 @@ export class SignInComponent implements OnInit {
   }
 
   loginUsePassword(phone,passw) {
-    this.signService.getsecretkey();
     //start.do
     this.http.get('/api/m/support/start.do?'+ this.signService.getStrUrl({}), AppConfig.httpOptions).subscribe(response => {
       console.log(response);
@@ -105,7 +104,6 @@ export class SignInComponent implements OnInit {
   //  /m/consumer/phoneCodeLogin.do
 
   loginUseCode(phone,code){
-    this.signService.getsecretkey();
     //start.do
     this.http.get('/api/m/support/start.do?'+ this.signService.getStrUrl({}), AppConfig.httpOptions).subscribe(response => {
       console.log(response);
