@@ -2,7 +2,7 @@
 
 <div class="page">
     <div class="content">
-        <input class="input" type="text">
+        <input class="input" type="text" [(ngModel)]="nickname">
         <i class="el-icon-circle-close closeIcon" *ngIf="haveText==true"></i>
     </div>
     <div class="tips">
@@ -10,6 +10,8 @@
     </div>
 
     <div class="button">
-        <button>确认修改</button>
+        <button (click)="commitNickname()">确认修改</button>
     </div>
 </div>
+
+<app-alert [showPop]="showPop" [showTips]="showTips"></app-alert>

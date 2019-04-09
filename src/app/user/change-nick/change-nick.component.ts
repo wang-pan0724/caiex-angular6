@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { SignService } from '../../services/sign.service'
+import { AppConfig } from '../../services/app-config';
+import { Router } from '@angular/router'
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-change-nick',
@@ -8,17 +12,42 @@ import { Component, OnInit } from '@angular/core';
 export class ChangeNickComponent implements OnInit {
   title = "修改昵称";
   haveText = false;
-  constructor() { }
+  public nickname = "";
+  public showPop: boolean = false;
+  public showTips: any = "";
+  constructor(private signService: SignService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
+    this.nickname = JSON.parse(localStorage.getItem('loginData')).resp.nickname
   }
 
-  mouseenter(){
-    console.log("mouseenter....")
+  commitNickname(){
+    let data = {
+      'nickName':this.nickname
+    }
+
+    this.http.get('/api/m/consumer/modifyInfo.do?' + this.signService.getStrUrl(data), AppConfig.httpOptions).subscribe(response => {
+      this.changeNicknameData(response)
+      console.log(response)
+    });
+  }
+  
+  changeNicknameData(res){
+    if(res.ro.code == '0000'){
+      this.router.navigate(['/mine']);
+    }else{
+      this.showPopFun(res.ro.msg);
+    }
   }
 
-  mousedown(){
-    console.log("mousedown....");
+  showPopFun(message) {
+    this.showPop = true;
+    this.showTips = message;
+    var that = this
+    window.setTimeout(function () {
+      that.showPop = false;
+      that.showTips = ""
+    }, 2000);
   }
 
 }

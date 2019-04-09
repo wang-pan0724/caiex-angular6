@@ -41,7 +41,7 @@ export class SignService {
     var that = this;
     this.http.post('/api/m/support/secretkey.do?' + jsonToStr, this.httpOptions).subscribe(res => {
       localStorage.secretkey = res['key'];
-      that.getsecretkey(password)
+      that.getPassword(password)
     });
   }
 
@@ -71,7 +71,7 @@ export class SignService {
     return base64;
   }
 
-  getsecretkey(password) {
+  getPassword(password) {
     let rsa = new jsrsasign.RSAKey();
     let publicKey = "-----BEGIN PUBLIC KEY-----\n" + localStorage.getItem('secretkey') + "\n-----END PUBLIC KEY-----";
     rsa = jsrsasign.KEYUTIL.getKey(publicKey)

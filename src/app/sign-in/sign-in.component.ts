@@ -109,7 +109,7 @@ export class SignInComponent implements OnInit {
       console.log(response);
       localStorage.setItem('rmStr',response['resp']['rmStr']);
 
-      // var password = this.signService.getLoginPassword(code);
+      var password = this.signService.getLoginPassword(code);
       let timestamp = (Math.random.toString().replace('0.',"")+"000000").substring(0,6) + localStorage.getItem("timeTag");
   
       let data = {

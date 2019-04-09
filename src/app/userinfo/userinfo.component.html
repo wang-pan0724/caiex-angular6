@@ -17,29 +17,35 @@
     </li>
     <li routerLink="changenick">
       <div>昵称</div>
-      <div>多大点事儿<i class="iconfont icon-right"></i></div>
+      <div>{{userInfo.nickname}}<i class="iconfont icon-right"></i></div>
     </li>
     <li class="marginTop10" routerLink="changephonenum">
       <div>绑定手机号</div>
-      <div>188******46
+      <div>{{userInfo.phone | phonenum}}
         <i class="iconfont icon-right"></i>
       </div>
     </li>
     <li class="marginTop10" routerLink="changeweixin">
       <div>微信帐号</div>
-      <div>188******46
+      <div>
+        <span *ngIf="isSetUserInfo.isSetWeixin==1">{{userInfo.weixin | phonenum}}</span>
+        <span *ngIf="isSetUserInfo.isSetWeixin==0">未设置</span>
         <i class="iconfont icon-right"></i>
       </div>
     </li>
     <li routerLink="changezhifubao">
       <div>支付宝账号</div>
-      <div>188******46
+      <div>
+        <span *ngIf="isSetUserInfo.isSetAlipay==1">{{userInfo.alipay | phonenum}}</span>
+        <span *ngIf="isSetUserInfo.isSetAlipay==0">未设置</span>
         <i class="iconfont icon-right"></i>
       </div>
     </li>
     <li routerLink="changeqq">
       <div>QQ账号</div>
-      <div>188******46
+      <div>
+        <span *ngIf="isSetUserInfo.isSetQQ==1">{{userInfo.qq | phonenum}}</span>
+        <span *ngIf="isSetUserInfo.isSetQQ==0">未设置</span>
         <i class="iconfont icon-right"></i>
       </div>
     </li>

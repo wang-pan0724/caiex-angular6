@@ -54,6 +54,7 @@ import { StepsComponent } from './component/steps/steps.component';
 import { AlertComponent } from './component/alert/alert.component';
 import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-checkcode.component';
 import { AgreementComponent } from './agreement/agreement.component';
+import { PhonenumPipe } from './pipe/phonenum.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +101,7 @@ import { AgreementComponent } from './agreement/agreement.component';
     AlertComponent,
     ForgotpwdCheckcodeComponent,
     AgreementComponent,
+    PhonenumPipe,
   ],
   imports: [
     BrowserModule,

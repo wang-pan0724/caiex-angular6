@@ -19,7 +19,7 @@ export class UserinfoComponent implements OnInit {
   constructor(private router: Router,private signService: SignService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.userInfo = localStorage.getItem('loginData')
+    this.userInfo = JSON.parse(localStorage.getItem('loginData')).resp
     this.getData()
   }
 
