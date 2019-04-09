@@ -83,6 +83,10 @@ export class FirmOrderComponent implements OnInit {
     // console.profileEnd()
   }
 
+  nextStep(){
+    
+  }
+
   showTips() {
     var num = 0;
     for (var i = 0; i < this.guanType.length; i++) {

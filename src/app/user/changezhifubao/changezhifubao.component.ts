@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangezhifubaoComponent implements OnInit {
   title = "添加支付宝账号";
+  public haveText = true;
   constructor() { }
 
   ngOnInit() {

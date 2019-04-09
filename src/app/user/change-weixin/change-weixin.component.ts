@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeWeixinComponent implements OnInit {
   title = "添加微信账号";
+  public haveText = true;
   constructor() { }
 
   ngOnInit() {

@@ -7,5 +7,23 @@
     "pathRewrite": {
       "^/api": ""
     }
+  },
+  "/league": {
+    "target": "https://league.dididapiao.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/league": ""
+    }
+  },
+  "/live": {
+    "target": "http://192.168.1.139",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/live": ""
+    }
   }
 }

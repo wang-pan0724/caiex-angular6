@@ -27,6 +27,7 @@ import { SetupComponent } from './setup/setup.component';
 import { AboutUsComponent } from './setup/about-us/about-us.component';
 import { FirmOrderComponent } from './firm-order/firm-order.component';
 import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-checkcode.component'
+import { AgreementComponent } from './agreement/agreement.component'
 
 const routes: Routes = [
   {path:'',redirectTo:'/home',pathMatch:'full'},
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path:'mine/userinfo/changeloginpassword',component:ChangeLoginpasswordComponent},
   {path:'mine/signin',component:SignInComponent},
   {path:'mine/signout',component:SignUpComponent},
+  {path:'mine/agreement',component:AgreementComponent},
   {path:'mine/forgotpassword',component:ForgotPasswordComponent},
   {path:'mine/forgotpwdcheckcode',component:ForgotpwdCheckcodeComponent},
   {path:'mine/mystore',component:MystoreComponent},

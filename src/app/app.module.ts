@@ -53,6 +53,7 @@ import { TradeDetailComponent } from './trade-detail/trade-detail.component';
 import { StepsComponent } from './component/steps/steps.component';
 import { AlertComponent } from './component/alert/alert.component';
 import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-checkcode.component';
+import { AgreementComponent } from './agreement/agreement.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +99,7 @@ import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-che
     StepsComponent,
     AlertComponent,
     ForgotpwdCheckcodeComponent,
+    AgreementComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <app-common-title [showReturn]=true [title]='title'></app-common-title>
 <div class="page">
-    <el-collapse [model]="['1']" class="list">
+    <el-collapse [model]="['1','2']" class="list">
         <el-collapse-item  *ngFor="let item of menus" label={{item.name}} value={{item.id}}>
             <div class="details" *ngFor="let detailsList of item.details">
                 {{detailsList}}

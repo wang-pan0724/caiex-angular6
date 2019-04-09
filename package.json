@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxyconfig.json",
-    "build": "ng build",
+    "build": "ng build --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -26,7 +26,8 @@
     "element-angular": "^0.7.6",
     "jsrsasign": "^8.0.12",
     "ngx-echarts": "^4.1.0",
-    "rxjs": "^6.0.0",
+    "rxjs": "6.0.0",
+    "rxjs-compat": "6.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

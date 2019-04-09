@@ -69,8 +69,9 @@ export class SignUpComponent implements OnInit {
     this.regeister(this.tel, this.code, this.passwordType.nativeElement.value, this.providerInvite)
   }
 
-  regeister(phone, code, password, providerInvite) {
-    var password = this.signService.getLoginPassword(password);
+  regeister(phone, code, passw, providerInvite) {
+    this.signService.getsecretkey();
+    var password = this.signService.getLoginPassword(passw);
     let data = {
       "code": code,
       "password": password,

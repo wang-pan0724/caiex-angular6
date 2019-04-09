@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { SignService } from '../services/sign.service'
+import { AppConfig } from '../services/app-config';
 
 @Component({
   selector: 'app-score',
@@ -12,9 +15,23 @@ export class ScoreComponent implements OnInit {
   tabIndex = 1;
   public _IsRefreshFinish = false;
   public IsNextPageFinish = false
-  constructor() { }
+  constructor(private http: HttpClient,private signService: SignService,) { }
 
   ngOnInit() {
+
+    this.getData()
+  }
+
+  getData(){
+    let data = {
+      'matchType':1,
+      'gameId':407
+    }
+
+    this.http.post('/league/instantscore/zqscore/livezcmatchList.do?' + this.signService.getStrUrl(data), AppConfig.httpOptions).subscribe(response => {
+      // this.doRegeisterData(response)
+      console.log(response)
+    });
   }
 
   handle(index){

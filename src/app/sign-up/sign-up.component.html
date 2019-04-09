@@ -21,7 +21,7 @@
         <input type="tel" placeholder="请输入邀请码" [(ngModel)]="providerInvite">
     </div>
   <div class="input select">
-      <el-checkbox [model]="val" (modelChange)="handle($event)">我同意</el-checkbox><span>《彩e通平台服务协议》</span>
+      <el-checkbox [model]="val" (modelChange)="handle($event)">我同意</el-checkbox><span routerLink='/mine/agreement'>《彩e通平台服务协议》</span>
   </div>
 
   <div class="buttonGroup">

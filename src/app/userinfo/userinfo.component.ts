@@ -26,10 +26,10 @@ export class UserinfoComponent implements OnInit {
   }
 
   signOut(){
-    window.sessionStorage.clear();
+    window.localStorage.clear();
     setTimeout(() => {
       this.router.navigate(['/home']);
-    }, 2000);
+    }, 1000);
   }
 
 }
