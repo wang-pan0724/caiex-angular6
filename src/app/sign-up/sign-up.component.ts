@@ -13,6 +13,7 @@ export class SignUpComponent implements OnInit {
   @ViewChild('passwordType') passwordType: ElementRef
   public title: string = "手机注册";
   public sendCode: boolean = false;
+  public seconds;
   public showPop: boolean = false;
   public showTips: any = "";
   public val: any;
@@ -46,8 +47,8 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    if (this.passwordType.nativeElement.value.length < 6) {
-      this.showPopFun("密码输入错误");
+    if (this.passwordType.nativeElement.value.length < 6 || this.passwordType.nativeElement.value.length > 15) {
+      this.showPopFun("请输入6-15位字母或数字");
       return;
     }
 
@@ -92,6 +93,29 @@ export class SignUpComponent implements OnInit {
       localStorage.setItem('loginData',JSON.stringify(res))
       this.router.navigate(['/mine']);
     }
+  }
+
+  getCode() {
+    if(this.tel == ''){
+      this.showPopFun("请输入11位手机号")
+      return;
+    }
+    if (this.tel.length != 11 && this.tel != '') {
+      this.showPopFun("请输入正确手机号")
+      return;
+    }
+
+    this.sendCode = true
+    this.seconds = 120
+    var that = this;
+    var timeIn = setInterval(function () {
+      that.seconds--
+      if (that.seconds <= 0) {
+        clearInterval(timeIn)
+        that.sendCode = false
+      }
+    }, 1000);
+    // alert('hello')
   }
 
   showPopFun(message) {

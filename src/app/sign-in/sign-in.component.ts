@@ -36,7 +36,7 @@ export class SignInComponent implements OnInit {
         return;
       }
 
-      if (this.password.length < 6) {
+      if (this.password.length < 6 || this.password.length > 15) {
         this.showPopFun("密码输入错误");
         return;
       }
@@ -141,6 +141,15 @@ export class SignInComponent implements OnInit {
   }
 
   getCode() {
+    if(this.tel == ''){
+      this.showPopFun("请输入11位手机号")
+      return;
+    }
+    if (this.tel.length != 11 && this.tel != '') {
+      this.showPopFun("请输入正确手机号")
+      return;
+    }
+    
     this.sendCode = true
     this.seconds = 120
     var that = this;

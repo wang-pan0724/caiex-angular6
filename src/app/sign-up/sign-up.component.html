@@ -2,26 +2,26 @@
 <div class="page">
     <div class="input">
         <span>用户名</span>
-        <input type="tel" placeholder="请输入用户名" [(ngModel)]="tel">
+        <input type="tel" placeholder="请输入本人手机号" [(ngModel)]="tel">
     </div>
     <div class="input">
         <span>登录密码</span>
-        <input type="password" placeholder="请输入用户名" #passwordType>
+        <input type="password" placeholder="6-15位字母或数字" #passwordType>
         <i class="iconfont icon-eye-slash" (click)="visible($event)"></i>
         <!-- <i class="iconfont icon-eye"></i> -->
     </div>
     <div class="input auth">
         <span>验证码</span>
         <input type="number" id="code" placeholder="请输入验证码" [(ngModel)]="code">
-        <span class="send" *ngIf="sendCode == false" (click)="send()">发送验证码</span>
-        <span class="num" *ngIf="sendCode == true">60秒后可重新发送</span>
+        <span class="send" *ngIf="sendCode == false" (click)="getCode()">发送验证码</span>
+        <span class="num" *ngIf="sendCode == true">{{seconds}}秒后可重新发送</span>
     </div>
     <div class="input">
         <span>彩店邀请码</span>
         <input type="tel" placeholder="请输入邀请码" [(ngModel)]="providerInvite">
     </div>
   <div class="input select">
-      <el-checkbox [model]="val" (modelChange)="handle($event)">我同意</el-checkbox><span routerLink='/mine/agreement'>《彩e通平台服务协议》</span>
+      <el-checkbox [model]="val" (modelChange)="handle($event)">我已阅读并同意</el-checkbox><span routerLink='/mine/agreement'>《彩e通平台服务协议》</span>
   </div>
 
   <div class="buttonGroup">
