@@ -2,14 +2,17 @@
 
 <div class="page">
     <div class="content">
-        <input class="input" type="text">
-        <i class="el-icon-circle-close closeIcon" *ngIf="haveText==true"></i>
+        <input class="input" type="text" [(ngModel)]="weixinCode">
+        <i class="iconfont icon-guanbi1 closeIcon" *ngIf="weixinCode.length!=0" (click)="clearCode()"></i>
     </div>
     <div class="tips">
         站点可通过微信与您联系，也可通过微信钱包与您结算除票款，中奖奖金；如有变化，请即使修改并告知站主。
     </div>
 
     <div class="button">
-        <button>确认修改</button>
+        <button (click)="changeWeixin()">确认修改</button>
     </div>
 </div>
+<app-alert [showPop]="showPop" [showTips]="showTips"></app-alert>
+<app-password [showPwdPop]="showPwdPop" (onPwdChanged)="getPwd($event)" (onClosePop)="getClosePop($event)"></app-password>
+<app-confirm [showConfirmPop]="showConfirmPop" (confirm)="confirm()"></app-confirm>

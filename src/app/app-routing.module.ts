@@ -18,6 +18,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangeNickComponent } from './user/change-nick/change-nick.component';
 import { ChangePhonenumComponent } from './user/change-phonenum/change-phonenum.component';
+import { ChangePhonenextComponent } from './user/change-phonenext/change-phonenext.component'
 import { ChangeWeixinComponent } from './user/change-weixin/change-weixin.component';
 import { ChangezhifubaoComponent } from './user/changezhifubao/changezhifubao.component';
 import { ChangeQQComponent } from './user/change-qq/change-qq.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path:'mine/userinfo',component:UserinfoComponent},
   {path:'mine/userinfo/changenick',component:ChangeNickComponent},
   {path:'mine/userinfo/changephonenum',component:ChangePhonenumComponent},
+  {path:'mine/userinfo/changephonenext',component:ChangePhonenextComponent},
   {path:'mine/userinfo/changeweixin',component:ChangeWeixinComponent},
   {path:'mine/userinfo/changeqq',component:ChangeQQComponent},
   {path:'mine/userinfo/changezhifubao',component:ChangezhifubaoComponent},

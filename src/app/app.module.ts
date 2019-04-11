@@ -55,6 +55,9 @@ import { AlertComponent } from './component/alert/alert.component';
 import { ForgotpwdCheckcodeComponent } from './forgotpwd-checkcode/forgotpwd-checkcode.component';
 import { AgreementComponent } from './agreement/agreement.component';
 import { PhonenumPipe } from './pipe/phonenum.pipe';
+import { ChangePhonenextComponent } from './user/change-phonenext/change-phonenext.component';
+import { PasswordComponent } from './component/password/password.component';
+import { ConfirmComponent } from './component/confirm/confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,6 +105,9 @@ import { PhonenumPipe } from './pipe/phonenum.pipe';
     ForgotpwdCheckcodeComponent,
     AgreementComponent,
     PhonenumPipe,
+    ChangePhonenextComponent,
+    PasswordComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,

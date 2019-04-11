@@ -22,6 +22,16 @@ export class ChangeNickComponent implements OnInit {
   }
 
   commitNickname(){
+    if(this.nickname.length > 15){
+      this.showPopFun("最多输入15个字符");
+      return;
+    }
+
+    if(this.nickname.length < 4){
+      this.showPopFun("最少输入4个字符");
+      return;
+    }
+    
     let data = {
       'nickName':this.nickname
     }
